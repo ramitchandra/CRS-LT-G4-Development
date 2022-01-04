@@ -31,7 +31,7 @@ public class AdminController {
 		return studentHandlerImpl.getStudentList();
 	}
 	
-	@RequestMapping(value = "/admin/validateStudent/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/validateStudent/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
 	public Student validateStudent(@PathVariable int id) {
 		List<Student> studentList = studentHandlerImpl.getStudentList();
 		for(Student student : studentList) {
