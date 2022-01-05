@@ -14,7 +14,7 @@ import com.lt.crs.bean.Course;
 public interface CourseHandler {
 	
 	public List<Course> getCourseList();
-	public void addCourse(Course course);
+	public Course addCourse(Course course);
 	public Course deleteCourse(int courseId);
 	
 }

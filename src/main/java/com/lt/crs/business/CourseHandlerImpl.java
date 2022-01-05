@@ -21,7 +21,7 @@ public class CourseHandlerImpl implements CourseHandler {
 		}
 
 		@Override
-		public void addCourse(Course course) {
+		public Course addCourse(Course course) {
 			Course newCourse = new Course();
 			newCourse.setCourseId(course.getCourseId());
 			newCourse.setCourseName(course.getCourseName());
@@ -29,6 +29,7 @@ public class CourseHandlerImpl implements CourseHandler {
 			newCourse.setOfflieFees(course.getOfflieFees());
 			newCourse.setOnlineFees(course.getOnlineFees());
 			courseList.add(newCourse);
+			return newCourse;
 		}
 
 		@Override

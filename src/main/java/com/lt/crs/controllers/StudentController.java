@@ -5,15 +5,23 @@ import java.util.List;
 
 import javax.ws.rs.core.MediaType;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lt.crs.bean.Course;
+import com.lt.crs.bean.Student;
+import com.lt.crs.business.StudentHandler;
 
 @RestController
 public class StudentController {
+	
+	@Autowired
+	StudentHandler studentHandlerImpl;
+	
 	List<String> courseList = new ArrayList<String>();	
 	
 	@RequestMapping(value = "student/registerCourse/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
@@ -39,6 +47,12 @@ public class StudentController {
 	public void dropCourse(@PathVariable String Course) {
 		if(!courseList.contains(Course))
 			courseList.remove(Course);
+		
+	}
+	
+	@RequestMapping(value = "/student/addStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
+	public Student dropCourse(@RequestBody Student student) {
+		return studentHandlerImpl.addStudent(student);
 		
 	}
 }

@@ -41,4 +41,17 @@ public class StudentHandlerImpl implements StudentHandler {
 		
 	}
 
+	@Override
+	public Student addStudent(Student student) {
+		Student newStudent = new Student();
+		newStudent.setStudentId(student.getStudentId());
+		newStudent.setStudentEmail(student.getStudentEmail());
+		newStudent.setStudentName(student.getStudentName());
+		newStudent.setStudentPassword(student.getStudentPassword());
+		newStudent.setStudentUsername(student.getStudentUsername());
+		newStudent.setApproved(student.isApproved());
+		studentList.add(newStudent);
+		return newStudent;
+	}
+
 }

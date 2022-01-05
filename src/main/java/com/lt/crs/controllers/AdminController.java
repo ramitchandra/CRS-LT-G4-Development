@@ -55,19 +55,18 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/admin/addCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
-	public List<Course> addCourse(@RequestBody Course course) {
-		
-		courseHandlerImpl.addCourse(course);
-		
-		return courseHandlerImpl.getCourseList();
+	public Course addCourse(@RequestBody Course course) {	
+		return courseHandlerImpl.addCourse(course);
 	}
 	
 	@RequestMapping(value = "/admin/deleteCourse/{courseId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
-	public Course deleteCourse(@PathVariable int courseId) {
-		
-		Course deletedCourse = courseHandlerImpl.deleteCourse(courseId);
-		
-		return deletedCourse;
+	public Course deleteCourse(@PathVariable int courseId) {		
+		return courseHandlerImpl.deleteCourse(courseId);
+	}
+	
+	@RequestMapping(value = "/admin/getCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+	public List<Course> getCourse() {
+		return courseHandlerImpl.getCourseList();
 	}
 	
 	@RequestMapping(value = "/admin/addProfesor", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)

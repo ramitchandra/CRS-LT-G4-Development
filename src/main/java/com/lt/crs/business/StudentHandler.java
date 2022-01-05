@@ -14,4 +14,5 @@ import com.lt.crs.bean.Student;
 public interface StudentHandler {
 	public List<Student> getStudentList();
 	public void createDummyStudent();
+	public Student addStudent(Student student);
 }
