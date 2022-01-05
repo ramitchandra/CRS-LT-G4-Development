@@ -1,0 +1,92 @@
+11:00:03,339 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@497470ed
+12:58:38,615  INFO StudentHandlerImpl,main:228 - Registration successful for student : Stud16
+13:00:13,404 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@61e4705b
+13:00:13,413  INFO MainCRSMenu,main:90 - Logged in user "LTI" as Admin
+13:00:30,905  INFO AdminDAOImpl,main:78 - user id 1is approved
+13:01:09,877  INFO StudentHandlerImpl,main:228 - Registration successful for student : Stud11
+13:01:20,880 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@ba8a1dc
+13:01:20,893  INFO MainCRSMenu,main:90 - Logged in user "LTI" as Admin
+13:01:34,754  INFO AdminDAOImpl,main:78 - user id 11is approved
+13:01:48,304 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@58d25a40
+13:01:48,315  INFO MainCRSMenu,main:90 - Logged in user "Stud11" as Student
+13:02:18,192  INFO StudentHandlerImpl,main:139 - Courses Registered for Student Stud11 : Course1, Course2
+13:03:56,266 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@63c12fb0
+13:03:56,331  INFO MainCRSMenu,main:90 - Logged in user "Stud11" as Student
+13:04:57,775 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@63c12fb0
+13:04:57,801  INFO MainCRSMenu,main:90 - Logged in user "Stud11" as Student
+13:07:38,196 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@63c12fb0
+13:07:38,239  INFO MainCRSMenu,main:90 - Logged in user "Stud11" as Student
+13:08:35,860 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@63c12fb0
+13:08:35,904  INFO MainCRSMenu,main:90 - Logged in user "Stud11" as Student
+13:20:43,049  INFO StudentHandlerImpl,main:228 - Registration successful for student : Stud21
+13:20:48,893 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@61e4705b
+13:20:48,908  INFO MainCRSMenu,main:90 - Logged in user "LTI" as Admin
+13:21:01,807  INFO AdminDAOImpl,main:78 - user id 21is approved
+13:21:19,533 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@1a93a7ca
+13:21:19,538  INFO MainCRSMenu,main:90 - Logged in user "Stud21" as Student
+13:22:12,990  INFO StudentHandlerImpl,main:139 - Courses Registered for Student Stud21 : Course1, Course3
+13:22:50,586 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@ee7d9f1
+13:22:50,592  INFO MainCRSMenu,main:90 - Logged in user "Prof1" as Professor
+13:23:21,368 DEBUG LoginValidation,main:26 - com.mysql.jdbc.JDBC4Connection@379619aa
+13:23:21,374  INFO MainCRSMenu,main:90 - Logged in user "Stud21" as Student
+15:24:56,606  INFO StudentHandlerImpl,main:228 - Registration successful for student : JL
+15:25:05,339 DEBUG LoginValidation,main:35 - com.mysql.jdbc.JDBC4Connection@61e4705b
+15:25:05,351  INFO MainCRSMenu,main:106 - Logged in user "LTI" as Admin
+15:25:20,413  INFO AdminDAOImpl,main:78 - user id 31is approved
+15:25:44,657 DEBUG LoginValidation,main:35 - com.mysql.jdbc.JDBC4Connection@1a93a7ca
+15:25:44,663  INFO MainCRSMenu,main:106 - Logged in user "JL" as Student
+15:25:56,555  INFO StudentHandlerImpl,main:139 - Courses Registered for Student JL : Course1
+15:28:05,365 DEBUG LoginValidation,main:35 - com.mysql.jdbc.JDBC4Connection@63c12fb0
+15:28:05,406  INFO MainCRSMenu,main:106 - Logged in user "JL" as Student
+15:31:40,522 DEBUG LoginValidation,main:35 - com.mysql.jdbc.JDBC4Connection@63c12fb0
+15:31:40,587  INFO MainCRSMenu,main:106 - Logged in user "JL" as Student
+15:32:45,490 DEBUG LoginValidation,main:35 - com.mysql.jdbc.JDBC4Connection@6ae40994
+15:32:45,498  INFO MainCRSMenu,main:106 - Logged in user "Prof1" as Professor
+15:33:10,005 DEBUG LoginValidation,main:35 - com.mysql.jdbc.JDBC4Connection@ea30797
+15:33:10,010  INFO MainCRSMenu,main:106 - Logged in user "JL" as Student
+18:25:20,424  INFO NotificationHandlerImpl,main:11 - Registration successful for student : Stud1
+18:25:36,334  INFO MainCRSMenu,main:107 - Logged in user "LTI" as Admin at 2021-12-22T18:25:36.331
+18:25:42,970  INFO AdminDAOImpl,main:78 - user id 1 is approved
+18:29:18,421  INFO MainCRSMenu,main:107 - Logged in user "Stud1" as Student at 2021-12-22T18:29:18.421
+18:32:27,054  INFO StudentHandlerImpl,main:144 - Courses Registered for Student Stud1 : Course1
+18:35:53,496  INFO NotificationHandlerImpl,main:11 - Registration successful for student : Stud1
+18:36:06,756  INFO MainCRSMenu,main:107 - Logged in user "Prof1" as Professor at 2021-12-22T18:36:06.755
+18:36:49,046  INFO MainCRSMenu,main:107 - Logged in user "Stud1" as Student at 2021-12-22T18:36:49.046
+19:29:03,693 ERROR StudentDAOImpl,main:59 - Error generatedIncorrect integer value: 'ram' for column 'courseAvailable' at row 1
+19:29:03,714  INFO NotificationHandlerImpl,main:13 - Registration successful for student : ram
+19:33:19,239  INFO NotificationHandlerImpl,main:36 - Logged in user "LTI" as Admin at 2021-12-22T19:33:19.237
+19:38:00,877  INFO NotificationHandlerImpl,main:13 - Registration successful for student : ram
+19:38:34,854  INFO NotificationHandlerImpl,main:36 - Logged in user "LTI" as Admin at 2021-12-22T19:38:34.853
+19:38:47,623  INFO NotificationHandlerImpl,main:30 - User id 101 is approved
+19:39:38,781  INFO NotificationHandlerImpl,main:36 - Logged in user "ram" as Student at 2021-12-22T19:39:38.781
+19:40:03,554 ERROR StudentHandlerImpl,main:83 - Error generatedPlease add course before registering
+19:41:39,431  INFO NotificationHandlerImpl,main:42 - Courses Registered for Student ram : course1, course2
+19:44:08,776  INFO NotificationHandlerImpl,main:13 - Registration successful for student : ram
+19:46:01,662  INFO NotificationHandlerImpl,main:36 - Logged in user "prof1" as Professor at 2021-12-22T19:46:01.659
+19:46:19,719 ERROR ProfessorHandlerImpl,main:117 - Error generatedEnter valid username
+19:47:41,827  INFO NotificationHandlerImpl,main:36 - Logged in user "ram" as Student at 2021-12-22T19:47:41.827
+22:16:25,043  INFO NotificationHandlerImpl,main:36 - Logged in user "ram" as Student at 2021-12-22T22:16:25.039
+22:18:01,144  INFO NotificationHandlerImpl,main:36 - Logged in user "ram" as Student at 2021-12-22T22:18:01.142
+09:18:23,284 ERROR StudentDAOImpl,main:59 - Error generatedDuplicate entry '1' for key 1
+09:18:23,301  INFO NotificationHandlerImpl,main:13 - Registration successful for student : Ramit
+09:19:28,417 ERROR StudentDAOImpl,main:59 - Error generatedDuplicate entry '1' for key 1
+09:19:28,420  INFO NotificationHandlerImpl,main:13 - Registration successful for student : Ramit
+09:21:20,003  INFO NotificationHandlerImpl,main:13 - Registration successful for student : Ramit
+09:21:28,538  INFO NotificationHandlerImpl,main:36 - Logged in user "LTI" as Admin at 2021-12-23T09:21:28.537
+09:21:36,332  INFO NotificationHandlerImpl,main:30 - User id 1 is approved
+09:21:51,910  INFO NotificationHandlerImpl,main:36 - Logged in user "Ramit" as Student at 2021-12-23T09:21:51.910
+09:22:36,448  INFO NotificationHandlerImpl,main:42 - Courses Registered for Student Ramit : Course1, Course3
+09:23:03,707  INFO NotificationHandlerImpl,main:18 - Payment successful for student : Ramit
+09:23:19,728  INFO NotificationHandlerImpl,main:36 - Logged in user "Prof1" as Professor at 2021-12-23T09:23:19.728
+09:23:44,655  INFO NotificationHandlerImpl,main:36 - Logged in user "Ramit" as Student at 2021-12-23T09:23:44.655
+12:09:01,984  INFO NotificationHandlerImpl,main:13 - Registration successful for student : Naman
+12:09:11,842  INFO NotificationHandlerImpl,main:36 - Logged in user "LTI" as Admin at 2021-12-23T12:09:11.841
+12:09:16,231  INFO NotificationHandlerImpl,main:30 - User id 1 is approved
+12:09:29,112  INFO NotificationHandlerImpl,main:36 - Logged in user "Naman" as Student at 2021-12-23T12:09:29.112
+12:12:10,074  INFO NotificationHandlerImpl,main:36 - Logged in user "Naman" as Student at 2021-12-23T12:12:10.070
+12:14:08,320  INFO NotificationHandlerImpl,main:36 - Logged in user "Naman" as Student at 2021-12-23T12:14:08.318
+12:14:50,587 ERROR StudentCRSMenu,main:168 - Max course count is 6
+12:19:23,307  INFO NotificationHandlerImpl,main:36 - Logged in user "Naman" as Student at 2021-12-23T12:19:23.304
+12:20:01,219 ERROR StudentCRSMenu,main:168 - Max course count is 6
+12:24:33,649  INFO NotificationHandlerImpl,main:36 - Logged in user "Naman" as Student at 2021-12-23T12:24:33.646
+12:25:54,179 ERROR NotificationHandlerImpl,main:53 - Max course count is 6
