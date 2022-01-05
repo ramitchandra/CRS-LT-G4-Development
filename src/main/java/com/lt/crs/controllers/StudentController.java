@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lt.crs.bean.Course;
+import com.lt.crs.bean.Grades;
 import com.lt.crs.business.CourseHandler;
+import com.lt.crs.business.ProfessorHandler;
 import com.lt.crs.bean.Student;
 import com.lt.crs.business.StudentHandler;
 
@@ -29,6 +31,9 @@ public class StudentController {
 	
 	@Autowired
 	CourseHandler courseHandlerImpl;
+	
+	@Autowired
+	ProfessorHandler professorHandlerImpl;
 	
 	@RequestMapping(value = "student/registerCourse/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public List<String> registerCourse(@PathVariable int id) {
@@ -67,5 +72,25 @@ public class StudentController {
 	public Student dropCourse(@RequestBody Student student) {
 		return studentHandlerImpl.addStudent(student);
 		
+	}
+	
+	@RequestMapping(value = "/student/viewGrade", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+	public List<Grades> listGradeForStudent() {
+			return professorHandlerImpl.insertGrade();
+	}
+	
+	@RequestMapping(value = "/student/viewGradeBasedOnId/{Id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+	public Grades listGradeBasedonId(@PathVariable int Id) {
+		List<Grades> listTheGrades = professorHandlerImpl.insertGrade();
+		System.out.println(listTheGrades);
+		for(Grades grade : listTheGrades) {
+			if(grade.getStudentId() == Id) {
+				grade.getGrade();
+				return grade;
+			}
+			
+		}
+		
+		return new Grades();
 	}
 }

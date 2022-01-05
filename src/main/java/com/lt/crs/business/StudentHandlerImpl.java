@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.lt.crs.bean.Grades;
 import com.lt.crs.bean.Student;
 
 @Component
@@ -52,6 +53,14 @@ public class StudentHandlerImpl implements StudentHandler {
 		newStudent.setApproved(student.isApproved());
 		studentList.add(newStudent);
 		return newStudent;
+	}
+	
+	@Override
+	public void viewGrade() {
+		// TODO Auto-generated method stub
+		ProfessorHandler ph = new ProfessorHandlerImpl();
+		List<Grades> gradeResult = ph.insertGrade();	
+		
 	}
 
 }
