@@ -18,6 +18,10 @@ import com.lt.crs.business.CourseHandler;
 import com.lt.crs.business.ProfessorHandler;
 import com.lt.crs.business.StudentHandler;
 
+/**
+ * @author Naman,Purnima,Radha,Ramit,Sai,Vignesh
+ *
+ */
 @RestController
 public class AdminController {
 	
