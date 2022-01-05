@@ -79,6 +79,11 @@ public class AdminController {
 		return professorHandlerImpl.getProfList();
 	}
 	
+	@RequestMapping(value = "/admin/deleteProfessor/{professorId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
+	public Professor deleteProfessor(@PathVariable int professorId) {		
+		return professorHandlerImpl.deleteProfessor(professorId);
+	}
+	
 	@RequestMapping(value = "/admin/generateReportCard", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public String generateReportCard() {
 		return "Report Card Generated";
