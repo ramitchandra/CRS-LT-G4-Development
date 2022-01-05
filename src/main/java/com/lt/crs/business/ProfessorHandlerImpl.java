@@ -55,4 +55,17 @@ public class ProfessorHandlerImpl implements ProfessorHandler {
 		return 0;
 	}
 	
+	@Override
+	public Professor deleteProfessor(int professorId) {
+		Professor deletedProfessor=null;
+		for(Professor pro: profList) {
+			if(pro.getProfessorId()==professorId) {
+				deletedProfessor=pro;
+				profList.remove(pro);
+				break;
+			}
+		}
+		return deletedProfessor;
+	}
+	
 }

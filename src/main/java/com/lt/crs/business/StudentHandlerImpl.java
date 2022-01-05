@@ -1,7 +1,9 @@
 package com.lt.crs.business;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
@@ -12,6 +14,12 @@ import com.lt.crs.bean.Student;
 public class StudentHandlerImpl implements StudentHandler {
 	
 	public List<Student> studentList = new ArrayList<>();
+	public Map<Integer,List<String>> addedCourses = new HashMap<>();
+
+	public Map<Integer, List<String>> getAddedCourses() {
+
+		return addedCourses;
+	}
 	
 	/**
 	 * @return the studentList

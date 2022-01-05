@@ -24,8 +24,6 @@ import com.lt.crs.business.StudentHandler;
 @RestController
 public class StudentController {
 	
-	Map<Integer,List> addedCourses = new HashMap<Integer,List>();
-	
 	@Autowired
 	StudentHandler studentHandlerImpl;
 	
@@ -35,17 +33,17 @@ public class StudentController {
 	@Autowired
 	ProfessorHandler professorHandlerImpl;
 	
-	@RequestMapping(value = "student/registerCourse/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+	@RequestMapping(value = "/student/registerCourse/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public List<String> registerCourse(@PathVariable int id) {
-		return addedCourses.get(id) ;
+		return studentHandlerImpl.getAddedCourses().get(id) ;
 	
 	}
 
-	@RequestMapping(value = "student/addCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
-	public Map<Integer, List> addCourse(@PathVariable String Course, @PathVariable int id) {
+	@RequestMapping(value = "/student/addCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
+	public Map<Integer, List<String>> addCourse(@PathVariable String Course, @PathVariable int id) {
 		List<String> courseList = new ArrayList<String>();
-		if(addedCourses.get(id) != null) {
-		courseList = addedCourses.get(id);
+		if(studentHandlerImpl.getAddedCourses().get(id) != null) {
+		courseList = studentHandlerImpl.getAddedCourses().get(id);
 	}
 	
 	List<Course> courseCatalog = courseHandlerImpl.getCourseList();	
@@ -55,23 +53,29 @@ public class StudentController {
 				courseList.add(Course);
 		}		
 	}	
-	addedCourses.put(id, courseList);
-	return addedCourses;
+	studentHandlerImpl.getAddedCourses().put(id, courseList);
+	return studentHandlerImpl.getAddedCourses();
 	}
 
 	@RequestMapping(value = "/student/dropCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
-	public Map<Integer, List> dropCourse(@PathVariable String Course, @PathVariable int id) {
-		List<String> courseList = addedCourses.get(id);
+	public Map<Integer, List<String>> dropCourse(@PathVariable String Course, @PathVariable int id) {
+		List<String> courseList = studentHandlerImpl.getAddedCourses().get(id);
 		if(courseList.contains(Course))
 			courseList.remove(Course);
-		addedCourses.put(id, courseList);
-		return addedCourses;
+		studentHandlerImpl.getAddedCourses().put(id, courseList);
+		return studentHandlerImpl.getAddedCourses();
 	}
 	
 	@RequestMapping(value = "/student/addStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
-	public Student dropCourse(@RequestBody Student student) {
+	public Student addStudent(@RequestBody Student student) {
 		return studentHandlerImpl.addStudent(student);
 		
+	}
+	
+	@RequestMapping(value = "/student/getStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+	public List<Student> getStudent() {
+		return studentHandlerImpl.getStudentList();
+
 	}
 	
 	@RequestMapping(value = "/student/viewGrade", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)

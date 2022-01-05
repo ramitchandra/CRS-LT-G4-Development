@@ -11,5 +11,6 @@ public interface ProfessorHandler {
 	public List<Grades> viewGrades();
 	public List<Grades> insertGrade();
 	public int listStudent(int studentOption);
+	public Professor deleteProfessor(int professorId);
 
 }
