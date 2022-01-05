@@ -38,6 +38,7 @@ public class CourseHandlerImpl implements CourseHandler {
 				if(course.getCourseId() == courseId) {
 					deletedCourse = course;
 					courseList.remove(course);
+					break;
 				}
 			}
 			return deletedCourse;

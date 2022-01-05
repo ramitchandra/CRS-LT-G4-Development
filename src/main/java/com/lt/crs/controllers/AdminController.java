@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lt.crs.bean.Course;
+import com.lt.crs.bean.Professor;
 import com.lt.crs.bean.Student;
 import com.lt.crs.business.CourseHandler;
+import com.lt.crs.business.ProfessorHandler;
 import com.lt.crs.business.StudentHandler;
 
 @RestController
@@ -24,6 +26,9 @@ public class AdminController {
 	
 	@Autowired
 	CourseHandler courseHandlerImpl;
+	
+	@Autowired
+	ProfessorHandler professorHandlerImpl;
 	
 	@RequestMapping(value = "/checkAdmin", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public String checkAdmin() {
@@ -63,5 +68,20 @@ public class AdminController {
 		Course deletedCourse = courseHandlerImpl.deleteCourse(courseId);
 		
 		return deletedCourse;
+	}
+	
+	@RequestMapping(value = "/admin/addProfesor", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
+	public Professor addProfessor(@RequestBody Professor professor) {
+		return professorHandlerImpl.addProfessor(professor);
+	}
+	
+	@RequestMapping(value = "/admin/getProfesor", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+	public List<Professor> getProfessor() {
+		return professorHandlerImpl.getProfList();
+	}
+	
+	@RequestMapping(value = "/admin/generateReportCard", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+	public String generateReportCard() {
+		return "Report Card Generated";
 	}
 }
