@@ -6,11 +6,14 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lt.crs.bean.Course;
 import com.lt.crs.bean.Student;
+import com.lt.crs.business.CourseHandler;
 import com.lt.crs.business.StudentHandler;
 
 @RestController
@@ -18,6 +21,9 @@ public class AdminController {
 	
 	@Autowired
 	StudentHandler studentHandlerImpl;
+	
+	@Autowired
+	CourseHandler courseHandlerImpl;
 	
 	@RequestMapping(value = "/checkAdmin", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public String checkAdmin() {
@@ -41,5 +47,21 @@ public class AdminController {
 			}
 		}
 		return new Student();
+	}
+	
+	@RequestMapping(value = "/admin/addCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
+	public List<Course> addCourse(@RequestBody Course course) {
+		
+		courseHandlerImpl.addCourse(course);
+		
+		return courseHandlerImpl.getCourseList();
+	}
+	
+	@RequestMapping(value = "/admin/deleteCourse/{courseId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
+	public Course deleteCourse(@PathVariable int courseId) {
+		
+		Course deletedCourse = courseHandlerImpl.deleteCourse(courseId);
+		
+		return deletedCourse;
 	}
 }
