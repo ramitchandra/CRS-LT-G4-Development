@@ -7,9 +7,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.lt.crs.bean.Grades;
-import com.lt.crs.bean.Payment;
-import com.lt.crs.bean.Student;
+import com.lt.bean.Grades;
+import com.lt.bean.Student;
 
 @Component
 public class StudentHandlerImpl implements StudentHandler {
@@ -70,11 +69,6 @@ public class StudentHandlerImpl implements StudentHandler {
 		ProfessorHandler ph = new ProfessorHandlerImpl();
 		List<Grades> gradeResult = ph.insertGrade();	
 		
-	}
-
-	@Override
-	public List<Payment> payment() {
-		return payment();
 	}
 
 }
