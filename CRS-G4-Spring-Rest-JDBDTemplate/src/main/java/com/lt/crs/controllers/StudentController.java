@@ -61,6 +61,7 @@ public class StudentController {
 	studentHandlerImpl.getAddedCourses().put(id, courseList);
 	return studentHandlerImpl.getAddedCourses();
 	}
+	
 
 	@RequestMapping(value = "/student/dropCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
 	public Map<Integer, List<String>> dropCourse(@PathVariable String Course, @PathVariable int id) {

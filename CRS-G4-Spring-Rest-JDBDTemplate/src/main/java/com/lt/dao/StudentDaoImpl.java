@@ -5,11 +5,13 @@ package com.lt.dao;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.lt.bean.Course;
 import com.lt.bean.Student;
+import com.lt.config.JDBCConfiguration;
 
 /**
  * @author Admin
@@ -18,17 +20,14 @@ import com.lt.bean.Student;
 @Component
 public class StudentDaoImpl implements StudentDao {
 
-	 private JdbcTemplate jdbcTemplate;
+	@Autowired
+	JDBCConfiguration jdbcConfiguration;
 	  
-	  public void setJdbcTemplate(JdbcTemplate jdbcTemplate){
-	    this.jdbcTemplate = jdbcTemplate;
-	  }
-
 	@Override
 	public void registerCourseImpl(int id,List course) {
 		// TODO Auto-generated method stub
 		 String sql = "insert into courseAdded value (?,?)";
-		 jdbcTemplate.queryForObject(sql,String.class,id,course);
+		 jdbcConfiguration.jdbcTemplate().update(sql,id,course);
 		
 	}
 
