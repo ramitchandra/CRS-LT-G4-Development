@@ -73,8 +73,8 @@ public class StudentHandlerImpl implements StudentHandler {
 	}
 
 	@Override
-	public List<Payment> payment() {
-		return payment();
+	public void payment() {
+		
 	}
 
 }

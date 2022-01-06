@@ -15,5 +15,5 @@ public interface StudentHandler {
 	public Student addStudent(Student student);
 	public void viewGrade();
 	public Map<Integer, List<String>> getAddedCourses();
-	public List<Payment> payment();
+	public void payment();
 }

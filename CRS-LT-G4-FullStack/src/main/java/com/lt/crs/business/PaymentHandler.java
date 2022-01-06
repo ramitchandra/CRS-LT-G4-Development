@@ -8,19 +8,8 @@ public interface PaymentHandler {
 
 	/**
 	 * @param studentUsername
-	 */
-	public void checkPaymentStatus(String studentUsername);
-
-	/**
-	 * @param studentUsername
 	 * @param amount
 	 */
-	public void makePayment(String studentUsername, float amount);
-	
-	/**
-	 * @param studentUsername
-	 * @param totalAmount
-	 */
-	public List<CardDetails> cardDetails(String studentUsername, float totalAmount);
+	public String makePayment(int studentId);
 	
 }
