@@ -10,24 +10,21 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import com.lt.dao.AdminDao;
-
 @PropertySource("classpath:application.properties")
 @Configuration
 public class JDBCConfiguration {
+	
 	@Autowired
 	Environment environment;
-	@Autowired
-	AdminDao adminDaoImpl;
 	
 	@Bean
 	DataSource dataSource() {
 		
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setUrl(environment.getProperty("url"));
-		dataSource.setUsername(environment.getProperty("username"));
-		dataSource.setPassword(environment.getProperty("password"));
-		dataSource.setDriverClassName(environment.getProperty("driverClassName"));
+		dataSource.setUrl(environment.getProperty("spring.datasource.url"));
+		dataSource.setUsername(environment.getProperty("spring.datasource.username"));
+		dataSource.setPassword(environment.getProperty("spring.datasource.password"));
+		dataSource.setDriverClassName(environment.getProperty("spring.datasource.driverClassName"));
 		
 		return dataSource;
 	}
@@ -36,7 +33,6 @@ public class JDBCConfiguration {
 	  public JdbcTemplate jdbcTemplate() {
 	    JdbcTemplate jdbcTemplate = new JdbcTemplate();
 	    jdbcTemplate.setDataSource(dataSource());
-	  adminDaoImpl.setJdbcTemplate(jdbcTemplate);
 	    return jdbcTemplate;
-	  }
+	 }
 }
