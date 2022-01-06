@@ -124,6 +124,13 @@ public class Course {
 
         return this.getCourseId() == c.getCourseId();
     }
+
+
+	@Override
+	public String toString() {
+		return "Course [courseId=" + courseId + ", courseName=" + courseName + ", onlineFees=" + onlineFees
+				+ ", offlieFees=" + offlieFees + ", courseAvailable=" + courseAvailable + "]";
+	}
 	
 }
 

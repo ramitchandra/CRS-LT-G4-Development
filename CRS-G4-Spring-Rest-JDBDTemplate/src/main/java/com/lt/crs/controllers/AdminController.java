@@ -17,12 +17,16 @@ import com.lt.bean.Student;
 import com.lt.crs.business.CourseHandler;
 import com.lt.crs.business.ProfessorHandler;
 import com.lt.crs.business.StudentHandler;
+import com.lt.dao.AdminDao;
 
 @RestController
 public class AdminController {
 	
 	@Autowired
 	StudentHandler studentHandlerImpl;
+	
+	@Autowired
+	AdminDao adminDaoImpl;
 	
 	@Autowired
 	CourseHandler courseHandlerImpl;
@@ -66,7 +70,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/getCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public List<Course> getCourse() {
-		return courseHandlerImpl.getCourseList();
+		return adminDaoImpl.getAllCourse();
 	}
 	
 	@RequestMapping(value = "/admin/addProfesor", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
