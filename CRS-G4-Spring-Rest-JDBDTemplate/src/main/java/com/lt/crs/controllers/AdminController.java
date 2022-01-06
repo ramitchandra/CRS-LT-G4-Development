@@ -59,13 +59,13 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/admin/addCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
-	public Course addCourse(@RequestBody Course course) {	
-		return courseHandlerImpl.addCourse(course);
+	public void addCourse(@RequestBody Course course) {	
+		 adminDaoImpl.addCourse(course);
 	}
 	
 	@RequestMapping(value = "/admin/deleteCourse/{courseId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
-	public Course deleteCourse(@PathVariable int courseId) {		
-		return courseHandlerImpl.deleteCourse(courseId);
+	public void deleteCourse(@PathVariable int courseId) {		
+		 adminDaoImpl.deleteCourse(courseId);
 	}
 	
 	@RequestMapping(value = "/admin/getCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
@@ -74,18 +74,18 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/admin/addProfesor", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
-	public Professor addProfessor(@RequestBody Professor professor) {
-		return professorHandlerImpl.addProfessor(professor);
+	public void addProfessor(@RequestBody Professor professor) {
+		 adminDaoImpl.addProfessor(professor);
 	}
 	
 	@RequestMapping(value = "/admin/getProfesor", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public List<Professor> getProfessor() {
-		return professorHandlerImpl.getProfList();
+		return adminDaoImpl.getProfessorList();
 	}
 	
 	@RequestMapping(value = "/admin/deleteProfessor/{professorId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
-	public Professor deleteProfessor(@PathVariable int professorId) {		
-		return professorHandlerImpl.deleteProfessor(professorId);
+	public void deleteProfessor(@PathVariable int professorId) {		
+		 adminDaoImpl.deleteProfessor(professorId);
 	}
 	
 	@RequestMapping(value = "/admin/generateReportCard", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
