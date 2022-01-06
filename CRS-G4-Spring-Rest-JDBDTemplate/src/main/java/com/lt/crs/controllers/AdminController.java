@@ -48,14 +48,16 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/validateStudent/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
 	public Student validateStudent(@PathVariable int id) {
-		List<Student> studentList = studentHandlerImpl.getStudentList();
-		for(Student student : studentList) {
-			if(student.getStudentId() == id) {
-				student.setApproved(true);
-				return student;
-			}
-		}
-		return new Student();
+		
+		adminDaoImpl.approveStudent(id);
+//		List<Student> studentList = studentHandlerImpl.getStudentList();
+//		for(Student student : studentList) {
+//			if(student.getStudentId() == id) {
+//				student.setApproved(true);
+//				return student;
+//			}
+//		}
+	return new Student();
 	}
 	
 	@RequestMapping(value = "/admin/addCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)

@@ -14,5 +14,6 @@ public interface AdminDao {
 	public List<Professor> getProfessorList();
 	public void addProfessor(Professor professor);
 	public void deleteProfessor(int id);
+	public void approveStudent(int id);
 
 }

@@ -73,8 +73,8 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value = "/student/addStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
-	public Student addStudent(@RequestBody Student student) {
-		return studentHandlerImpl.addStudent(student);
+	public void addStudent(@RequestBody Student student) {
+		 StudentDaoImpl.addStudent(student);
 		
 	}
 	

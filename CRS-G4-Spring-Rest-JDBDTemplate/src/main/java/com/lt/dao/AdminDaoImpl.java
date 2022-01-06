@@ -63,4 +63,11 @@ public class AdminDaoImpl implements AdminDao {
 		String SQL= "delete from professor where professorId=?";
 		jdbcConfiguration.jdbcTemplate().update(SQL,id);		
 	}
+
+	@Override
+	public void approveStudent(int id) {
+		// TODO Auto-generated method stub
+		String SQL= "update user set isApproved = true where userid ="+id;
+		jdbcConfiguration.jdbcTemplate().update(SQL,id);
+	}
 }
