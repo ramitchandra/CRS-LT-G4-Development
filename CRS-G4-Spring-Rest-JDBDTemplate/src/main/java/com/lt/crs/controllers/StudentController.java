@@ -19,6 +19,7 @@ import com.lt.bean.Student;
 import com.lt.crs.business.CourseHandler;
 import com.lt.crs.business.ProfessorHandler;
 import com.lt.crs.business.StudentHandler;
+import com.lt.dao.StudentDao;
 
 @RestController
 public class StudentController {
@@ -32,9 +33,14 @@ public class StudentController {
 	@Autowired
 	ProfessorHandler professorHandlerImpl;
 	
+	@Autowired
+	StudentDao StudentDaoImpl;
+	
+	
 	@RequestMapping(value = "/student/registerCourse/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-	public List<String> registerCourse(@PathVariable int id) {
-		return studentHandlerImpl.getAddedCourses().get(id) ;
+	public void registerCourse(@PathVariable int id) {
+		List course = studentHandlerImpl.getAddedCourses().get(id) ;
+		StudentDaoImpl.registerCourseImpl(id,course);
 	
 	}
 
