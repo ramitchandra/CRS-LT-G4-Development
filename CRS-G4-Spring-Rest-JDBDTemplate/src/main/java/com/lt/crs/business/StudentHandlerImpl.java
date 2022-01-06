@@ -70,5 +70,11 @@ public class StudentHandlerImpl implements StudentHandler {
 		List<Grades> gradeResult = ph.insertGrade();	
 		
 	}
+	
+	@Override
+	public void payment() {
+		
+	}
+
 
 }

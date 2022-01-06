@@ -17,6 +17,7 @@ import com.lt.bean.Course;
 import com.lt.bean.Grades;
 import com.lt.bean.Student;
 import com.lt.crs.business.CourseHandler;
+import com.lt.crs.business.PaymentHandler;
 import com.lt.crs.business.ProfessorHandler;
 import com.lt.crs.business.StudentHandler;
 import com.lt.dao.StudentDao;
@@ -29,6 +30,9 @@ public class StudentController {
 	
 	@Autowired
 	CourseHandler courseHandlerImpl;
+	
+	@Autowired
+	PaymentHandler paymentHandlerImpl;
 	
 	@Autowired
 	ProfessorHandler professorHandlerImpl;
@@ -102,5 +106,10 @@ public class StudentController {
 		}
 		
 		return new Grades();
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/payment/{studentId}")
+	public String payment(@PathVariable int studentId) {
+		return paymentHandlerImpl.makePayment(studentId);
 	}
 }

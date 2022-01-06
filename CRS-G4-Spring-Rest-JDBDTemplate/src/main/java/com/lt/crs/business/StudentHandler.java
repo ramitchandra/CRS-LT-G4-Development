@@ -18,4 +18,5 @@ public interface StudentHandler {
 	public Student addStudent(Student student);
 	public void viewGrade();
 	public Map<Integer, List<String>> getAddedCourses();
+	public void payment();
 }
