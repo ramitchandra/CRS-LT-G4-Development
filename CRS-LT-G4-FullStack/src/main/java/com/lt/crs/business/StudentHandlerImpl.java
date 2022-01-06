@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
+import com.lt.crs.bean.CardDetails;
 import com.lt.crs.bean.Grades;
 import com.lt.crs.bean.Payment;
 import com.lt.crs.bean.Student;
@@ -73,8 +74,11 @@ public class StudentHandlerImpl implements StudentHandler {
 	}
 
 	@Override
-	public List<Payment> payment() {
-		return payment();
+	public void payment() {
+		// TODO Auto-generated method stub
+		PaymentHandler payh = new PaymentHandlerImpl();
+		List<CardDetails> detailsList = payh.cardDetails();
+		
 	}
 
 }

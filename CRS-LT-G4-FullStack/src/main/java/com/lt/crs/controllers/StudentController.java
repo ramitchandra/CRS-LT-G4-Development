@@ -106,18 +106,9 @@ public class StudentController {
 		return new Grades();
 	}
 
-		@RequestMapping(method=RequestMethod.POST,value="/payment")
-		public ResponseEntity<String> payment(@RequestBody Payment payment) {
-			List<Payment> res=studentHandlerImpl.payment();
-			return new ResponseEntity<String>(HttpStatus.OK);
-		}
-		
-		@RequestMapping("/payment/{id}")
-		public ResponseEntity getPayment(@PathVariable("id") int paymentId) {
-			List<Payment> payment = studentHandlerImpl.payment();
-			if (payment == null) {
-				return new ResponseEntity("No pay found for ID " + paymentId, HttpStatus.NOT_FOUND);
-			}
-			return new ResponseEntity(payment, HttpStatus.OK);
+	@RequestMapping(method = RequestMethod.GET, value = "/payment/{studentId}")
+	public String payment(@PathVariable int studentId) {
+		return paymentHandlerImpl.makePayment(studentId);
 	}
+
 }
