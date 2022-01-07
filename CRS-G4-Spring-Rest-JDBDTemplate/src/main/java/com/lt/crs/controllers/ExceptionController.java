@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.lt.crs.exception.CourseNotFoundException;
+import com.lt.crs.exception.GradeNotFoundException;
 
 @ControllerAdvice
 public class ExceptionController {
@@ -13,5 +14,13 @@ public class ExceptionController {
 	@ExceptionHandler(value = CourseNotFoundException.class)
 	public void courseNotFoundException(CourseNotFoundException e) {
     }
+	
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Grade was not found on the server")
+	@ExceptionHandler(value = GradeNotFoundException.class)
+	public void gradeNotFoundException(GradeNotFoundException e) {
+		
+	}
+	
+	
 
 }

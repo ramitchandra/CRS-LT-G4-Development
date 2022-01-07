@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +22,7 @@ import com.lt.crs.business.CourseHandler;
 import com.lt.crs.business.PaymentHandler;
 import com.lt.crs.business.ProfessorHandler;
 import com.lt.crs.business.StudentHandler;
-import com.lt.dao.AdminDao;
+import com.lt.crs.exception.GradeNotFoundException;
 import com.lt.dao.GradesDAO;
 import com.lt.dao.StudentDao;
 
@@ -45,9 +47,6 @@ public class StudentController {
 	@Autowired
 	GradesDAO gradesDAOImpl;
 	
-	@Autowired
-	AdminDao adminDaoImpl;
-	
 	
 	@RequestMapping(value = "/student/registerCourse/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public void registerCourse(@PathVariable int id) {
@@ -63,7 +62,7 @@ public class StudentController {
 		courseList = studentHandlerImpl.getAddedCourses().get(id);
 	}
 	
-	List<Course> courseCatalog = adminDaoImpl.getAllCourse();	
+	List<Course> courseCatalog = courseHandlerImpl.getCourseList();	
 	for(Course c : courseCatalog) {
 		if(c.getCourseName().equalsIgnoreCase(Course)) {
 			if(!courseList.contains(Course))
@@ -97,8 +96,11 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value = "/student/viewGrade", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-	public List<Grades> listGradeForStudent() {
-			return gradesDAOImpl.viewGrades();
+	public ResponseEntity<List<Grades>> listGradeForStudent() {
+			List<Grades> gradeLists = gradesDAOImpl.viewGrades();
+			if(gradeLists.isEmpty())
+				throw new GradeNotFoundException();
+			return new ResponseEntity<List<Grades>>(gradeLists,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/student/viewGradeBasedOnId/{studentId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
