@@ -68,7 +68,7 @@ public class StudentController {
 
 	}
 	@RequestMapping(value = "/student/addCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
-	public Map<Integer, List<String>> addCourse(@PathVariable String Course, @PathVariable int id) {
+	public ResponseEntity<Map<Integer, List<String>>> addCourse(@PathVariable String Course, @PathVariable int id) {
 		List<String> courseList = new ArrayList<String>();
 		if(studentHandlerImpl.getAddedCourses().get(id) != null) {
 		courseList = studentHandlerImpl.getAddedCourses().get(id);
@@ -89,20 +89,21 @@ public class StudentController {
 			
 	}	
 	studentHandlerImpl.getAddedCourses().put(id, courseList);
-	return studentHandlerImpl.getAddedCourses();
+	return new ResponseEntity<Map<Integer, List<String>>>(studentHandlerImpl.getAddedCourses(),HttpStatus.OK);
 	
 	}
 	
 
 	@RequestMapping(value = "/student/dropCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
-	public Map<Integer, List<String>> dropCourse(@PathVariable String Course, @PathVariable int id) {
+	public ResponseEntity<Map<Integer, List<String>>> dropCourse(@PathVariable String Course, @PathVariable int id) {
 		List<String> courseList = studentHandlerImpl.getAddedCourses().get(id);
 		if(courseList.contains(Course))
 			courseList.remove(Course);
 		else
 			throw new CourseNotAddedException();
 		studentHandlerImpl.getAddedCourses().put(id, courseList);
-		return studentHandlerImpl.getAddedCourses();
+		//return studentHandlerImpl.getAddedCourses();
+		return new ResponseEntity<Map<Integer, List<String>>>(studentHandlerImpl.getAddedCourses(),HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/student/addStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
@@ -112,9 +113,8 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value = "/student/getStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-	public List<Student> getStudent() {
-		return studentHandlerImpl.getStudentList();
-
+	public ResponseEntity<List<Student>> getStudent() {
+		return new ResponseEntity<List<Student>>(studentHandlerImpl.getStudentList(),HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/student/viewGrade", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
