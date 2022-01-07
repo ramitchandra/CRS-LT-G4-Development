@@ -20,6 +20,7 @@ import com.lt.crs.business.CourseHandler;
 import com.lt.crs.business.PaymentHandler;
 import com.lt.crs.business.ProfessorHandler;
 import com.lt.crs.business.StudentHandler;
+import com.lt.dao.AdminDao;
 import com.lt.dao.GradesDAO;
 import com.lt.dao.StudentDao;
 
@@ -44,6 +45,9 @@ public class StudentController {
 	@Autowired
 	GradesDAO gradesDAOImpl;
 	
+	@Autowired
+	AdminDao adminDaoImpl;
+	
 	
 	@RequestMapping(value = "/student/registerCourse/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public void registerCourse(@PathVariable int id) {
@@ -59,7 +63,7 @@ public class StudentController {
 		courseList = studentHandlerImpl.getAddedCourses().get(id);
 	}
 	
-	List<Course> courseCatalog = courseHandlerImpl.getCourseList();	
+	List<Course> courseCatalog = adminDaoImpl.getAllCourse();	
 	for(Course c : courseCatalog) {
 		if(c.getCourseName().equalsIgnoreCase(Course)) {
 			if(!courseList.contains(Course))

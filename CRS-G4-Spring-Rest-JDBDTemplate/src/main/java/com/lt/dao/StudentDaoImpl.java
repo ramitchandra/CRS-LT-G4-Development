@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.lt.bean.Student;
 import com.lt.config.JDBCConfiguration;
+import com.lt.mapper.ProfessorMapper;
 
 
 /**
@@ -24,22 +25,29 @@ public class StudentDaoImpl implements StudentDao {
 	JDBCConfiguration jdbcConfiguration;
 	  
 	@Override
-	public void registerCourseImpl(int id,List course) {
+	public void registerCourseImpl(int studentId,List<String> Course) {
 		// TODO Auto-generated method stub
-		 String sql = "insert into courseAdded value (?,?)";
-		 jdbcConfiguration.jdbcTemplate().update(sql,id,course);
+		String sql = "select studentName from student where studentId ="+studentId;
+		String studentName = jdbcConfiguration.jdbcTemplate().queryForObject(sql, String.class);
+		for(String c: Course) {
+			String sql2 = "select courseId from Course where courseName ="+c;
+			int courseId = jdbcConfiguration.jdbcTemplate().queryForObject(sql2, Integer.class);
+			String sql3 = "insert into enrolledcourses value (?,?,?,?)";
+			jdbcConfiguration.jdbcTemplate().update(sql3,studentId,studentName,courseId,c);
+		}
+		 
 		
 	}
 	
 	@Override
 	public void addStudent(Student student) {
 		// TODO Auto-generated method stub
-//		String roleSQL = "select id from role where role = 'Student'";				
-//		int roleid  = jdbcConfiguration.jdbcTemplate().query(roleSQL, null);
+		String roleSQL = "select id from role where role = 'Student'";				
+		int roleid  = jdbcConfiguration.jdbcTemplate().queryForObject(roleSQL, Integer.class);
 		String SQL= "insert into student values(?,?,?,?,?)";
 		jdbcConfiguration.jdbcTemplate().update( SQL, student.getStudentId(),student.getStudentName(),student.getStudentEmail(),student.getStudentPassword(),student.getStudentUsername());
 		String userSQL= "insert into user values(?,?,?,?,?)";
-		jdbcConfiguration.jdbcTemplate().update( userSQL, student.getStudentId(),student.getStudentName(),student.getStudentPassword(),103,false);
+		jdbcConfiguration.jdbcTemplate().update( userSQL, student.getStudentId(),student.getStudentName(),student.getStudentPassword(),roleSQL,false);
 		
 	}
 
