@@ -4,14 +4,15 @@
 package com.lt.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
+import com.lt.bean.Course;
 import com.lt.bean.Student;
 import com.lt.config.JDBCConfiguration;
-import com.lt.mapper.ProfessorMapper;
+import com.lt.mapper.UserMapper;
 
 
 /**
@@ -49,6 +50,11 @@ public class StudentDaoImpl implements StudentDao {
 		String userSQL= "insert into user values(?,?,?,?,?)";
 		jdbcConfiguration.jdbcTemplate().update( userSQL, student.getStudentId(),student.getStudentName(),student.getStudentPassword(),roleSQL,false);
 		
+	}
+	
+	public List<Map<String,String>> getStudents() {
+		String getStudentQuery = "select * from user where roleId = 103 and isApproved = 0";
+		return jdbcConfiguration.jdbcTemplate().query(getStudentQuery, new UserMapper());
 	}
 
 }

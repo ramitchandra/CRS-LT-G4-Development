@@ -1,6 +1,7 @@
 package com.lt.crs.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.core.MediaType;
 
@@ -15,16 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lt.bean.Course;
 import com.lt.bean.Professor;
-import com.lt.bean.Student;
 import com.lt.crs.business.CourseHandler;
 import com.lt.crs.business.ProfessorHandler;
 import com.lt.crs.business.StudentHandler;
+import com.lt.crs.exception.CourseAlreadyExistException;
 import com.lt.crs.exception.CourseIdNotFoundException;
 import com.lt.crs.exception.CourseNotFoundException;
 import com.lt.crs.exception.InvalidStudentIdException;
+import com.lt.crs.exception.NoPendingApprovalException;
 import com.lt.crs.exception.ProfessorIdNotFoundException;
 import com.lt.crs.exception.ProfessorNotFoundException;
 import com.lt.dao.AdminDao;
+import com.lt.dao.StudentDao;
 
 @RestController
 public class AdminController {
@@ -41,16 +44,15 @@ public class AdminController {
 	@Autowired
 	ProfessorHandler professorHandlerImpl;
 	
-	@RequestMapping(value = "/checkAdmin", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-	public ResponseEntity<String> checkAdmin() {
-		return new ResponseEntity<String>("Hello Admin",HttpStatus.OK);
-	}
+	@Autowired
+	StudentDao studentDaoImpl;
 	
 	@RequestMapping(value = "/admin/listStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-	public ResponseEntity<List<Student>> adminListStudent() {
-		if(studentHandlerImpl.getStudentList().isEmpty())
-			studentHandlerImpl.createDummyStudent();
-		return new ResponseEntity<List<Student>>(studentHandlerImpl.getStudentList(),HttpStatus.OK);
+	public ResponseEntity<List<Map<String,String>>> adminListStudent() {
+		List<Map<String,String>> pendingApproval = studentDaoImpl.getStudents();
+		if(pendingApproval.isEmpty())
+			throw new NoPendingApprovalException();
+		return new ResponseEntity<List<Map<String,String>>>(pendingApproval,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/validateStudent/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
@@ -62,8 +64,9 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/addCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
 	public ResponseEntity<String> addCourse(@RequestBody Course course) {	
-		 adminDaoImpl.addCourse(course);
-		 return new ResponseEntity<String>("Course Added",HttpStatus.OK);
+		if(adminDaoImpl.addCourse(course)==-1)
+			throw new CourseAlreadyExistException();
+		return new ResponseEntity<String>("Course Added",HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/deleteCourse/{courseId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
@@ -104,6 +107,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/generateReportCard", produces = "text/plain", method = RequestMethod.GET)
 	public ResponseEntity<String> generateReportCard() {
+		//TODO
 		return new ResponseEntity<String>("Report Card Generated",HttpStatus.OK);
 	}
 }

@@ -5,15 +5,17 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.lt.crs.exception.CourseAlreadyExistException;
+import com.lt.crs.exception.CourseAlreadySelectedException;
 import com.lt.crs.exception.CourseIdNotFoundException;
+import com.lt.crs.exception.CourseNotAddedException;
 import com.lt.crs.exception.CourseNotFoundException;
 import com.lt.crs.exception.GradeNotFoundException;
 import com.lt.crs.exception.InvalidStudentIdException;
+import com.lt.crs.exception.NoPendingApprovalException;
 import com.lt.crs.exception.ProfessorIdNotFoundException;
 import com.lt.crs.exception.ProfessorNotFoundException;
-import com.lt.crs.exception.CourseAlreadySelectedException;
 import com.lt.crs.exception.WrongCourseSelectionException;
-import com.lt.crs.exception.CourseNotAddedException;
 
 
 @ControllerAdvice
@@ -49,7 +51,6 @@ public class ExceptionController {
 		
 	}
 	
-
 	@ResponseStatus(code = HttpStatus.ALREADY_REPORTED, reason = "Already selected course")
 	@ExceptionHandler(value = CourseAlreadySelectedException.class)
 	public void CourseAlreadySelectedException(CourseAlreadySelectedException e) {
@@ -64,4 +65,14 @@ public class ExceptionController {
 	@ExceptionHandler(value = CourseNotAddedException.class)
 	public void CourseNotAddedException(CourseNotAddedException e) {
     }
+	
+	@ResponseStatus(code = HttpStatus.NO_CONTENT, reason = "No Student is pending for approval")
+	@ExceptionHandler(value = NoPendingApprovalException.class)
+	public void NoPendingApprovalException(NoPendingApprovalException e) {	
+	}
+	
+	@ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE, reason = "Course Already Exists!!")
+	@ExceptionHandler(value = CourseAlreadyExistException.class)
+	public void CourseAlreadyExistException(CourseAlreadyExistException e) {	
+	}
 }

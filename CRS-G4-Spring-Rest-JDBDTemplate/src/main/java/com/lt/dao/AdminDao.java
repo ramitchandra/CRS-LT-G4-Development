@@ -8,7 +8,7 @@ import com.lt.bean.Professor;
 public interface AdminDao {
 
 	public List<Course> getAllCourse();
-	public void addCourse(Course course);
+	public int addCourse(Course course);
 	public int deleteCourse(int id);
 	
 	public List<Professor> getProfessorList();
