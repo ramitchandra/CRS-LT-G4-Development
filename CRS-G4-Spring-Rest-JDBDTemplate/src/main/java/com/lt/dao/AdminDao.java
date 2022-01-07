@@ -9,11 +9,11 @@ public interface AdminDao {
 
 	public List<Course> getAllCourse();
 	public void addCourse(Course course);
-	public void deleteCourse(int id);
+	public int deleteCourse(int id);
 	
 	public List<Professor> getProfessorList();
 	public void addProfessor(Professor professor);
-	public void deleteProfessor(int id);
-	public void approveStudent(int id);
+	public int deleteProfessor(int id);
+	public int approveStudent(int id);
 
 }

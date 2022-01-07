@@ -10,6 +10,7 @@ import com.lt.bean.Course;
 import com.lt.bean.Professor;
 import com.lt.config.JDBCConfiguration;
 import com.lt.crs.exception.CourseNotFoundException;
+import com.lt.crs.exception.InvalidStudentIdException;
 import com.lt.mapper.CourseMapper;
 import com.lt.mapper.ProfessorMapper;
 
@@ -40,9 +41,9 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public void deleteCourse(int id) {
+	public int deleteCourse(int id) {
 		String SQL= "delete from course where courseId = ?";
-		jdbcConfiguration.jdbcTemplate().update(SQL,id);
+		return jdbcConfiguration.jdbcTemplate().update(SQL,id);
 		
 	}
 	
@@ -61,15 +62,14 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public void deleteProfessor(int id) {
+	public int deleteProfessor(int id) {
 		String SQL= "delete from professor where professorId=?";
-		jdbcConfiguration.jdbcTemplate().update(SQL,id);		
+		return jdbcConfiguration.jdbcTemplate().update(SQL,id);		
 	}
 
 	@Override
-	public void approveStudent(int id) {
-		// TODO Auto-generated method stub
+	public int approveStudent(int id) {
 		String SQL= "update user set isApproved = true where userId = ?";
-		jdbcConfiguration.jdbcTemplate().update(SQL,id);
+		return jdbcConfiguration.jdbcTemplate().update(SQL,id);
 	}
 }

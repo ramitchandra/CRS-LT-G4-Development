@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.lt.bean.Course;
 import com.lt.bean.Professor;
@@ -20,7 +19,11 @@ import com.lt.bean.Student;
 import com.lt.crs.business.CourseHandler;
 import com.lt.crs.business.ProfessorHandler;
 import com.lt.crs.business.StudentHandler;
+import com.lt.crs.exception.CourseIdNotFoundException;
 import com.lt.crs.exception.CourseNotFoundException;
+import com.lt.crs.exception.InvalidStudentIdException;
+import com.lt.crs.exception.ProfessorIdNotFoundException;
+import com.lt.crs.exception.ProfessorNotFoundException;
 import com.lt.dao.AdminDao;
 
 @RestController
@@ -52,7 +55,8 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/validateStudent/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
 	public ResponseEntity<String> validateStudent(@PathVariable int id) {
-		adminDaoImpl.approveStudent(id);
+		if(adminDaoImpl.approveStudent(id)!=1)
+			throw new InvalidStudentIdException();
 		return new ResponseEntity<String>("Validated student: "+ id,HttpStatus.OK);
 	}
 	
@@ -64,7 +68,8 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/deleteCourse/{courseId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteCourse(@PathVariable int courseId) {		
-		 adminDaoImpl.deleteCourse(courseId);
+		 if(adminDaoImpl.deleteCourse(courseId)!=1)
+			 throw new CourseIdNotFoundException();
 		 return new ResponseEntity<String>("Course Deleted: "+ courseId,HttpStatus.OK);
 	}
 	
@@ -84,12 +89,16 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/getProfesor", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Professor>> getProfessor() {
-		return new ResponseEntity<List<Professor>>(adminDaoImpl.getProfessorList(),HttpStatus.OK);
+		List<Professor> profList= adminDaoImpl.getProfessorList();
+		if(profList.isEmpty())
+			throw new ProfessorNotFoundException();
+		return new ResponseEntity<List<Professor>>(profList,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/deleteProfessor/{professorId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteProfessor(@PathVariable int professorId) {		
-		 adminDaoImpl.deleteProfessor(professorId);
+		 if(adminDaoImpl.deleteProfessor(professorId)!=1)
+			 throw new ProfessorIdNotFoundException(); 
 		 return new ResponseEntity<String>("Professor Deleted: " + professorId,HttpStatus.OK);
 	}
 	
