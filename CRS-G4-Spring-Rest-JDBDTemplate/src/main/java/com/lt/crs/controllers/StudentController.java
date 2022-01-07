@@ -20,6 +20,7 @@ import com.lt.crs.business.CourseHandler;
 import com.lt.crs.business.PaymentHandler;
 import com.lt.crs.business.ProfessorHandler;
 import com.lt.crs.business.StudentHandler;
+import com.lt.dao.GradesDAO;
 import com.lt.dao.StudentDao;
 
 @RestController
@@ -39,6 +40,9 @@ public class StudentController {
 	
 	@Autowired
 	StudentDao StudentDaoImpl;
+	
+	@Autowired
+	GradesDAO gradesDAOImpl;
 	
 	
 	@RequestMapping(value = "/student/registerCourse/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
@@ -90,15 +94,15 @@ public class StudentController {
 	
 	@RequestMapping(value = "/student/viewGrade", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public List<Grades> listGradeForStudent() {
-			return professorHandlerImpl.insertGrade();
+			return gradesDAOImpl.viewGrades();
 	}
 	
-	@RequestMapping(value = "/student/viewGradeBasedOnId/{Id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-	public Grades listGradeBasedonId(@PathVariable int Id) {
-		List<Grades> listTheGrades = professorHandlerImpl.insertGrade();
+	@RequestMapping(value = "/student/viewGradeBasedOnId/{studentId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+	public Grades listGradeBasedonId(@PathVariable int studentId) {
+		List<Grades> listTheGrades = gradesDAOImpl.viewGradeOnId(studentId);
 		System.out.println(listTheGrades);
 		for(Grades grade : listTheGrades) {
-			if(grade.getStudentId() == Id) {
+			if(grade.getStudentId() == studentId) {
 				grade.getGrade();
 				return grade;
 			}
