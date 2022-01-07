@@ -67,7 +67,7 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public void approveStudent(int id) {
 		// TODO Auto-generated method stub
-		String SQL= "update user set isApproved = true where userid ="+id;
+		String SQL= "update user set isApproved = true where userId = ?";
 		jdbcConfiguration.jdbcTemplate().update(SQL,id);
 	}
 }
