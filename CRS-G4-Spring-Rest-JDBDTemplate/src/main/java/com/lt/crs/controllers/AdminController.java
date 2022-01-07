@@ -5,6 +5,8 @@ import java.util.List;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,54 +37,59 @@ public class AdminController {
 	ProfessorHandler professorHandlerImpl;
 	
 	@RequestMapping(value = "/checkAdmin", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-	public String checkAdmin() {
-		return "Hello Admin";
+	public ResponseEntity<String> checkAdmin() {
+		return new ResponseEntity<String>("Hello Admin",HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/listStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-	public List<Student> adminListStudent() {
+	public ResponseEntity<List<Student>> adminListStudent() {
 		if(studentHandlerImpl.getStudentList().isEmpty())
 			studentHandlerImpl.createDummyStudent();
-		return studentHandlerImpl.getStudentList();
+		return new ResponseEntity<List<Student>>(studentHandlerImpl.getStudentList(),HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/validateStudent/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
-	public void validateStudent(@PathVariable int id) {
-		adminDaoImpl.approveStudent(id);	
+	public ResponseEntity<String> validateStudent(@PathVariable int id) {
+		adminDaoImpl.approveStudent(id);
+		return new ResponseEntity<String>("Validated student: "+ id,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/addCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
-	public void addCourse(@RequestBody Course course) {	
+	public ResponseEntity<String> addCourse(@RequestBody Course course) {	
 		 adminDaoImpl.addCourse(course);
+		 return new ResponseEntity<String>("Course Added",HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/deleteCourse/{courseId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
-	public void deleteCourse(@PathVariable int courseId) {		
+	public ResponseEntity<String> deleteCourse(@PathVariable int courseId) {		
 		 adminDaoImpl.deleteCourse(courseId);
+		 return new ResponseEntity<String>("Course Deleted: "+ courseId,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/getCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-	public List<Course> getCourse() {
-		return adminDaoImpl.getAllCourse();
+	public ResponseEntity<List<Course>> getCourse() {
+		return new ResponseEntity<List<Course>>(adminDaoImpl.getAllCourse(),HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/addProfesor", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
-	public void addProfessor(@RequestBody Professor professor) {
+	public ResponseEntity<String> addProfessor(@RequestBody Professor professor) {
 		 adminDaoImpl.addProfessor(professor);
+		 return new ResponseEntity<String>("Professor Added",HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/getProfesor", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-	public List<Professor> getProfessor() {
-		return adminDaoImpl.getProfessorList();
+	public ResponseEntity<List<Professor>> getProfessor() {
+		return new ResponseEntity<List<Professor>>(adminDaoImpl.getProfessorList(),HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/deleteProfessor/{professorId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
-	public void deleteProfessor(@PathVariable int professorId) {		
+	public ResponseEntity<String> deleteProfessor(@PathVariable int professorId) {		
 		 adminDaoImpl.deleteProfessor(professorId);
+		 return new ResponseEntity<String>("Professor Deleted: " + professorId,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/admin/generateReportCard", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-	public String generateReportCard() {
-		return "Report Card Generated";
+	@RequestMapping(value = "/admin/generateReportCard", produces = "text/plain", method = RequestMethod.GET)
+	public ResponseEntity<String> generateReportCard() {
+		return new ResponseEntity<String>("Report Card Generated",HttpStatus.OK);
 	}
 }
