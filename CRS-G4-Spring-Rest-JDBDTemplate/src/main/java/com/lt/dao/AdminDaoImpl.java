@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lt.bean.Course;
 import com.lt.bean.Professor;
 import com.lt.config.JDBCConfiguration;
+import com.lt.crs.exception.CourseNotFoundException;
 import com.lt.mapper.CourseMapper;
 import com.lt.mapper.ProfessorMapper;
 
@@ -25,7 +26,8 @@ public class AdminDaoImpl implements AdminDao {
 		String SQL = "select * from course";
 		List <Course> courseList = jdbcConfiguration.jdbcTemplate().query(SQL, 
 				new CourseMapper());
-
+//		if(courseList.isEmpty())
+//			throw new CourseNotFoundException();
 		return courseList;
 	}
 

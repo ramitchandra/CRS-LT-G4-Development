@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.lt.bean.Course;
 import com.lt.bean.Professor;
@@ -19,6 +20,7 @@ import com.lt.bean.Student;
 import com.lt.crs.business.CourseHandler;
 import com.lt.crs.business.ProfessorHandler;
 import com.lt.crs.business.StudentHandler;
+import com.lt.crs.exception.CourseNotFoundException;
 import com.lt.dao.AdminDao;
 
 @RestController
@@ -68,7 +70,10 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/getCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Course>> getCourse() {
-		return new ResponseEntity<List<Course>>(adminDaoImpl.getAllCourse(),HttpStatus.OK);
+		List<Course> courseList=adminDaoImpl.getAllCourse();
+		if(courseList.isEmpty())
+			throw new CourseNotFoundException();
+		return new ResponseEntity<List<Course>>(courseList,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/addProfesor", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
