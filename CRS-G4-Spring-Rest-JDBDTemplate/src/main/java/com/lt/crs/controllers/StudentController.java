@@ -63,21 +63,21 @@ public class StudentController {
 	@RequestMapping(value = "/student/registerCourse/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public void registerCourse(@PathVariable int id) {
 	List<String> course = studentHandlerImpl.getAddedCourses().get(id) ;
-	String sql = "Select courseName from enrolledcourses where studentId = '"+id;
+	String sql = "Select courseName from enrolledcourses where studentId = "+id;
 	List<String> CourseEnrolled = jdbcConfiguration.jdbcTemplate().queryForList(sql,String.class);
 	//System.out.println(Courses);
-	if(course.isEmpty())
+	if(course == null)
 		throw new NoCoursesAddedException();
 	else
-		for(String ce: CourseEnrolled) {
+		/*for(String ce: CourseEnrolled) {
 			if(course.contains(ce)) {
 				throw new CourseAlreadyRegisterException();
 			}
 			else {
 				StudentDaoImpl.registerCourseImpl(id,course);
 			}
-		}
-		
+		}*/
+		StudentDaoImpl.registerCourseImpl(id,course);
 
 	}
 	@RequestMapping(value = "/student/addCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)

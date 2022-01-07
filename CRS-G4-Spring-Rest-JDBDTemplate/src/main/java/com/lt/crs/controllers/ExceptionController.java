@@ -68,7 +68,7 @@ public class ExceptionController {
 	public void CourseNotAddedException(CourseNotAddedException e) {
     }
 	
-	@ResponseStatus(code = HttpStatus.NO_CONTENT, reason = "No Courses Added")
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "No Courses Added")
 	@ExceptionHandler(value = NoCoursesAddedException.class)
 	public void NoCoursesAddedException(NoCoursesAddedException e) {
     }
