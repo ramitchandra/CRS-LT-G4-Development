@@ -11,6 +11,10 @@ import com.lt.crs.exception.GradeNotFoundException;
 import com.lt.crs.exception.InvalidStudentIdException;
 import com.lt.crs.exception.ProfessorIdNotFoundException;
 import com.lt.crs.exception.ProfessorNotFoundException;
+import com.lt.crs.exception.CourseAlreadySelectedException;
+import com.lt.crs.exception.WrongCourseSelectionException;
+import com.lt.crs.exception.CourseNotAddedException;
+
 
 @ControllerAdvice
 public class ExceptionController {
@@ -45,4 +49,19 @@ public class ExceptionController {
 		
 	}
 	
+
+	@ResponseStatus(code = HttpStatus.ALREADY_REPORTED, reason = "Already selected course")
+	@ExceptionHandler(value = CourseAlreadySelectedException.class)
+	public void CourseAlreadySelectedException(CourseAlreadySelectedException e) {
+    }
+	
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Selected Course not availabe in course catalog")
+	@ExceptionHandler(value = WrongCourseSelectionException.class)
+	public void WrongCourseSelectionException(WrongCourseSelectionException e) {
+    }
+	
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Course not added to delete")
+	@ExceptionHandler(value = CourseNotAddedException.class)
+	public void CourseNotAddedException(CourseNotAddedException e) {
+    }
 }
