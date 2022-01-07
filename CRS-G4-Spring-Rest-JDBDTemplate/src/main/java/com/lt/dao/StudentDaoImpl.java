@@ -31,7 +31,7 @@ public class StudentDaoImpl implements StudentDao {
 		String sql = "select studentName from student where studentId ="+studentId;
 		String studentName = jdbcConfiguration.jdbcTemplate().queryForObject(sql, String.class);
 		for(String c: Course) {
-			String sql2 = "select courseId from Course where courseName ="+c;
+			String sql2 = "select courseId from Course where courseName ='"+c+"'";
 			int courseId = jdbcConfiguration.jdbcTemplate().queryForObject(sql2, Integer.class);
 			String sql3 = "insert into enrolledcourses value (?,?,?,?)";
 			jdbcConfiguration.jdbcTemplate().update(sql3,studentId,studentName,courseId,c);

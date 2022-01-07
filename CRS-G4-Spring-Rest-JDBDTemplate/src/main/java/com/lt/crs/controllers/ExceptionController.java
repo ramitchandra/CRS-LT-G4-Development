@@ -16,6 +16,8 @@ import com.lt.crs.exception.NoPendingApprovalException;
 import com.lt.crs.exception.ProfessorIdNotFoundException;
 import com.lt.crs.exception.ProfessorNotFoundException;
 import com.lt.crs.exception.WrongCourseSelectionException;
+import com.lt.crs.exception.NoCoursesAddedException;
+import com.lt.crs.exception.CourseAlreadyRegisterException;
 
 
 @ControllerAdvice
@@ -66,6 +68,16 @@ public class ExceptionController {
 	public void CourseNotAddedException(CourseNotAddedException e) {
     }
 	
+	@ResponseStatus(code = HttpStatus.NO_CONTENT, reason = "No Courses Added")
+	@ExceptionHandler(value = NoCoursesAddedException.class)
+	public void NoCoursesAddedException(NoCoursesAddedException e) {
+    }
+	
+	@ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE, reason = "Course Already Registered")
+	@ExceptionHandler(value = CourseAlreadyRegisterException.class)
+	public void CourseAlreadyRegisterException(CourseAlreadyRegisterException e) {
+    }
+	
 	@ResponseStatus(code = HttpStatus.NO_CONTENT, reason = "No Student is pending for approval")
 	@ExceptionHandler(value = NoPendingApprovalException.class)
 	public void NoPendingApprovalException(NoPendingApprovalException e) {	
@@ -75,4 +87,5 @@ public class ExceptionController {
 	@ExceptionHandler(value = CourseAlreadyExistException.class)
 	public void CourseAlreadyExistException(CourseAlreadyExistException e) {	
 	}
+	
 }

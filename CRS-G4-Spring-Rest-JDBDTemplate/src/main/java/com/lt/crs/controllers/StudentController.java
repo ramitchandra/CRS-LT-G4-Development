@@ -23,9 +23,11 @@ import com.lt.crs.business.CourseHandler;
 import com.lt.crs.business.PaymentHandler;
 import com.lt.crs.business.ProfessorHandler;
 import com.lt.crs.business.StudentHandler;
+import com.lt.crs.exception.CourseAlreadyRegisterException;
 import com.lt.crs.exception.CourseAlreadySelectedException;
 import com.lt.crs.exception.CourseNotAddedException;
 import com.lt.crs.exception.GradeNotFoundException;
+import com.lt.crs.exception.NoCoursesAddedException;
 import com.lt.crs.exception.WrongCourseSelectionException;
 import com.lt.dao.AdminDao;
 import com.lt.dao.GradesDAO;
@@ -60,11 +62,22 @@ public class StudentController {
 	
 	@RequestMapping(value = "/student/registerCourse/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public void registerCourse(@PathVariable int id) {
-	List course = studentHandlerImpl.getAddedCourses().get(id) ;
+	List<String> course = studentHandlerImpl.getAddedCourses().get(id) ;
 	String sql = "Select courseName from enrolledcourses where studentId = '"+id;
-	String Courses = jdbcConfiguration.jdbcTemplate().queryForObject(sql, String.class);
-	System.out.println(Courses);
-	StudentDaoImpl.registerCourseImpl(id,course);
+	List<String> CourseEnrolled = jdbcConfiguration.jdbcTemplate().queryForList(sql,String.class);
+	//System.out.println(Courses);
+	if(course.isEmpty())
+		throw new NoCoursesAddedException();
+	else
+		for(String ce: CourseEnrolled) {
+			if(course.contains(ce)) {
+				throw new CourseAlreadyRegisterException();
+			}
+			else {
+				StudentDaoImpl.registerCourseImpl(id,course);
+			}
+		}
+		
 
 	}
 	@RequestMapping(value = "/student/addCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
@@ -82,10 +95,10 @@ public class StudentController {
 			else
 				throw new CourseAlreadySelectedException();
 		}
-		else 
-		{
-			throw new WrongCourseSelectionException();
-		}
+//		else 
+//		{
+//			throw new WrongCourseSelectionException();
+//		}
 			
 	}	
 	studentHandlerImpl.getAddedCourses().put(id, courseList);
