@@ -30,7 +30,7 @@ public class GradesDAOImpl implements GradesDAO {
 	@Override
 	@Transactional	
 	public List<Grades> viewGradeOnId(int studentId) {
-		String sql = "select * from grades where studentId=?";
+		String sql = "select * from grades where studentId=" + studentId;
 		//List<Grades> gradeList = jdbcConfiguration.jdbcTemplate().query(sql, new GradeMapper());
 		List<Grades> gradeList = jdbcConfiguration.jdbcTemplate().query(sql, new GradeMapper());
 		return gradeList;
