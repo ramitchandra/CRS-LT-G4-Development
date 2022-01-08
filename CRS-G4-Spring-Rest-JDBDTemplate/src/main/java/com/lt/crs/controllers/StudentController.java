@@ -104,18 +104,18 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value = "/student/viewGradeBasedOnId/{studentId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-	public Grades listGradeBasedonId(@PathVariable int studentId) {
+	public ResponseEntity<List<Grades>> listGradeBasedonId(@PathVariable int studentId) {
 		List<Grades> listTheGrades = gradesDAOImpl.viewGradeOnId(studentId);
 		System.out.println(listTheGrades);
 		for(Grades grade : listTheGrades) {
 			if(grade.getStudentId() == studentId) {
 				grade.getGrade();
-				return grade;
+				return new ResponseEntity<List<Grades>>(listTheGrades,HttpStatus.OK);
 			}
 			
 		}
 		
-		return new Grades();
+		return new ResponseEntity<List<Grades>>(listTheGrades,HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/payment/{studentId}")
