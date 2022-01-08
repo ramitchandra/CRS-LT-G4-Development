@@ -27,4 +27,11 @@ public class LoginController {
 			throw new ApprovalPendingException();
 		return new ResponseEntity<String>("User successfully logged in as: " + LoginDetails.userRole,HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/logout", produces = "text/plain", method = RequestMethod.GET)
+	public ResponseEntity<String> login() {
+		LoginDetails.userName = "";
+		LoginDetails.userRole = "";
+		return new ResponseEntity<String>("User logged out successfully!!",HttpStatus.OK);
+	}
 }

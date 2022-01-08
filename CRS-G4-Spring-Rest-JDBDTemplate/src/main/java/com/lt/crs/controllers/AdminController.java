@@ -26,6 +26,7 @@ import com.lt.crs.exception.InvalidStudentIdException;
 import com.lt.crs.exception.NoPendingApprovalException;
 import com.lt.crs.exception.ProfessorIdNotFoundException;
 import com.lt.crs.exception.ProfessorNotFoundException;
+import com.lt.crs.validation.UserAuthorization;
 import com.lt.dao.AdminDao;
 import com.lt.dao.StudentDao;
 
@@ -47,8 +48,12 @@ public class AdminController {
 	@Autowired
 	StudentDao studentDaoImpl;
 	
+	@Autowired
+	UserAuthorization userAuthorization;
+	
 	@RequestMapping(value = "/admin/listStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Map<String,String>>> adminListStudent() {
+		userAuthorization.adminAuthorization();
 		List<Map<String,String>> pendingApproval = studentDaoImpl.getStudents();
 		if(pendingApproval.isEmpty())
 			throw new NoPendingApprovalException();
@@ -57,6 +62,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/validateStudent/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
 	public ResponseEntity<String> validateStudent(@PathVariable int id) {
+		userAuthorization.adminAuthorization();
 		if(adminDaoImpl.approveStudent(id)!=1)
 			throw new InvalidStudentIdException();
 		return new ResponseEntity<String>("Validated student: "+ id,HttpStatus.OK);
@@ -64,6 +70,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/addCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
 	public ResponseEntity<String> addCourse(@RequestBody Course course) {	
+		userAuthorization.adminAuthorization();
 		if(adminDaoImpl.addCourse(course)==-1)
 			throw new CourseAlreadyExistException();
 		return new ResponseEntity<String>("Course Added",HttpStatus.OK);
@@ -71,13 +78,15 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/deleteCourse/{courseId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteCourse(@PathVariable int courseId) {		
-		 if(adminDaoImpl.deleteCourse(courseId)!=1)
+		userAuthorization.adminAuthorization(); 
+		if(adminDaoImpl.deleteCourse(courseId)!=1)
 			 throw new CourseIdNotFoundException();
 		 return new ResponseEntity<String>("Course Deleted: "+ courseId,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/getCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Course>> getCourse() {
+		userAuthorization.adminAuthorization();
 		List<Course> courseList=adminDaoImpl.getAllCourse();
 		if(courseList.isEmpty())
 			throw new CourseNotFoundException();
@@ -86,12 +95,14 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/addProfesor", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
 	public ResponseEntity<String> addProfessor(@RequestBody Professor professor) {
-		 adminDaoImpl.addProfessor(professor);
-		 return new ResponseEntity<String>("Professor Added",HttpStatus.OK);
+		userAuthorization.adminAuthorization(); 
+		adminDaoImpl.addProfessor(professor);
+		return new ResponseEntity<String>("Professor Added",HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/getProfesor", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Professor>> getProfessor() {
+		userAuthorization.adminAuthorization();
 		List<Professor> profList= adminDaoImpl.getProfessorList();
 		if(profList.isEmpty())
 			throw new ProfessorNotFoundException();
@@ -100,13 +111,15 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/deleteProfessor/{professorId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteProfessor(@PathVariable int professorId) {		
-		 if(adminDaoImpl.deleteProfessor(professorId)!=1)
+		userAuthorization.adminAuthorization(); 
+		if(adminDaoImpl.deleteProfessor(professorId)!=1)
 			 throw new ProfessorIdNotFoundException(); 
 		 return new ResponseEntity<String>("Professor Deleted: " + professorId,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/generateReportCard", produces = "text/plain", method = RequestMethod.GET)
 	public ResponseEntity<String> generateReportCard() {
+		userAuthorization.adminAuthorization();
 		//TODO
 		return new ResponseEntity<String>("Report Card Generated",HttpStatus.OK);
 	}

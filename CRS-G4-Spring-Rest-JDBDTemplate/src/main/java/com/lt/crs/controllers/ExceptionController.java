@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.lt.crs.exception.ApprovalPendingException;
 import com.lt.crs.exception.CourseAlreadyExistException;
+import com.lt.crs.exception.CourseAlreadyRegisterException;
 import com.lt.crs.exception.CourseAlreadySelectedException;
 import com.lt.crs.exception.CourseIdNotFoundException;
 import com.lt.crs.exception.CourseNotAddedException;
@@ -14,12 +15,13 @@ import com.lt.crs.exception.CourseNotFoundException;
 import com.lt.crs.exception.GradeNotFoundException;
 import com.lt.crs.exception.InvalidStudentIdException;
 import com.lt.crs.exception.InvalidUserException;
+import com.lt.crs.exception.NoCoursesAddedException;
 import com.lt.crs.exception.NoPendingApprovalException;
+import com.lt.crs.exception.NoUserLoggedInException;
 import com.lt.crs.exception.ProfessorIdNotFoundException;
 import com.lt.crs.exception.ProfessorNotFoundException;
+import com.lt.crs.exception.UnauthorizedAccessException;
 import com.lt.crs.exception.WrongCourseSelectionException;
-import com.lt.crs.exception.NoCoursesAddedException;
-import com.lt.crs.exception.CourseAlreadyRegisterException;
 
 
 @ControllerAdvice
@@ -98,6 +100,16 @@ public class ExceptionController {
 	@ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE, reason = "Approval Pending!!")
 	@ExceptionHandler(value = ApprovalPendingException.class)
 	public void ApprovalPendingException(ApprovalPendingException e) {	
+	}
+	
+	@ResponseStatus(code = HttpStatus.UNAUTHORIZED, reason = "Unauthorized Access!!")
+	@ExceptionHandler(value = UnauthorizedAccessException.class)
+	public void UnauthorizedAccessException(UnauthorizedAccessException e) {	
+	}
+	
+	@ResponseStatus(code = HttpStatus.UNAUTHORIZED, reason = "No user logged in!!")
+	@ExceptionHandler(value = NoUserLoggedInException.class)
+	public void NoUserLoggedInException(NoUserLoggedInException e) {	
 	}
 	
 }
