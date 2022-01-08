@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.lt.bean.LoginDetails;
 import com.lt.config.JDBCConfiguration;
+import com.lt.crs.constants.SqlConstants;
 import com.lt.mapper.UserMapper;
 
 @Repository
@@ -17,7 +18,7 @@ public class LoginValidation {
 	JDBCConfiguration jdbcConfiguration;
 	
 	public int loginDetails(String userName, String password) {
-		String loginQuery = "select * from user where userName = ? and userPassword = ?";
+		String loginQuery = SqlConstants.selectUserParameterized;
 		List<Map<String,String>> userDetails =  jdbcConfiguration.jdbcTemplate().query(loginQuery, new UserMapper(), userName, password);
 		if(userDetails.isEmpty())
 			return -1;

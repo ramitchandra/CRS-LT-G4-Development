@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lt.bean.Course;
+import com.lt.bean.Grades;
 import com.lt.bean.Professor;
 import com.lt.crs.business.CourseHandler;
 import com.lt.crs.business.ProfessorHandler;
@@ -22,12 +23,14 @@ import com.lt.crs.business.StudentHandler;
 import com.lt.crs.exception.CourseAlreadyExistException;
 import com.lt.crs.exception.CourseIdNotFoundException;
 import com.lt.crs.exception.CourseNotFoundException;
+import com.lt.crs.exception.GradeNotFoundException;
 import com.lt.crs.exception.InvalidStudentIdException;
 import com.lt.crs.exception.NoPendingApprovalException;
 import com.lt.crs.exception.ProfessorIdNotFoundException;
 import com.lt.crs.exception.ProfessorNotFoundException;
 import com.lt.crs.validation.UserAuthorization;
 import com.lt.dao.AdminDao;
+import com.lt.dao.GradesDAO;
 import com.lt.dao.StudentDao;
 
 @RestController
@@ -51,6 +54,8 @@ public class AdminController {
 	@Autowired
 	UserAuthorization userAuthorization;
 	
+	@Autowired
+	GradesDAO gradeDAOImpl;
 	@RequestMapping(value = "/admin/listStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Map<String,String>>> adminListStudent() {
 		userAuthorization.adminAuthorization();
@@ -117,10 +122,12 @@ public class AdminController {
 		 return new ResponseEntity<String>("Professor Deleted: " + professorId,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/admin/generateReportCard", produces = "text/plain", method = RequestMethod.GET)
-	public ResponseEntity<String> generateReportCard() {
+	@RequestMapping(value = "/admin/generateReportCard", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+	public ResponseEntity<List<Grades>> generateReportCard() {
 		userAuthorization.adminAuthorization();
-		//TODO
-		return new ResponseEntity<String>("Report Card Generated",HttpStatus.OK);
+		List<Grades> gradeLists = gradeDAOImpl.viewGrades();
+		if(gradeLists.isEmpty())
+			throw new GradeNotFoundException();
+		return new ResponseEntity<List<Grades>>(gradeLists,HttpStatus.OK);
 	}
 }
