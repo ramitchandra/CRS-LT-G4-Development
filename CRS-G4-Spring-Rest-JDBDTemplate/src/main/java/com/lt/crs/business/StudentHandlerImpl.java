@@ -17,7 +17,7 @@ public class StudentHandlerImpl implements StudentHandler {
 	public Map<Integer,List<String>> addedCourses = new HashMap<>();
 
 	public Map<Integer, List<String>> getAddedCourses() {
-
+		
 		return addedCourses;
 	}
 	

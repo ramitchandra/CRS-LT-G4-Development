@@ -66,71 +66,67 @@ public class StudentController {
 	UserAuthorization userAuthorization;
 
 	/**
-	 * @param id
-	 * This method is register for course
+	 * @param id This method is register for course
 	 */
 	@RequestMapping(value = "/student/registerCourse/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public void registerCourse(@PathVariable int id) {
 		userAuthorization.studentAuthorization();
-		List<String> course = studentHandlerImpl.getAddedCourses().get(id) ;
-		if(course == null)
+		List<String> course = studentHandlerImpl.getAddedCourses().get(id);
+		if (course == null)
 			throw new NoCoursesAddedException();
 		else
-			StudentDaoImpl.registerCourseImpl(id,course);
+			StudentDaoImpl.registerCourseImpl(id, course);
 	}
 
 	/**
 	 * @param Course
 	 * @param id
-	 * @return
-	 * Students select course implementation
+	 * @return Students select course implementation
 	 */
 	@RequestMapping(value = "/student/addCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
 	public ResponseEntity<Map<Integer, List<String>>> addCourse(@PathVariable String Course, @PathVariable int id) {
 		userAuthorization.studentAuthorization();
 		List<String> courseList = new ArrayList<String>();
-		if(studentHandlerImpl.getAddedCourses().get(id) != null) {
+		if (studentHandlerImpl.getAddedCourses().get(id) != null) {
 			courseList = studentHandlerImpl.getAddedCourses().get(id);
 		}
 
-		List<Course> courseCatalog = adminDaoImpl.getAllCourse();	
-		for(Course c : courseCatalog) {
-			if(c.getCourseName().equalsIgnoreCase(Course)) {
-				if(!courseList.contains(Course))
+		List<Course> courseCatalog = adminDaoImpl.getAllCourse();
+		for (Course c : courseCatalog) {
+			if (c.getCourseName().equalsIgnoreCase(Course)) {
+				if (!courseList.contains(Course))
 					courseList.add(Course);
 				else
 					throw new CourseAlreadySelectedException();
-			}		
-		}	
+			}
+		}
 		studentHandlerImpl.getAddedCourses().put(id, courseList);
-		return new ResponseEntity<Map<Integer, List<String>>>(studentHandlerImpl.getAddedCourses(),HttpStatus.OK);
+		return new ResponseEntity<Map<Integer, List<String>>>(studentHandlerImpl.getAddedCourses(), HttpStatus.OK);
 	}
 
 	/**
 	 * @param Course
 	 * @param id
-	 * @return
-	 * This method is used for deleting course from selected courses
+	 * @return This method is used for deleting course from selected courses
 	 */
 	@RequestMapping(value = "/student/dropCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
 	public ResponseEntity<Map<Integer, List<String>>> dropCourse(@PathVariable String Course, @PathVariable int id) {
 		userAuthorization.studentAuthorization();
 		List<String> courseList = studentHandlerImpl.getAddedCourses().get(id);
-		if(courseList.contains(Course))
+		if (courseList.contains(Course))
 			courseList.remove(Course);
 		else
 			throw new CourseNotAddedException();
 		studentHandlerImpl.getAddedCourses().put(id, courseList);
-		return new ResponseEntity<Map<Integer, List<String>>>(studentHandlerImpl.getAddedCourses(),HttpStatus.OK);
+		return new ResponseEntity<Map<Integer, List<String>>>(studentHandlerImpl.getAddedCourses(), HttpStatus.OK);
 	}
 
 	/**
-	 * @param student
-	 * This method is for student self registration
+	 * @param student This method is for student self registration
 	 */
 	@RequestMapping(value = "/student/addStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
 	public void addStudent(@RequestBody Student student) {
-		StudentDaoImpl.addStudent(student);		
+		StudentDaoImpl.addStudent(student);
 	}
 
 	/**
@@ -142,14 +138,14 @@ public class StudentController {
 		userAuthorization.studentAuthorization();
 		List<Grades> listTheGrades = gradesDAOImpl.viewGradeOnId(studentId);
 		System.out.println(listTheGrades);
-		for(Grades grade : listTheGrades) {
-			if(grade.getStudentId() == studentId) {
+		for (Grades grade : listTheGrades) {
+			if (grade.getStudentId() == studentId) {
 				grade.getGrade();
-				return new ResponseEntity<List<Grades>>(listTheGrades,HttpStatus.OK);
+				return new ResponseEntity<List<Grades>>(listTheGrades, HttpStatus.OK);
 			}
 
 		}
-		return new ResponseEntity<List<Grades>>(listTheGrades,HttpStatus.OK);
+		return new ResponseEntity<List<Grades>>(listTheGrades, HttpStatus.OK);
 	}
 
 	/**
@@ -158,7 +154,7 @@ public class StudentController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/payment/{studentId}")
 	public String payment(@PathVariable int studentId) {
-		userAuthorization.studentAuthorization();
+//		userAuthorization.studentAuthorization();
 		return paymentHandlerImpl.makePayment(studentId);
 	}
 }

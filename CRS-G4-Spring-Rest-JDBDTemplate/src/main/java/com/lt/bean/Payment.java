@@ -1,6 +1,11 @@
 package com.lt.bean;
 
+/**
+ * @author Sai 
+ * Bean of payment to store payment details
+ */
 public class Payment {
+
 	private int paymentId;
 	private String paymentMode;
 	private String courseAmount;
