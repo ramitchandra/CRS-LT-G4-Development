@@ -11,5 +11,13 @@ public class SqlConstants {
 	public static final String deleteProfessorParameterized = "delete from professor where professorId=?";
 	public static final String studentApproval = "update user set isApproved = true where userId = ?";
 	public static final String selectUserParameterized = "select * from user where userName = ? and userPassword = ?";
-	
+	public static final String selectRoleId ="select id from role where role = 'Student'";
+	public static final String insertStudent ="insert into student values(?,?,?,?,?)";
+	public static final String insertUser = "insert into user values(?,?,?,?,?)";
+	public static final String selectStudent="select * from user where roleId = 103 and isApproved = 0";
+	public static final String selectStudentName="select studentName from student where studentId =";
+	public static final String selectCourseId="select courseId from Course where courseName ='";
+	public static final String insertEnrolledcourses="insert into enrolledcourses value (?,?,?,?)";
+	public static final String selectStudentDetails="Select * from student where studentId in (select distinct studentId from EnrolledCourses where studentId not in(select distinct studentId from grades))";
+	public static final String insertGrades="insert into grades value (?,?)";
 }

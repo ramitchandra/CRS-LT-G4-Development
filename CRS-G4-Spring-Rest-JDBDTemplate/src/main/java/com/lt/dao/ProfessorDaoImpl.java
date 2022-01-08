@@ -4,15 +4,17 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.lt.bean.Course;
 import com.lt.bean.Grades;
 import com.lt.bean.Student;
 import com.lt.config.JDBCConfiguration;
+import com.lt.crs.constants.SqlConstants;
 import com.lt.mapper.CourseMapper;
 import com.lt.mapper.StudentMapper;
 
-@Component
+@Repository
 public class ProfessorDaoImpl implements ProfessorDao {
 	
 	@Autowired
@@ -21,7 +23,7 @@ public class ProfessorDaoImpl implements ProfessorDao {
 	@Override
 	public List<Student> listStudent() {
 		// TODO Auto-generated method stub
-		String SQL = "Select * from student where studentId in (select distinct studentId from EnrolledCourses where studentId not in(select distinct studentId from grades))";
+		String SQL = SqlConstants.selectStudentDetails;
 		List <Student> studentList = jdbcConfiguration.jdbcTemplate().query(SQL, 
 				new StudentMapper());
 		return studentList;
@@ -31,7 +33,7 @@ public class ProfessorDaoImpl implements ProfessorDao {
 	@Override
 	public void assignGrade(Grades grade) {
 		// TODO Auto-generated method stub
-		String sql = "insert into grades value (?,?)";
+		String sql = SqlConstants.insertGrades;
 		jdbcConfiguration.jdbcTemplate().update(sql,grade.getStudentId(),grade.getGrade());
 		
 		
