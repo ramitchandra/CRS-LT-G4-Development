@@ -22,6 +22,8 @@ import com.lt.crs.exception.ProfessorIdNotFoundException;
 import com.lt.crs.exception.ProfessorNotFoundException;
 import com.lt.crs.exception.UnauthorizedAccessException;
 import com.lt.crs.exception.WrongCourseSelectionException;
+import com.lt.crs.exception.EmptyStudentListException;
+import com.lt.crs.exception.AlreadyGradeAssignedException;
 
 
 /**
@@ -184,5 +186,25 @@ public class ExceptionController {
 	@ExceptionHandler(value = NoUserLoggedInException.class)
 	public void NoUserLoggedInException(NoUserLoggedInException e) {	
 	}
+	
+	/**
+	 * @param e
+	 * EmptyStudentListException Exception Handling
+	 */
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "All Students are already assigned with Grades")
+	@ExceptionHandler(value = EmptyStudentListException.class)
+	public void EmptyStudentListException(EmptyStudentListException e) {	
+	}
+	
+	/**
+	 * @param e
+	 * AlreadyGradeAssignedException Exception Handling
+	 */
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Student is already assigned with a Grade")
+	@ExceptionHandler(value = AlreadyGradeAssignedException.class)
+	public void AlreadyGradeAssignedException(AlreadyGradeAssignedException e) {	
+	}
+	
+	
 	
 }

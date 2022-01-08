@@ -13,6 +13,7 @@ import com.lt.config.JDBCConfiguration;
 import com.lt.crs.constants.SqlConstants;
 import com.lt.mapper.CourseMapper;
 import com.lt.mapper.StudentMapper;
+import com.lt.crs.exception.AlreadyGradeAssignedException;
 
 @Repository
 public class ProfessorDaoImpl implements ProfessorDao {
@@ -34,6 +35,11 @@ public class ProfessorDaoImpl implements ProfessorDao {
 	public void assignGrade(Grades grade) {
 		// TODO Auto-generated method stub
 		String sql = SqlConstants.insertGrades;
+		String SQL = SqlConstants.SelectStudentId;
+		List<Integer> studentIds = jdbcConfiguration.jdbcTemplate().queryForList(SQL,Integer.class);
+		if(studentIds.contains(grade.getStudentId())) {
+			throw new AlreadyGradeAssignedException();
+		}
 		jdbcConfiguration.jdbcTemplate().update(sql,grade.getStudentId(),grade.getGrade());
 		
 		

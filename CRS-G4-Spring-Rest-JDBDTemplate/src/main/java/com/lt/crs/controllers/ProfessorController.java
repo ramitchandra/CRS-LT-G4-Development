@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lt.bean.Course;
 import com.lt.bean.Grades;
 import com.lt.bean.Student;
+import com.lt.crs.exception.EmptyStudentListException;
 import com.lt.dao.ProfessorDao;
 import com.lt.dao.ProfessorDaoImpl;
 
@@ -36,6 +37,8 @@ public class ProfessorController {
 	@RequestMapping(value = "/professor/listStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Student>> listStudent() {
 		List<Student> studentList = ProfessorDaoImpl.listStudent();
+		if(studentList.isEmpty()) 
+			throw new EmptyStudentListException();
 		return new ResponseEntity<List<Student>>(studentList, HttpStatus.OK);
 	}
 
@@ -46,6 +49,7 @@ public class ProfessorController {
 	 */
 	@RequestMapping(value = "/professor/assignGrades", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
 	public ResponseEntity<String> assignGrades(@RequestBody Grades grade) {
+		
 		ProfessorDaoImpl.assignGrade(grade);
 		return new ResponseEntity<String>("Grades Assigned", HttpStatus.OK);
 	}

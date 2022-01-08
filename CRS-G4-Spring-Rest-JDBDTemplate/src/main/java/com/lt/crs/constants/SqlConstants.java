@@ -1,5 +1,9 @@
 package com.lt.crs.constants;
 
+/**
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
+ *
+ */
 public class SqlConstants {
 
 	public static final String selectCourse = "select * from course";
@@ -20,4 +24,5 @@ public class SqlConstants {
 	public static final String insertEnrolledcourses="insert into enrolledcourses value (?,?,?,?)";
 	public static final String selectStudentDetails="Select * from student where studentId in (select distinct studentId from EnrolledCourses where studentId not in(select distinct studentId from grades))";
 	public static final String insertGrades="insert into grades value (?,?)";
+	public static final String SelectStudentId="select studentId from grades";
 }
