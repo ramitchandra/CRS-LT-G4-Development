@@ -34,6 +34,10 @@ import com.lt.dao.AdminDao;
 import com.lt.dao.GradesDAO;
 import com.lt.dao.StudentDao;
 
+/**
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
+ *
+ */
 @RestController
 public class AdminController {
 	
@@ -59,12 +63,20 @@ public class AdminController {
 	GradesDAO gradeDAOImpl;
 	
 	
+	/**
+	 * @return
+	 * This is used to fetch all students.
+	 */
 	@RequestMapping(value = "/admin/getStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Student>> getStudent() {
 		userAuthorization.adminAuthorization();
 		return new ResponseEntity<List<Student>>(studentHandlerImpl.getStudentList(),HttpStatus.OK);
 	}
 	
+	/**
+	 * @return
+	 * This is used to fetch students pending for approval.
+	 */
 	@RequestMapping(value = "/admin/listStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Map<String,String>>> adminListStudent() {
 		userAuthorization.adminAuthorization();
@@ -74,6 +86,11 @@ public class AdminController {
 		return new ResponseEntity<List<Map<String,String>>>(pendingApproval,HttpStatus.OK);
 	}
 	
+	/**
+	 * @param id
+	 * @return
+	 * This is used to approve students on basis of id.
+	 */
 	@RequestMapping(value = "/admin/validateStudent/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
 	public ResponseEntity<String> validateStudent(@PathVariable int id) {
 		userAuthorization.adminAuthorization();
@@ -82,6 +99,11 @@ public class AdminController {
 		return new ResponseEntity<String>("Validated student: "+ id,HttpStatus.OK);
 	}
 	
+	/**
+	 * @param course
+	 * @return
+	 * This is used to add courses in course catalogue.
+	 */
 	@RequestMapping(value = "/admin/addCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
 	public ResponseEntity<String> addCourse(@RequestBody Course course) {	
 		userAuthorization.adminAuthorization();
@@ -90,6 +112,11 @@ public class AdminController {
 		return new ResponseEntity<String>("Course Added",HttpStatus.OK);
 	}
 	
+	/**
+	 * @param courseId
+	 * @return
+	 * This is used to delete course from course catalogue on basis of courseId.
+	 */
 	@RequestMapping(value = "/admin/deleteCourse/{courseId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteCourse(@PathVariable int courseId) {		
 		userAuthorization.adminAuthorization(); 
@@ -98,6 +125,10 @@ public class AdminController {
 		 return new ResponseEntity<String>("Course Deleted: "+ courseId,HttpStatus.OK);
 	}
 	
+	/**
+	 * @return
+	 * This is used to fetch list of all courses.
+	 */
 	@RequestMapping(value = "/admin/getCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Course>> getCourse() {
 		userAuthorization.adminAuthorization();
@@ -107,6 +138,11 @@ public class AdminController {
 		return new ResponseEntity<List<Course>>(courseList,HttpStatus.OK);
 	}
 	
+	/**
+	 * @param professor
+	 * @return
+	 * This is used to add professor.
+	 */
 	@RequestMapping(value = "/admin/addProfesor", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
 	public ResponseEntity<String> addProfessor(@RequestBody Professor professor) {
 		userAuthorization.adminAuthorization(); 
@@ -114,6 +150,10 @@ public class AdminController {
 		return new ResponseEntity<String>("Professor Added",HttpStatus.OK);
 	}
 	
+	/**
+	 * @return
+	 * This is used to fetch list of all professors.
+	 */
 	@RequestMapping(value = "/admin/getProfesor", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Professor>> getProfessor() {
 		userAuthorization.adminAuthorization();
@@ -123,6 +163,11 @@ public class AdminController {
 		return new ResponseEntity<List<Professor>>(profList,HttpStatus.OK);
 	}
 	
+	/**
+	 * @param professorId
+	 * @return
+	 * This is used to delete professor on basis of professorId.
+	 */
 	@RequestMapping(value = "/admin/deleteProfessor/{professorId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteProfessor(@PathVariable int professorId) {		
 		userAuthorization.adminAuthorization(); 
@@ -131,6 +176,10 @@ public class AdminController {
 		 return new ResponseEntity<String>("Professor Deleted: " + professorId,HttpStatus.OK);
 	}
 	
+	/**
+	 * @return
+	 * This is used to generate report card of all students.
+	 */
 	@RequestMapping(value = "/admin/generateReportCard", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Grades>> generateReportCard() {
 		userAuthorization.adminAuthorization();

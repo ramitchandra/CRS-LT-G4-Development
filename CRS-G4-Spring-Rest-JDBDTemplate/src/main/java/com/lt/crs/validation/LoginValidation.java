@@ -11,12 +11,22 @@ import com.lt.config.JDBCConfiguration;
 import com.lt.crs.constants.SqlConstants;
 import com.lt.mapper.UserMapper;
 
+/**
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
+ *
+ */
 @Repository
 public class LoginValidation {
 	
 	@Autowired
 	JDBCConfiguration jdbcConfiguration;
 	
+	/**
+	 * @param userName
+	 * @param password
+	 * @return
+	 * This is used to authenticate user credentials.
+	 */
 	public int loginDetails(String userName, String password) {
 		String loginQuery = SqlConstants.selectUserParameterized;
 		List<Map<String,String>> userDetails =  jdbcConfiguration.jdbcTemplate().query(loginQuery, new UserMapper(), userName, password);

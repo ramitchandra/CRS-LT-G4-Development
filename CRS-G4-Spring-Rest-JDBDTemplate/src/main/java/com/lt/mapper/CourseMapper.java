@@ -7,8 +7,18 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.lt.bean.Course;
 
+/**
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
+ *
+ */
 public class CourseMapper implements RowMapper<Course> {
 
+	/**
+	 * @param rs 
+	 * @param rowNum
+	 * @return
+	 * This is used to map course to the output.
+	 */
 	@Override
 	public Course mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Course course = new Course();

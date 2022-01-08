@@ -13,12 +13,22 @@ import com.lt.crs.exception.ApprovalPendingException;
 import com.lt.crs.exception.InvalidUserException;
 import com.lt.crs.validation.LoginValidation;
 
+/**
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
+ *
+ */
 @RestController
 public class LoginController {
 	
 	@Autowired
 	LoginValidation loginValidation;
 	
+	/**
+	 * @param userName
+	 * @param password
+	 * @return
+	 * This is used for login functionality.
+	 */
 	@RequestMapping(value = "/login/{userName}/{password}", produces = "text/plain", method = RequestMethod.GET)
 	public ResponseEntity<String> login(@PathVariable String userName,@PathVariable String password) {
 		if(loginValidation.loginDetails(userName, password)==-1)
@@ -28,8 +38,12 @@ public class LoginController {
 		return new ResponseEntity<String>("User successfully logged in as: " + LoginDetails.userRole,HttpStatus.OK);
 	}
 	
+	/**
+	 * @return
+	 * This is used for logout functionality.
+	 */
 	@RequestMapping(value = "/logout", produces = "text/plain", method = RequestMethod.GET)
-	public ResponseEntity<String> login() {
+	public ResponseEntity<String> logout() {
 		LoginDetails.userName = "";
 		LoginDetails.userRole = "";
 		return new ResponseEntity<String>("User logged out successfully!!",HttpStatus.OK);

@@ -7,8 +7,18 @@ import java.util.Map;
 
 import org.springframework.jdbc.core.RowMapper;
 
+/**
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
+ *
+ */
 public class UserMapper implements RowMapper<Map<String,String>> {
-
+	
+	/**
+	 * @param rs 
+	 * @param rowNum
+	 * @return
+	 * This is used to map user to the output.
+	 */
 	@Override
 	public Map<String,String> mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Map<String,String> list = new HashMap<>();
