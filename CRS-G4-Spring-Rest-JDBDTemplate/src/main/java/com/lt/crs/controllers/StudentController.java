@@ -23,123 +23,95 @@ import com.lt.crs.business.CourseHandler;
 import com.lt.crs.business.PaymentHandler;
 import com.lt.crs.business.ProfessorHandler;
 import com.lt.crs.business.StudentHandler;
-import com.lt.crs.exception.CourseAlreadyRegisterException;
 import com.lt.crs.exception.CourseAlreadySelectedException;
 import com.lt.crs.exception.CourseNotAddedException;
-import com.lt.crs.exception.GradeNotFoundException;
 import com.lt.crs.exception.NoCoursesAddedException;
-import com.lt.crs.exception.WrongCourseSelectionException;
+import com.lt.crs.validation.UserAuthorization;
 import com.lt.dao.AdminDao;
 import com.lt.dao.GradesDAO;
 import com.lt.dao.StudentDao;
 
 @RestController
 public class StudentController {
-	
+
 	@Autowired
 	StudentHandler studentHandlerImpl;
-	
+
 	@Autowired
 	CourseHandler courseHandlerImpl;
-	
+
 	@Autowired
 	PaymentHandler paymentHandlerImpl;
-	
+
 	@Autowired
 	ProfessorHandler professorHandlerImpl;
-	
+
 	@Autowired
 	StudentDao StudentDaoImpl;
-	
+
 	@Autowired
 	GradesDAO gradesDAOImpl;
-	
+
 	@Autowired
 	AdminDao adminDaoImpl;
 
 	@Autowired
 	JDBCConfiguration jdbcConfiguration;
-	
+
+	@Autowired
+	UserAuthorization userAuthorization;
+
 	@RequestMapping(value = "/student/registerCourse/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public void registerCourse(@PathVariable int id) {
-	List<String> course = studentHandlerImpl.getAddedCourses().get(id) ;
-	String sql = "Select courseName from enrolledcourses where studentId = "+id;
-	List<String> CourseEnrolled = jdbcConfiguration.jdbcTemplate().queryForList(sql,String.class);
-	//System.out.println(Courses);
-	if(course == null)
-		throw new NoCoursesAddedException();
-	else
-		/*for(String ce: CourseEnrolled) {
-			if(course.contains(ce)) {
-				throw new CourseAlreadyRegisterException();
-			}
-			else {
-				StudentDaoImpl.registerCourseImpl(id,course);
-			}
-		}*/
-		StudentDaoImpl.registerCourseImpl(id,course);
-
+		userAuthorization.studentAuthorization();
+		List<String> course = studentHandlerImpl.getAddedCourses().get(id) ;
+		if(course == null)
+			throw new NoCoursesAddedException();
+		else
+			StudentDaoImpl.registerCourseImpl(id,course);
 	}
+
 	@RequestMapping(value = "/student/addCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
 	public ResponseEntity<Map<Integer, List<String>>> addCourse(@PathVariable String Course, @PathVariable int id) {
+		userAuthorization.studentAuthorization();
 		List<String> courseList = new ArrayList<String>();
 		if(studentHandlerImpl.getAddedCourses().get(id) != null) {
-		courseList = studentHandlerImpl.getAddedCourses().get(id);
-	}
-	
-	List<Course> courseCatalog = adminDaoImpl.getAllCourse();	
-	for(Course c : courseCatalog) {
-		if(c.getCourseName().equalsIgnoreCase(Course)) {
-			if(!courseList.contains(Course))
-				courseList.add(Course);
-			else
-				throw new CourseAlreadySelectedException();
+			courseList = studentHandlerImpl.getAddedCourses().get(id);
 		}
-//		else 
-//		{
-//			throw new WrongCourseSelectionException();
-//		}
-			
-	}	
-	studentHandlerImpl.getAddedCourses().put(id, courseList);
-	return new ResponseEntity<Map<Integer, List<String>>>(studentHandlerImpl.getAddedCourses(),HttpStatus.OK);
-	
+
+		List<Course> courseCatalog = adminDaoImpl.getAllCourse();	
+		for(Course c : courseCatalog) {
+			if(c.getCourseName().equalsIgnoreCase(Course)) {
+				if(!courseList.contains(Course))
+					courseList.add(Course);
+				else
+					throw new CourseAlreadySelectedException();
+			}		
+		}	
+		studentHandlerImpl.getAddedCourses().put(id, courseList);
+		return new ResponseEntity<Map<Integer, List<String>>>(studentHandlerImpl.getAddedCourses(),HttpStatus.OK);
 	}
-	
 
 	@RequestMapping(value = "/student/dropCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
 	public ResponseEntity<Map<Integer, List<String>>> dropCourse(@PathVariable String Course, @PathVariable int id) {
+		userAuthorization.studentAuthorization();
 		List<String> courseList = studentHandlerImpl.getAddedCourses().get(id);
 		if(courseList.contains(Course))
 			courseList.remove(Course);
 		else
 			throw new CourseNotAddedException();
 		studentHandlerImpl.getAddedCourses().put(id, courseList);
-		//return studentHandlerImpl.getAddedCourses();
 		return new ResponseEntity<Map<Integer, List<String>>>(studentHandlerImpl.getAddedCourses(),HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/student/addStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
 	public void addStudent(@RequestBody Student student) {
-		 StudentDaoImpl.addStudent(student);
-		
+		StudentDaoImpl.addStudent(student);		
 	}
-	
-	@RequestMapping(value = "/student/getStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-	public ResponseEntity<List<Student>> getStudent() {
-		return new ResponseEntity<List<Student>>(studentHandlerImpl.getStudentList(),HttpStatus.OK);
-	}
-	
-	@RequestMapping(value = "/student/viewGrade", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-	public ResponseEntity<List<Grades>> listGradeForStudent() {
-			List<Grades> gradeLists = gradesDAOImpl.viewGrades();
-			if(gradeLists.isEmpty())
-				throw new GradeNotFoundException();
-			return new ResponseEntity<List<Grades>>(gradeLists,HttpStatus.OK);
-	}
-	
+
 	@RequestMapping(value = "/student/viewGradeBasedOnId/{studentId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Grades>> listGradeBasedonId(@PathVariable int studentId) {
+		userAuthorization.studentAuthorization();
 		List<Grades> listTheGrades = gradesDAOImpl.viewGradeOnId(studentId);
 		System.out.println(listTheGrades);
 		for(Grades grade : listTheGrades) {
@@ -147,14 +119,14 @@ public class StudentController {
 				grade.getGrade();
 				return new ResponseEntity<List<Grades>>(listTheGrades,HttpStatus.OK);
 			}
-			
+
 		}
-		
 		return new ResponseEntity<List<Grades>>(listTheGrades,HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "/payment/{studentId}")
 	public String payment(@PathVariable int studentId) {
+		userAuthorization.studentAuthorization();
 		return paymentHandlerImpl.makePayment(studentId);
 	}
 }

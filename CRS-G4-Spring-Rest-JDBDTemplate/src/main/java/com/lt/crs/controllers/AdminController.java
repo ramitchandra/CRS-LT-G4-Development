@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lt.bean.Course;
 import com.lt.bean.Grades;
 import com.lt.bean.Professor;
+import com.lt.bean.Student;
 import com.lt.crs.business.CourseHandler;
 import com.lt.crs.business.ProfessorHandler;
 import com.lt.crs.business.StudentHandler;
@@ -56,6 +57,14 @@ public class AdminController {
 	
 	@Autowired
 	GradesDAO gradeDAOImpl;
+	
+	
+	@RequestMapping(value = "/admin/getStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+	public ResponseEntity<List<Student>> getStudent() {
+		userAuthorization.adminAuthorization();
+		return new ResponseEntity<List<Student>>(studentHandlerImpl.getStudentList(),HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/admin/listStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Map<String,String>>> adminListStudent() {
 		userAuthorization.adminAuthorization();
