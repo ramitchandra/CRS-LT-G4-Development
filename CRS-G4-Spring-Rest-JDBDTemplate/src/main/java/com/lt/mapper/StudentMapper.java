@@ -11,8 +11,12 @@ import com.lt.bean.Student;
  * @author  Naman, Purnima, Radha, Ramit, Sai, Vignesh
  *
  */
+
 public class StudentMapper implements RowMapper<Student>{
 
+	/**
+	 * This is used to map student to the output
+	 */
 	@Override
 	public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
 		// TODO Auto-generated method stub

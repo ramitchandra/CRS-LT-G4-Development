@@ -7,8 +7,15 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.lt.bean.Professor;
 
+/**
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
+ *
+ */
 public class ProfessorMapper implements RowMapper<Professor> {
 
+	/**
+	 *This is used to map professor to the output
+	 */
 	@Override
 	public Professor mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Professor professor = new Professor();

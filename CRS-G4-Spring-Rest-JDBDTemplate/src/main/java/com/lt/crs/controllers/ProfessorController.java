@@ -19,18 +19,31 @@ import com.lt.bean.Student;
 import com.lt.dao.ProfessorDao;
 import com.lt.dao.ProfessorDaoImpl;
 
+/**
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
+ *
+ */
 @RestController
 public class ProfessorController {
 
 	@Autowired
 	ProfessorDao ProfessorDaoImpl;
 
+	/**
+	 * @return
+	 * This method return list of students who are not assigned grades
+	 */
 	@RequestMapping(value = "/professor/listStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Student>> listStudent() {
 		List<Student> studentList = ProfessorDaoImpl.listStudent();
 		return new ResponseEntity<List<Student>>(studentList, HttpStatus.OK);
 	}
 
+	/**
+	 * @param grade
+	 * @return
+	 * In this method professor assigns grades
+	 */
 	@RequestMapping(value = "/professor/assignGrades", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
 	public ResponseEntity<String> assignGrades(@RequestBody Grades grade) {
 		ProfessorDaoImpl.assignGrade(grade);

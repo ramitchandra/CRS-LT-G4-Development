@@ -31,6 +31,10 @@ import com.lt.dao.AdminDao;
 import com.lt.dao.GradesDAO;
 import com.lt.dao.StudentDao;
 
+/**
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
+ *
+ */
 @RestController
 public class StudentController {
 
@@ -61,6 +65,10 @@ public class StudentController {
 	@Autowired
 	UserAuthorization userAuthorization;
 
+	/**
+	 * @param id
+	 * This method is register for course
+	 */
 	@RequestMapping(value = "/student/registerCourse/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public void registerCourse(@PathVariable int id) {
 		userAuthorization.studentAuthorization();
@@ -71,6 +79,12 @@ public class StudentController {
 			StudentDaoImpl.registerCourseImpl(id,course);
 	}
 
+	/**
+	 * @param Course
+	 * @param id
+	 * @return
+	 * Students select course implementation
+	 */
 	@RequestMapping(value = "/student/addCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
 	public ResponseEntity<Map<Integer, List<String>>> addCourse(@PathVariable String Course, @PathVariable int id) {
 		userAuthorization.studentAuthorization();
@@ -92,6 +106,12 @@ public class StudentController {
 		return new ResponseEntity<Map<Integer, List<String>>>(studentHandlerImpl.getAddedCourses(),HttpStatus.OK);
 	}
 
+	/**
+	 * @param Course
+	 * @param id
+	 * @return
+	 * This method is used for deleting course from selected courses
+	 */
 	@RequestMapping(value = "/student/dropCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
 	public ResponseEntity<Map<Integer, List<String>>> dropCourse(@PathVariable String Course, @PathVariable int id) {
 		userAuthorization.studentAuthorization();
@@ -104,11 +124,19 @@ public class StudentController {
 		return new ResponseEntity<Map<Integer, List<String>>>(studentHandlerImpl.getAddedCourses(),HttpStatus.OK);
 	}
 
+	/**
+	 * @param student
+	 * This method is for student self registration
+	 */
 	@RequestMapping(value = "/student/addStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
 	public void addStudent(@RequestBody Student student) {
 		StudentDaoImpl.addStudent(student);		
 	}
 
+	/**
+	 * @param studentId
+	 * @return
+	 */
 	@RequestMapping(value = "/student/viewGradeBasedOnId/{studentId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Grades>> listGradeBasedonId(@PathVariable int studentId) {
 		userAuthorization.studentAuthorization();
@@ -124,6 +152,10 @@ public class StudentController {
 		return new ResponseEntity<List<Grades>>(listTheGrades,HttpStatus.OK);
 	}
 
+	/**
+	 * @param studentId
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/payment/{studentId}")
 	public String payment(@PathVariable int studentId) {
 		userAuthorization.studentAuthorization();

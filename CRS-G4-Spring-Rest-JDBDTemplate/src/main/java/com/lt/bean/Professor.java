@@ -1,5 +1,10 @@
 package com.lt.bean;
 
+/**
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
+ * Bean of professor to store professor details
+ *
+ */
 public class Professor {
 	private int professorId;
 	private String professorName;
