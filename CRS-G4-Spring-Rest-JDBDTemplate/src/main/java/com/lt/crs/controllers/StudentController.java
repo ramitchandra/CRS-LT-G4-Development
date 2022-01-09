@@ -155,7 +155,7 @@ public class StudentController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/payment/{studentId}")
 	public String payment(@PathVariable int studentId) {
-//		userAuthorization.studentAuthorization();
+		userAuthorization.studentAuthorization();
 		return paymentHandlerImpl.makePayment(studentId);
 	}
 }
