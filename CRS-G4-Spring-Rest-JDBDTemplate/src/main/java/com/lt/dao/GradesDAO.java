@@ -10,12 +10,20 @@ import com.lt.bean.Grades;
 import java.util.List;
 
 /**
- * @author user116
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
  *
  */
 public interface GradesDAO {
-	//public void setJdbcTemplate(JdbcTemplate jdbcTemplate);
+	/**
+	 * @return
+	 * This method is to return all the Grades of available students to view.
+	 */
 	public List<Grades> viewGrades();
-
+	
+	/**
+	 * @param studentId
+	 * @return
+	 * This method is to return the Grade of the student based on his/her Id.
+	 */
 	public List<Grades> viewGradeOnId(int studentId);
 }

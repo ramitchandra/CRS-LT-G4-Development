@@ -131,7 +131,8 @@ public class StudentController {
 
 	/**
 	 * @param studentId
-	 * @return
+	 * @return 
+	 * This method is to return the Grade of the student based on his/her Id.
 	 */
 	@RequestMapping(value = "/student/viewGradeBasedOnId/{studentId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Grades>> listGradeBasedonId(@PathVariable int studentId) {

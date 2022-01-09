@@ -63,13 +63,7 @@ public class StudentHandlerImpl implements StudentHandler {
 		return newStudent;
 	}
 	
-	@Override
-	public void viewGrade() {
-		// TODO Auto-generated method stub
-		ProfessorHandler ph = new ProfessorHandlerImpl();
-		List<Grades> gradeResult = ph.insertGrade();	
-		
-	}
+	
 	
 	@Override
 	public void payment() {

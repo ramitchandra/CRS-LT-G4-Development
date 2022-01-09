@@ -28,28 +28,6 @@ public class ProfessorHandlerImpl implements ProfessorHandler {
 	}
 	
 	@Override
-	public List<Grades> insertGrade() {
-		Grades grade1 = new Grades();
-		grade1.setStudentId(0001);
-		grade1.setGrade("A");
-		gradeList.add(grade1);
-		
-		Grades grade2 = new Grades();
-		grade2.setStudentId(0002);
-		grade2.setGrade("B");
-		gradeList.add(grade2);
-		
-		return gradeList;
-		
-	}
-
-	@Override
-	public List<Grades> viewGrades() {
-		
-		return gradeList;
-	}
-
-	@Override
 	public int listStudent(int studentOption) {
 		// TODO Auto-generated method stub
 		return 0;

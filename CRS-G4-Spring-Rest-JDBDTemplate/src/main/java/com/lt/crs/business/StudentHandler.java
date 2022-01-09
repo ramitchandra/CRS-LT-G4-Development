@@ -36,13 +36,6 @@ public interface StudentHandler {
 	public Student addStudent(Student student);
 
 	/**
-	 * student can view grades
-	 * 
-	 * @return
-	 */
-	public void viewGrade();
-
-	/**
 	 * list of added courses
 	 * 
 	 * @return

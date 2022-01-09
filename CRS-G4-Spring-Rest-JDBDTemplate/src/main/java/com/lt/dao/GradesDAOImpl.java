@@ -11,12 +11,22 @@ import com.lt.bean.Grades;
 import com.lt.config.JDBCConfiguration;
 import com.lt.mapper.GradeMapper;
 
+/**
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
+ *
+ */
+
+
 @Repository
 public class GradesDAOImpl implements GradesDAO {
 	@Autowired
 	JDBCConfiguration jdbcConfiguration;
 	
 	
+	/**
+	 * @return
+	 * This method is to return all the Grades of available students to view.
+	 */
 	@Override
 	@Transactional
 	public List<Grades> viewGrades() {
@@ -27,6 +37,10 @@ public class GradesDAOImpl implements GradesDAO {
 		
 	}
 	
+	/**
+	 * @return
+	 * This method is to return the Grade of the student based on his/her Id.
+	 */
 	@Override
 	@Transactional	
 	public List<Grades> viewGradeOnId(int studentId) {
