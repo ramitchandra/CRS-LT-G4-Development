@@ -91,7 +91,7 @@ public class AdminController {
 	 * @return
 	 * This is used to approve students on basis of id.
 	 */
-	@RequestMapping(value = "/admin/validateStudent/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
+	@RequestMapping(value = "/admin/validateStudent/{id}", produces = "plain/text", method = RequestMethod.PUT)
 	public ResponseEntity<String> validateStudent(@PathVariable int id) {
 		userAuthorization.adminAuthorization();
 		if(adminDaoImpl.approveStudent(id)!=1)
@@ -104,7 +104,7 @@ public class AdminController {
 	 * @return
 	 * This is used to add courses in course catalogue.
 	 */
-	@RequestMapping(value = "/admin/addCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/addCourse", produces = "plain/text", method = RequestMethod.POST)
 	public ResponseEntity<String> addCourse(@RequestBody Course course) {	
 		userAuthorization.adminAuthorization();
 		if(adminDaoImpl.addCourse(course)==-1)
@@ -117,7 +117,7 @@ public class AdminController {
 	 * @return
 	 * This is used to delete course from course catalogue on basis of courseId.
 	 */
-	@RequestMapping(value = "/admin/deleteCourse/{courseId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
+	@RequestMapping(value = "/admin/deleteCourse/{courseId}", produces = "plain/text", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteCourse(@PathVariable int courseId) {		
 		userAuthorization.adminAuthorization(); 
 		if(adminDaoImpl.deleteCourse(courseId)!=1)
@@ -143,7 +143,7 @@ public class AdminController {
 	 * @return
 	 * This is used to add professor.
 	 */
-	@RequestMapping(value = "/admin/addProfesor", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/addProfesor", produces = "plain/text", method = RequestMethod.POST)
 	public ResponseEntity<String> addProfessor(@RequestBody Professor professor) {
 		userAuthorization.adminAuthorization(); 
 		adminDaoImpl.addProfessor(professor);
@@ -168,7 +168,7 @@ public class AdminController {
 	 * @return
 	 * This is used to delete professor on basis of professorId.
 	 */
-	@RequestMapping(value = "/admin/deleteProfessor/{professorId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
+	@RequestMapping(value = "/admin/deleteProfessor/{professorId}", produces = "plain/text", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteProfessor(@PathVariable int professorId) {		
 		userAuthorization.adminAuthorization(); 
 		if(adminDaoImpl.deleteProfessor(professorId)!=1)

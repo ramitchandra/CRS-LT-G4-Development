@@ -68,14 +68,15 @@ public class StudentController {
 	/**
 	 * @param id This method is register for course
 	 */
-	@RequestMapping(value = "/student/registerCourse/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-	public void registerCourse(@PathVariable int id) {
+	@RequestMapping(value = "/student/registerCourse/{id}", produces = "plain/text", method = RequestMethod.GET)
+	public ResponseEntity<String> registerCourse(@PathVariable int id) {
 		userAuthorization.studentAuthorization();
 		List<String> course = studentHandlerImpl.getAddedCourses().get(id);
 		if (course == null)
 			throw new NoCoursesAddedException();
 		else
 			StudentDaoImpl.registerCourseImpl(id, course);
+		return new ResponseEntity<String>("Course Registration Successfully", HttpStatus.OK);
 	}
 
 	/**
@@ -124,9 +125,10 @@ public class StudentController {
 	/**
 	 * @param student This method is for student self registration
 	 */
-	@RequestMapping(value = "/student/addStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
-	public void addStudent(@RequestBody Student student) {
+	@RequestMapping(value = "/student/addStudent", produces = "plain/text", method = RequestMethod.POST)
+	public ResponseEntity<String> addStudent(@RequestBody Student student) {
 		StudentDaoImpl.addStudent(student);
+		return new ResponseEntity<String>("Student Registered Successfully!!!", HttpStatus.OK);
 	}
 
 	/**

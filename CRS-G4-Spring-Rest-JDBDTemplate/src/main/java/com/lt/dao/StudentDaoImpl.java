@@ -49,7 +49,7 @@ public class StudentDaoImpl implements StudentDao {
 		String SQL= SqlConstants.insertStudent;
 		jdbcConfiguration.jdbcTemplate().update( SQL, student.getStudentId(),student.getStudentName(),student.getStudentEmail(),student.getStudentPassword(),student.getStudentUsername());
 		String userSQL= SqlConstants.insertUser;
-		jdbcConfiguration.jdbcTemplate().update( userSQL, student.getStudentId(),student.getStudentName(),student.getStudentPassword(),roleSQL,false);
+		jdbcConfiguration.jdbcTemplate().update( userSQL, student.getStudentId(),student.getStudentName(),student.getStudentPassword(),roleid,false);
 		
 	}
 	
