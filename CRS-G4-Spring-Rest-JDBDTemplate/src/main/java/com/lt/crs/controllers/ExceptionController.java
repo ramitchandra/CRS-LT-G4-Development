@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.lt.crs.exception.AlreadyGradeAssignedException;
 import com.lt.crs.exception.ApprovalPendingException;
 import com.lt.crs.exception.CourseAlreadyExistException;
 import com.lt.crs.exception.CourseAlreadyRegisterException;
@@ -12,18 +13,19 @@ import com.lt.crs.exception.CourseAlreadySelectedException;
 import com.lt.crs.exception.CourseIdNotFoundException;
 import com.lt.crs.exception.CourseNotAddedException;
 import com.lt.crs.exception.CourseNotFoundException;
+import com.lt.crs.exception.EmptyStudentListException;
+import com.lt.crs.exception.EnrollCoursesNotFoundException;
 import com.lt.crs.exception.GradeNotFoundException;
 import com.lt.crs.exception.InvalidStudentIdException;
 import com.lt.crs.exception.InvalidUserException;
 import com.lt.crs.exception.NoCoursesAddedException;
 import com.lt.crs.exception.NoPendingApprovalException;
 import com.lt.crs.exception.NoUserLoggedInException;
+import com.lt.crs.exception.PaymentDeclinedException;
 import com.lt.crs.exception.ProfessorIdNotFoundException;
 import com.lt.crs.exception.ProfessorNotFoundException;
 import com.lt.crs.exception.UnauthorizedAccessException;
 import com.lt.crs.exception.WrongCourseSelectionException;
-import com.lt.crs.exception.EmptyStudentListException;
-import com.lt.crs.exception.AlreadyGradeAssignedException;
 
 
 /**
@@ -205,6 +207,22 @@ public class ExceptionController {
 	public void AlreadyGradeAssignedException(AlreadyGradeAssignedException e) {	
 	}
 	
+	/**
+	 * @param e
+	 * EnrollCoursesNotFoundException Exception Handling
+	 */
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Enrolled course is Not Avialable for the student")
+	@ExceptionHandler(value = EnrollCoursesNotFoundException.class)
+	public void EnrollCoursesNotFoundException(EnrollCoursesNotFoundException e) {	
+	}
 	
+	/**
+	 * @param e
+	 * PaymentDeclinedException Exception Handling
+	 */
+	@ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Payment Declined for the student")
+	@ExceptionHandler(value = PaymentDeclinedException.class)
+	public void PaymentDeclinedException(PaymentDeclinedException e) {	
+	}
 	
 }

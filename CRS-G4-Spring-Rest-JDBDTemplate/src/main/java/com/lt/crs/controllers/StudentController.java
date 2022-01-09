@@ -155,9 +155,10 @@ public class StudentController {
 	 * @param studentId
 	 * @return
 	 */
-	@RequestMapping(method = RequestMethod.GET, value = "/payment/{studentId}")
-	public String payment(@PathVariable int studentId) {
+	@RequestMapping(method = RequestMethod.POST, value = "/payment/{studentId}")
+	public ResponseEntity<String> payment(@PathVariable int studentId) {
 		userAuthorization.studentAuthorization();
-		return paymentHandlerImpl.makePayment(studentId);
+		String paymentStatus = paymentHandlerImpl.makePayment(studentId);
+		return new ResponseEntity<String>(paymentStatus, HttpStatus.OK);
 	}
 }

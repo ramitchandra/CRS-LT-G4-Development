@@ -1,15 +1,13 @@
 package com.lt.dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lt.bean.Course;
 import com.lt.bean.EnrolledCourse;
-import com.lt.bean.Payment;
 import com.lt.config.JDBCConfiguration;
 import com.lt.crs.constants.SqlConstants;
 import com.lt.mapper.CourseMapper;
@@ -37,7 +35,7 @@ public class PaymentDaoImpl implements PaymentDao {
 	@Override
 	public List<Course> getCourses(List<Integer> courseIdList, String courseIds) {
 
-		return jdbcConfiguration.jdbcTemplate().query(String.format(SqlConstants.SELECT_COURSE_OFFAMT, courseIds),
+		return jdbcConfiguration.jdbcTemplate().query(String.format(SqlConstants.SELECT_COURSE_AMT, courseIds),
 				courseIdList.toArray(), new CourseMapper());
 	}
 
@@ -47,6 +45,7 @@ public class PaymentDaoImpl implements PaymentDao {
 	 * @param studentId
 	 */
 	@Override
+	@Transactional
 	public int makePayment(int studentId, int finalCost, String studentName) {
 		int paymentStatus = jdbcConfiguration.jdbcTemplate().update(SqlConstants.INSERT_INTO_PAYMENT, "cash", finalCost,
 				studentName);

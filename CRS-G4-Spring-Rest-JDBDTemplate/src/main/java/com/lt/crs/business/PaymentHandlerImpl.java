@@ -2,16 +2,14 @@ package com.lt.crs.business;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lt.bean.CardDetails;
 import com.lt.bean.Course;
 import com.lt.bean.EnrolledCourse;
-import com.lt.bean.Payment;
-import com.lt.bean.Student;
+import com.lt.crs.exception.EnrollCoursesNotFoundException;
+import com.lt.crs.exception.PaymentDeclinedException;
 import com.lt.dao.PaymentDao;
 
 /**
@@ -22,12 +20,6 @@ import com.lt.dao.PaymentDao;
 
 @Service
 public class PaymentHandlerImpl implements PaymentHandler {
-
-	@Autowired
-	StudentHandler studentHandlerImpl;
-
-	@Autowired
-	CourseHandler courseHandlerImpl;
 
 	@Autowired
 	PaymentDao paymentDaoImpl;
@@ -45,10 +37,17 @@ public class PaymentHandlerImpl implements PaymentHandler {
 
 		// Get studentEnrolled courses
 		List<EnrolledCourse> enrolledCourses = paymentDaoImpl.getEnrolledCourses(studentId);
-		List<Integer> courseIdList = new ArrayList<>();
+		
+		//if student not enrolled for any course
+		//throw exception
+		if(enrolledCourses.isEmpty()) {
+			throw new EnrollCoursesNotFoundException();
+		}
 
 		// Get student Courses
+		List<Integer> courseIdList = new ArrayList<>();
 		StringBuilder courseIds = new StringBuilder();
+
 		for (EnrolledCourse enrolledCourse : enrolledCourses) {
 			courseIds.append("?,");
 			courseIdList.add(enrolledCourse.getCourseId());
@@ -63,27 +62,19 @@ public class PaymentHandlerImpl implements PaymentHandler {
 			int courseFees = course.getOfflieFees();
 			finalCost += courseFees;
 		}
-
+		
+		// Making payment to the student enrolled courses
 		try {
 			int paymentStatus = paymentDaoImpl.makePayment(studentId, finalCost,
 					enrolledCourses.get(0).getStudentName());
 			if (paymentStatus >= 1) {
-				return "Payment is successful for the student:" + finalCost;
+				return "Payment is successful for the studentId \"" + studentId + "\" :"+finalCost;
 			} else {
-				return "Payment is declined for the student:" + finalCost;
+				throw new PaymentDeclinedException();
 			}
 		} catch (Exception e) {
-			return "Payment is declined for the student:" + finalCost;
+			throw new PaymentDeclinedException();
 		}
-
-//		List<String> courseList = studentHandlerImpl.getAddedCourses().get(studentId);
-//		for (Course c : courseHandlerImpl.getCourseList()) {
-//			if (courseList.contains(c.getOnlineFees())) {
-//				finalCost += c.getOnlineFees();
-//				System.out.println(finalCost);
-//			}
-//		}
-
 	}
 
 }
