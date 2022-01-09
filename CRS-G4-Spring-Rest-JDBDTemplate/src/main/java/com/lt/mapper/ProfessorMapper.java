@@ -14,6 +14,9 @@ import com.lt.bean.Professor;
 public class ProfessorMapper implements RowMapper<Professor> {
 
 	/**
+	 *@param rs
+	 *@param rowNum
+	 *@return
 	 *This is used to map professor to the output
 	 */
 	@Override

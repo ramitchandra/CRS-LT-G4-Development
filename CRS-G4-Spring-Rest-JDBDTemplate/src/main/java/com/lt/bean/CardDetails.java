@@ -1,7 +1,7 @@
 package com.lt.bean;
 
 /**
- * @author Sai 
+ * @author Naman,Purnima,Radha,Ramit,Sai,Vignesh 
  * Bean of cardDetails to store cardDetails
  */
 public class CardDetails {

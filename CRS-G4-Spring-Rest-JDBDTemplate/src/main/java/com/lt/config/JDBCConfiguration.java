@@ -10,6 +10,10 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+/**
+ * @author Naman,Purnima,Radha,Ramit,Sai,Vignesh
+ *
+ */
 @PropertySource("classpath:application.properties")
 @Configuration
 public class JDBCConfiguration {
@@ -17,6 +21,10 @@ public class JDBCConfiguration {
 	@Autowired
 	Environment environment;
 	
+	/**
+	 * @return
+	 * This is used to initialize DriverManagerDataSource.
+	 */
 	@Bean
 	DataSource dataSource() {
 		
@@ -29,6 +37,10 @@ public class JDBCConfiguration {
 		return dataSource;
 	}
 	
+	/**
+	 * @return
+	 * This is used to return jdbcTemplate object.
+	 */
 	@Bean
 	  public JdbcTemplate jdbcTemplate() {
 	    JdbcTemplate jdbcTemplate = new JdbcTemplate();

@@ -1,7 +1,7 @@
 package com.lt.bean;
 
 /**
- * @author Sai 
+ * @author Naman,Purnima,Radha,Ramit,Sai,Vignesh 
  * Bean of payment to store payment details
  */
 public class Payment {

@@ -1,5 +1,9 @@
 package com.lt.crs.constants;
 
+/**
+ * @author Naman,Purnima,Radha,Ramit,Sai,Vignesh
+ *
+ */
 public enum EnumRole {
 
 	Student(103),Professor(102),Admin(101),Role(0);

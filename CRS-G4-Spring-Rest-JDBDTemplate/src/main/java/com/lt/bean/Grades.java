@@ -1,5 +1,9 @@
 package com.lt.bean;
 
+/**
+ * @author Naman,Purnima,Radha,Ramit,Sai,Vignesh
+ * This bean is used to store the details of the grades.
+ */
 public class Grades {
 
 	private int studentId;
