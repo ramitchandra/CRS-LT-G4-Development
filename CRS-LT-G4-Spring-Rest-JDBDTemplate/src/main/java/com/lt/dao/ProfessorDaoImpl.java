@@ -18,6 +18,9 @@ import com.lt.crs.exception.AlreadyGradeAssignedException;
 @Repository
 public class ProfessorDaoImpl implements ProfessorDao {
 	
+	/**
+	 * This is used to autowire  JDBCConfiguration bean
+	 */
 	@Autowired
 	JDBCConfiguration jdbcConfiguration;
 	

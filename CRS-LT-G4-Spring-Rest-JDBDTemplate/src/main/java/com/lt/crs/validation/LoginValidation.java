@@ -19,6 +19,9 @@ import com.lt.mapper.UserMapper;
 @Repository
 public class LoginValidation {
 	
+	/**
+	 * This is used to autowire  JDBCConfiguration bean
+	 */
 	@Autowired
 	JDBCConfiguration jdbcConfiguration;
 	

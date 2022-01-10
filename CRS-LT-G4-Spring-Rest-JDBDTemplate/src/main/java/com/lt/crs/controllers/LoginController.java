@@ -23,6 +23,9 @@ import com.lt.crs.validation.LoginValidation;
 @CrossOrigin
 public class LoginController {
 	
+	/**
+	 * This is used to autowire LoginValidation bean
+	 */
 	@Autowired
 	LoginValidation loginValidation;
 	

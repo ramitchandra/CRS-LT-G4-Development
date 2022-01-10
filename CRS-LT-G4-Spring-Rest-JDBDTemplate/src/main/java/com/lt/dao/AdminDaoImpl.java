@@ -16,6 +16,9 @@ import com.lt.mapper.ProfessorMapper;
 @Repository
 public class AdminDaoImpl implements AdminDao {
 	
+	/**
+	 * This is used to autowire  JDBCConfiguration bean
+	 */
 	@Autowired
 	JDBCConfiguration jdbcConfiguration;
 

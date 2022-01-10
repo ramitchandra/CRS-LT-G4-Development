@@ -22,6 +22,9 @@ import com.lt.mapper.EnrolledCourseMapper;
 @Component
 public class PaymentDaoImpl implements PaymentDao {
 
+	/**
+	 * This is used to autowire  JDBCConfiguration bean
+	 */
 	@Autowired
 	JDBCConfiguration jdbcConfiguration;
 

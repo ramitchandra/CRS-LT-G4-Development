@@ -44,26 +44,51 @@ import com.lt.dao.StudentDao;
 @CrossOrigin
 public class AdminController {
 	
+	/**
+	 * This is used to autowire studentHandler bean
+	 */
 	@Autowired
 	StudentHandler studentHandlerImpl;
 	
+
+	/**
+	 * This is used to autowire AdminDao bean
+	 */
 	@Autowired
 	AdminDao adminDaoImpl;
 	
+
+	/**
+	 * This is used to autowire CourseHandler bean
+	 */
 	@Autowired
 	CourseHandler courseHandlerImpl;
 	
+
+	/**
+	 * This is used to autowire professorHandler bean
+	 */
 	@Autowired
 	ProfessorHandler professorHandlerImpl;
 	
+	/**
+	 * This is used to autowire studentDao bean
+	 */
 	@Autowired
 	StudentDao studentDaoImpl;
 	
+	/**
+	 * This is used to autowire userAuthorization bean
+	 */
 	@Autowired
 	UserAuthorization userAuthorization;
 	
+	/**
+	 * This is used to autowire GradesDAO bean
+	 */
 	@Autowired
 	GradesDAO gradeDAOImpl;
+	
 	
 	
 	/**

@@ -21,6 +21,9 @@ import com.lt.dao.PaymentDao;
 @Service
 public class PaymentHandlerImpl implements PaymentHandler {
 
+	/**
+	 * This is used to autowire  PaymentDao bean
+	 */
 	@Autowired
 	PaymentDao paymentDaoImpl;
 

@@ -28,9 +28,15 @@ import com.lt.crs.constants.StringConstants;
 @CrossOrigin
 public class ProfessorController {
 
+	/**
+	 * This is used to autowire ProfessorDao bean
+	 */
 	@Autowired
 	ProfessorDao ProfessorDaoImpl;
 	
+	/**
+	 * This is used to autowire UserAuthorization bean
+	 */
 	@Autowired
 	UserAuthorization userAuthorization;
 

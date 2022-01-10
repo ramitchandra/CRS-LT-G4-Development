@@ -18,6 +18,9 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 @Configuration
 public class JDBCConfiguration {
 
+	/**
+	 * This is used to autowire  JDBCConfiguration bean
+	 */
 	@Autowired
 	Environment environment;
 

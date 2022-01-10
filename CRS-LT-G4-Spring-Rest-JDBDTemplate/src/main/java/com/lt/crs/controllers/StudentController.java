@@ -41,30 +41,57 @@ import com.lt.crs.constants.StringConstants;
 @CrossOrigin
 public class StudentController {
 
+	/**
+	 * This is used to autowire studentHandler bean
+	 */
 	@Autowired
 	StudentHandler studentHandlerImpl;
 
+	/**
+	 * This is used to autowire CourseHandler bean
+	 */
 	@Autowired
 	CourseHandler courseHandlerImpl;
 
+	/**
+	 * This is used to autowire  PaymentHandler bean
+	 */
 	@Autowired
 	PaymentHandler paymentHandlerImpl;
 
+	/**
+	 * This is used to autowire  ProfessorHandler bean
+	 */
 	@Autowired
 	ProfessorHandler professorHandlerImpl;
 
+	/**
+	 * This is used to autowire  StudentDao bean
+	 */
 	@Autowired
 	StudentDao StudentDaoImpl;
 
+	/**
+	 * This is used to autowire  GradesDAO bean
+	 */
 	@Autowired
 	GradesDAO gradesDAOImpl;
 
+	/**
+	 * This is used to autowire  AdminDao bean
+	 */
 	@Autowired
 	AdminDao adminDaoImpl;
 
+	/**
+	 * This is used to autowire  JDBCConfiguration bean
+	 */
 	@Autowired
 	JDBCConfiguration jdbcConfiguration;
 
+	/**
+	 * This is used to autowire  UserAuthorization bean
+	 */
 	@Autowired
 	UserAuthorization userAuthorization;
 

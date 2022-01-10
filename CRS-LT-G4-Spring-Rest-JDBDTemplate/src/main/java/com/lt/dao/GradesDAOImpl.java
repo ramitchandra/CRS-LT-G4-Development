@@ -19,6 +19,10 @@ import com.lt.mapper.GradeMapper;
 
 @Repository
 public class GradesDAOImpl implements GradesDAO {
+	
+	/**
+	 * This is used to autowire  JDBCConfiguration bean
+	 */
 	@Autowired
 	JDBCConfiguration jdbcConfiguration;
 	
