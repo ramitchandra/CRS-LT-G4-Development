@@ -1,4 +1,4 @@
-package com.lt.crs.controllers;
+package com.lt.crs.advice;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -34,7 +34,7 @@ import com.lt.crs.exception.WrongCourseSelectionException;
  *
  */
 @ControllerAdvice
-public class ExceptionController {
+public class ExceptionAdvice {
 	
 	/**
 	 * @param e
