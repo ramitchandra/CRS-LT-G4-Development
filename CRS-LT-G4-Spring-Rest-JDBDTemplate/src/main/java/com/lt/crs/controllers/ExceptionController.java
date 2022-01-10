@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.lt.crs.constants.StringConstants;
 import com.lt.crs.exception.AlreadyGradeAssignedException;
 import com.lt.crs.exception.ApprovalPendingException;
 import com.lt.crs.exception.CourseAlreadyExistException;
@@ -39,7 +40,7 @@ public class ExceptionController {
 	 * @param e
 	 * CourseNotFound Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Course was not found on the server")
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = StringConstants.COURSE_NOTFOUND)
 	@ExceptionHandler(value = CourseNotFoundException.class)
 	public void courseNotFoundException(CourseNotFoundException e) {
     }
@@ -48,7 +49,7 @@ public class ExceptionController {
 	 * @param e
 	 * InvalidStudentId Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Invalid Student ID")
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = StringConstants.STUDENTID_NOTVALID)
 	@ExceptionHandler(value = InvalidStudentIdException.class)
 	public void InvalidStudentIdException(InvalidStudentIdException e) {
     }
@@ -57,7 +58,7 @@ public class ExceptionController {
 	 * @param e
 	 * CourseIdNotFound Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Course you want to delete does not exists!!")
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = StringConstants.COURSE_NOTEXIST_TODELETE)
 	@ExceptionHandler(value = CourseIdNotFoundException.class)
 	public void CourseIdNotFoundException(CourseIdNotFoundException e) {
     }
@@ -66,7 +67,7 @@ public class ExceptionController {
 	 * @param e
 	 * ProfessorNotFound Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Professor was not found")
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = StringConstants.PROFESSOR_NOTFOUND)
 	@ExceptionHandler(value = ProfessorNotFoundException.class)
 	public void ProfessorNotFoundException(ProfessorNotFoundException e) {
     }
@@ -75,7 +76,7 @@ public class ExceptionController {
 	 * @param e
 	 * ProfessorIdNotFound Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Professor you want to delete does not exists!!")
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = StringConstants.PROFESSOR_NOTEXIST_TODELETE)
 	@ExceptionHandler(value = ProfessorIdNotFoundException.class)
 	public void ProfessorIdNotFoundException(ProfessorIdNotFoundException e) {
     }
@@ -84,7 +85,7 @@ public class ExceptionController {
 	 * @param e
 	 * gradeNotFound Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Grade was not found on the server")
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = StringConstants.GRADE_NOTFOUND)
 	@ExceptionHandler(value = GradeNotFoundException.class)
 	public void gradeNotFoundException(GradeNotFoundException e) {
 		
@@ -94,7 +95,7 @@ public class ExceptionController {
 	 * @param e
 	 * CourseAlreadySelected Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.ALREADY_REPORTED, reason = "Already selected course")
+	@ResponseStatus(code = HttpStatus.ALREADY_REPORTED, reason = StringConstants.COURSE_SELECTEDALREADY)
 	@ExceptionHandler(value = CourseAlreadySelectedException.class)
 	public void CourseAlreadySelectedException(CourseAlreadySelectedException e) {
     }
@@ -103,7 +104,7 @@ public class ExceptionController {
 	 * @param e
 	 * WrongCourseSelection Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Selected Course not availabe in course catalog")
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = StringConstants.COURSE_NOTAVAILABLE)
 	@ExceptionHandler(value = WrongCourseSelectionException.class)
 	public void WrongCourseSelectionException(WrongCourseSelectionException e) {
     }
@@ -112,7 +113,7 @@ public class ExceptionController {
 	 * @param e
 	 * CourseNotAdded Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Course not added to delete")
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = StringConstants.COURSE_NOTADDED_TODELETE)
 	@ExceptionHandler(value = CourseNotAddedException.class)
 	public void CourseNotAddedException(CourseNotAddedException e) {
     }
@@ -121,7 +122,7 @@ public class ExceptionController {
 	 * @param e
 	 * NoCoursesAdded Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "No Courses Added")
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = StringConstants.COURSE_NOTADDED)
 	@ExceptionHandler(value = NoCoursesAddedException.class)
 	public void NoCoursesAddedException(NoCoursesAddedException e) {
     }
@@ -130,7 +131,7 @@ public class ExceptionController {
 	 * @param e
 	 * CourseAlreadyRegister Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE, reason = "Course Already Registered")
+	@ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE, reason = StringConstants.COURSE_AlREADYREG)
 	@ExceptionHandler(value = CourseAlreadyRegisterException.class)
 	public void CourseAlreadyRegisterException(CourseAlreadyRegisterException e) {
     }
@@ -139,7 +140,7 @@ public class ExceptionController {
 	 * @param e
 	 * NoPendingApproval Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.NO_CONTENT, reason = "No Student is pending for approval")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT, reason = StringConstants.STUDENTAPPR_NOTPENDING)
 	@ExceptionHandler(value = NoPendingApprovalException.class)
 	public void NoPendingApprovalException(NoPendingApprovalException e) {	
 	}
@@ -148,7 +149,7 @@ public class ExceptionController {
 	 * @param e
 	 * CourseAlreadyExist Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE, reason = "Course Already Exists!!")
+	@ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE, reason = StringConstants.COURSE_EXISTS)
 	@ExceptionHandler(value = CourseAlreadyExistException.class)
 	public void CourseAlreadyExistException(CourseAlreadyExistException e) {	
 	}
@@ -157,7 +158,7 @@ public class ExceptionController {
 	 * @param e
 	 * InvalidUser Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE, reason = "Invalid Credentials!!")
+	@ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE, reason = StringConstants.CREDENTIALS_NOTVALID)
 	@ExceptionHandler(value = InvalidUserException.class)
 	public void InvalidUserException(InvalidUserException e) {	
 	}
@@ -166,7 +167,7 @@ public class ExceptionController {
 	 * @param e
 	 * ApprovalPending Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE, reason = "Approval Pending!!")
+	@ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE, reason = StringConstants.APPROVAL_PENDING)
 	@ExceptionHandler(value = ApprovalPendingException.class)
 	public void ApprovalPendingException(ApprovalPendingException e) {	
 	}
@@ -175,7 +176,7 @@ public class ExceptionController {
 	 * @param e
 	 * UnauthorizedAccess Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.UNAUTHORIZED, reason = "Unauthorized Access!!")
+	@ResponseStatus(code = HttpStatus.UNAUTHORIZED, reason = StringConstants.ACCESS_NOTAUTHORISED)
 	@ExceptionHandler(value = UnauthorizedAccessException.class)
 	public void UnauthorizedAccessException(UnauthorizedAccessException e) {	
 	}
@@ -184,7 +185,7 @@ public class ExceptionController {
 	 * @param e
 	 * NoUserLoggedIn Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.UNAUTHORIZED, reason = "No user logged in!!")
+	@ResponseStatus(code = HttpStatus.UNAUTHORIZED, reason = StringConstants.USER_NOTLOGGED)
 	@ExceptionHandler(value = NoUserLoggedInException.class)
 	public void NoUserLoggedInException(NoUserLoggedInException e) {	
 	}
@@ -193,7 +194,7 @@ public class ExceptionController {
 	 * @param e
 	 * EmptyStudentListException Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "All Students are already assigned with Grades")
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = StringConstants.GRADES_ALREADYASSIGNED)
 	@ExceptionHandler(value = EmptyStudentListException.class)
 	public void EmptyStudentListException(EmptyStudentListException e) {	
 	}
@@ -202,7 +203,7 @@ public class ExceptionController {
 	 * @param e
 	 * AlreadyGradeAssignedException Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Student is already assigned with a Grade")
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = StringConstants.GRADE_ALREADYASSIGNED_TOSTUDENT)
 	@ExceptionHandler(value = AlreadyGradeAssignedException.class)
 	public void AlreadyGradeAssignedException(AlreadyGradeAssignedException e) {	
 	}
@@ -211,7 +212,7 @@ public class ExceptionController {
 	 * @param e
 	 * EnrollCoursesNotFoundException Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Enrolled course is Not Avialable for the student")
+	@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = StringConstants.ENROLLEDCOURSE_NOTAVAILABLE)
 	@ExceptionHandler(value = EnrollCoursesNotFoundException.class)
 	public void EnrollCoursesNotFoundException(EnrollCoursesNotFoundException e) {	
 	}
@@ -220,7 +221,7 @@ public class ExceptionController {
 	 * @param e
 	 * PaymentDeclinedException Exception Handling
 	 */
-	@ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Payment Declined for the student")
+	@ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR, reason = StringConstants.PAYMENT_DECLINED)
 	@ExceptionHandler(value = PaymentDeclinedException.class)
 	public void PaymentDeclinedException(PaymentDeclinedException e) {	
 	}

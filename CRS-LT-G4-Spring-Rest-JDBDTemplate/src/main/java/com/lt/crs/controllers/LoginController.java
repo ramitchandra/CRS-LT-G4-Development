@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lt.bean.LoginDetails;
+import com.lt.crs.constants.StringConstants;
 import com.lt.crs.exception.ApprovalPendingException;
 import com.lt.crs.exception.InvalidUserException;
 import com.lt.crs.validation.LoginValidation;
@@ -37,7 +38,7 @@ public class LoginController {
 			throw new InvalidUserException();
 		if(loginValidation.loginDetails(userName, password)==-2)
 			throw new ApprovalPendingException();
-		return new ResponseEntity<String>("User successfully logged in as: " + LoginDetails.userRole,HttpStatus.OK);
+		return new ResponseEntity<String>(StringConstants.USER_LOGIN_SUCCESSFUL + LoginDetails.userRole,HttpStatus.OK);
 	}
 	
 	/**
@@ -48,6 +49,6 @@ public class LoginController {
 	public ResponseEntity<String> logout() {
 		LoginDetails.userName = "";
 		LoginDetails.userRole = "";
-		return new ResponseEntity<String>("User logged out successfully!!",HttpStatus.OK);
+		return new ResponseEntity<String>(StringConstants.USER_LOGOUT_SUCCESSFUL,HttpStatus.OK);
 	}
 }

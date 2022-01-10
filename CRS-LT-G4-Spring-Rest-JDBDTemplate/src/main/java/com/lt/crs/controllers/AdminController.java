@@ -22,6 +22,7 @@ import com.lt.bean.Student;
 import com.lt.crs.business.CourseHandler;
 import com.lt.crs.business.ProfessorHandler;
 import com.lt.crs.business.StudentHandler;
+import com.lt.crs.constants.StringConstants;
 import com.lt.crs.exception.CourseAlreadyExistException;
 import com.lt.crs.exception.CourseIdNotFoundException;
 import com.lt.crs.exception.CourseNotFoundException;
@@ -98,7 +99,7 @@ public class AdminController {
 		userAuthorization.adminAuthorization();
 		if(adminDaoImpl.approveStudent(id)!=1)
 			throw new InvalidStudentIdException();
-		return new ResponseEntity<String>("Validated student: "+ id,HttpStatus.OK);
+		return new ResponseEntity<String>(StringConstants.STUDENT_VALIDATION + id,HttpStatus.OK);
 	}
 	
 	/**
@@ -111,7 +112,7 @@ public class AdminController {
 		userAuthorization.adminAuthorization();
 		if(adminDaoImpl.addCourse(course)==-1)
 			throw new CourseAlreadyExistException();
-		return new ResponseEntity<String>("Course Added",HttpStatus.OK);
+		return new ResponseEntity<String>(StringConstants.ADD_COURSE,HttpStatus.OK);
 	}
 	
 	/**
@@ -124,7 +125,7 @@ public class AdminController {
 		userAuthorization.adminAuthorization(); 
 		if(adminDaoImpl.deleteCourse(courseId)!=1)
 			 throw new CourseIdNotFoundException();
-		 return new ResponseEntity<String>("Course Deleted: "+ courseId,HttpStatus.OK);
+		 return new ResponseEntity<String>(StringConstants.DELETE_COURSE + courseId,HttpStatus.OK);
 	}
 	
 	/**
@@ -149,7 +150,7 @@ public class AdminController {
 	public ResponseEntity<String> addProfessor(@RequestBody Professor professor) {
 		userAuthorization.adminAuthorization(); 
 		adminDaoImpl.addProfessor(professor);
-		return new ResponseEntity<String>("Professor Added",HttpStatus.OK);
+		return new ResponseEntity<String>(StringConstants.ADD_PROFESSOR,HttpStatus.OK);
 	}
 	
 	/**
@@ -175,7 +176,7 @@ public class AdminController {
 		userAuthorization.adminAuthorization(); 
 		if(adminDaoImpl.deleteProfessor(professorId)!=1)
 			 throw new ProfessorIdNotFoundException(); 
-		 return new ResponseEntity<String>("Professor Deleted: " + professorId,HttpStatus.OK);
+		 return new ResponseEntity<String>(StringConstants.DELETE_PROFESSOR + professorId,HttpStatus.OK);
 	}
 	
 	/**
