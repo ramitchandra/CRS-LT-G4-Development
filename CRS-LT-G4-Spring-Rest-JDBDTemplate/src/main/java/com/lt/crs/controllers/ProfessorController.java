@@ -18,6 +18,7 @@ import com.lt.bean.Student;
 import com.lt.crs.exception.EmptyStudentListException;
 import com.lt.crs.validation.UserAuthorization;
 import com.lt.dao.ProfessorDao;
+import com.lt.crs.constants.StringConstants;
 
 /**
  * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
@@ -55,6 +56,6 @@ public class ProfessorController {
 	public ResponseEntity<String> assignGrades(@RequestBody Grades grade) {
 		userAuthorization.professorAuthorization();
 		ProfessorDaoImpl.assignGrade(grade);
-		return new ResponseEntity<String>("Grades Assigned", HttpStatus.OK);
+		return new ResponseEntity<String>(StringConstants.assignGrades, HttpStatus.OK);
 	}
 }

@@ -31,6 +31,7 @@ import com.lt.crs.validation.UserAuthorization;
 import com.lt.dao.AdminDao;
 import com.lt.dao.GradesDAO;
 import com.lt.dao.StudentDao;
+import com.lt.crs.constants.StringConstants;
 
 /**
  * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
@@ -78,7 +79,7 @@ public class StudentController {
 			throw new NoCoursesAddedException();
 		else
 			StudentDaoImpl.registerCourseImpl(id, course);
-		return new ResponseEntity<String>("Course Registration Successfully", HttpStatus.OK);
+		return new ResponseEntity<String>(StringConstants.registerCourse, HttpStatus.OK);
 	}
 
 	/**
@@ -130,7 +131,7 @@ public class StudentController {
 	@RequestMapping(value = "/student/addStudent", produces = "plain/text", method = RequestMethod.POST)
 	public ResponseEntity<String> addStudent(@RequestBody Student student) {
 		StudentDaoImpl.addStudent(student);
-		return new ResponseEntity<String>("Student Registered Successfully!!!", HttpStatus.OK);
+		return new ResponseEntity<String>(StringConstants.studentSelfRegistration, HttpStatus.OK);
 	}
 
 	/**
