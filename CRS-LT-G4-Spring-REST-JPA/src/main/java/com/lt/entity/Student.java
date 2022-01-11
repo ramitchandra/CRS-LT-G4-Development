@@ -1,8 +1,10 @@
 package com.lt.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * @author Naman,Purnima,Radha,Ramit,Sai,Vignesh
@@ -12,11 +14,17 @@ import javax.persistence.Table;
 @Table(name="student")
 public class Student {
 	@Id
+	@Column(name="studentid")
 	private int studentId;
+	@Column(name="studentname")
 	private String studentName;
+	@Column(name="studentemail")
 	private String studentEmail;
+	@Column(name="studentusername")
 	private String studentUsername;
+	@Column(name="studentpassword")
 	private String studentPassword;
+	@Transient
 	private boolean isApproved;
 	/**
 	 * @return the studentId
