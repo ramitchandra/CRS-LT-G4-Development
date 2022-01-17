@@ -59,12 +59,12 @@ public class StudentService {
 
 		
 		if(!studentName.isEmpty()) {
-			for(String course: courseList) {
+			for(String course: courseList) {			
 				Course c = coursedao.findByName(course);
-				courseId = courseId.concat(String.valueOf( ","+c.getCourseId()));
-				
-				courseName = courseName+course;
+				courseId = courseId.concat(String.valueOf(","+c.getCourseId()));
 			}
+			courseId = courseId.substring(1);
+			courseName=String.join(",", courseList);
 			courses.setStudentId(id);
 			courses.setStudentName(studentName);
 			courses.setCourseId(courseId);
