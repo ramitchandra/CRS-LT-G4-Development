@@ -7,11 +7,13 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.lt.dao.GradesDao;
 import com.lt.entity.Grades;
 
+@Repository
 @Service
 public class GradeService {
 	
@@ -25,12 +27,12 @@ public class GradeService {
 		
 	}
 	
-	/*@Transactional
+	@Transactional
 	public List<Grades> viewGradesBasedOnId(int studentId) {
-	//	Grades gradesObject = new Grades();
+	//	Grades gradesObject = gradesDao.findById(studentId);
 	//	gradesObject.setStudentId(studentId);
-		return (List<Grades>) gradesDao.findAllById(studentId);
-	}	*/
+		return gradesDao.findById(studentId);
+	}	
 	
 	
 

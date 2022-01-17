@@ -27,19 +27,11 @@ public class GradesController {
 		return gradeService.viewGrades();
 	}
 	
-	/*@RequestMapping(value="/viewGradeBasedOnId/{studentId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+	@RequestMapping(value="/viewGradeBasedOnId/{studentId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public List<Grades> viewGradeBasedOnId(@PathVariable int studentId) {
 		List<Grades> listTheGrades = gradeService.viewGradesBasedOnId(studentId);
-		System.out.println(listTheGrades);
-		for (Grades grade : listTheGrades) {
-			if (grade.getStudentId() == studentId) {
-				grade.getGrade();
-				return (List<Grades>) new ResponseEntity<>(listTheGrades, HttpStatus.OK);
-			}
-
-		}
-		return (List<Grades>) new ResponseEntity<>(listTheGrades, HttpStatus.OK);
-	} */
+		return listTheGrades;
+	} 
 	
 
 }
