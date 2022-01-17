@@ -9,15 +9,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import com.lt.crs.constants.SqlConstants;
 import com.lt.entity.Course;
 
 
 /**
- * @author user115
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
  *
  */
 @Repository
 public interface CourseDao extends CrudRepository<Course,Integer> {
-	@Query(value = "select * from Course where coursename =?1",nativeQuery = true)
+	@Query(value = SqlConstants.select_CourseName,nativeQuery = true)
 	Course findByName(String name);
 }

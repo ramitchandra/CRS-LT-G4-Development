@@ -39,4 +39,5 @@ public class StringConstants {
 	public static final String studentSelfRegistration = "Student Registered Successfully!!!";
 	public static final String ADD_GRADES = "Grades Assigned Successfully!!!";
 	
+	
 }

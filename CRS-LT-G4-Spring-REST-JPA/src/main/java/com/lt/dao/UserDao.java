@@ -6,6 +6,10 @@ import org.springframework.stereotype.Repository;
 
 import com.lt.entity.User;
 
+/**
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
+ *
+ */
 @Repository
 public interface UserDao extends CrudRepository<User, Integer> {
 

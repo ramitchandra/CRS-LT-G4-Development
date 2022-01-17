@@ -9,6 +9,10 @@ import org.springframework.stereotype.Repository;
 import com.lt.entity.EnrolledCourse;
 import com.lt.entity.Student;
 
+/**
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
+ *
+ */
 @Repository
 public interface EnrolledCourseDao extends CrudRepository<EnrolledCourse, Integer>  {
 	

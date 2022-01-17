@@ -19,21 +19,44 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;  
 import org.springframework.stereotype.Service;
 
+/**
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
+ *
+ */
 @Service
 public class StudentService {
 	
+	/**
+	 *  This is used to autowire StudentDao  bean
+	 */
 	@Autowired
 	StudentDao studentdao; 
+	
+	/**
+	 *  This is used to autowire UserDao  bean
+	 */
 	@Autowired
 	UserDao userdao; 
+	
+	/**
+	 *  This is used to autowire CourseDao bean
+	 */
 	@Autowired
-	CourseDao coursedao; 
+	CourseDao coursedao;
+	
+	/**
+	 *  This is used to autowire EnrolledCourseDao bean
+	 */
 	@Autowired
 	EnrolledCourseDao enrolledcourses;
 	
 	
 	EntityManager e;
 	
+	/**
+	 * @param 
+	 * this is used for student self register
+	 */
 	public void addStudent(Student Student)
 	{  
 		studentdao.save(Student); 
@@ -46,6 +69,11 @@ public class StudentService {
 		userdao.save(user);
 	}
 
+	/**
+	 * @param id
+	 * @param courseList
+	 * this is used for course register
+	 */
 	public void registerCourse(int id, List<String> courseList) {
 		// TODO Auto-generated method stub
 		String courseId = "";

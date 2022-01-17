@@ -28,4 +28,5 @@ public class SqlConstants {
 	public static final String SELECT_STUDENT_COURSES = "select * from enrolledcourses where studentId=";
 	public static final String SELECT_COURSE_AMT = "select * from course where courseId IN (%s)";
 	public static final String INSERT_INTO_PAYMENT = "insert into payment (paymentMode,courseAmout,studentUsername) values (?,?,?);";
+	public static final String select_CourseName="select * from Course where coursename =?1";
 }

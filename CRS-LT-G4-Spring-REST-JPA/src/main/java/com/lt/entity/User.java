@@ -8,6 +8,11 @@ import javax.persistence.Transient;
 
 import com.lt.crs.constants.EnumRole;
 
+/**
+ * @author Naman,Purnima,Radha,Ramit,Sai,Vignesh
+ * Bean of user to store student details
+ *
+ */
 @Entity 
 @Table(name="user")
 public class User {

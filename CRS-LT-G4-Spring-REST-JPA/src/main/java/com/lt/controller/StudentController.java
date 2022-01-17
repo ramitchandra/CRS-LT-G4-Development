@@ -20,16 +20,28 @@ import com.lt.crs.constants.StringConstants;
 import com.lt.entity.Student;
 import com.lt.service.StudentService;
 
+/**
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
+ *
+ */
 @RestController
 public class StudentController {
 	
 	
+	/**
+	 * This is used to autowire StudentService 
+	 */
 	@Autowired
 	StudentService studentService;
 	
 	public Map<Integer,List<String>> addedCourses = new HashMap<>();
 	List<String> courseList = new ArrayList<String>();
 	
+	/**
+	 * @param student
+	 * @return
+	 * this is used for student self register
+	 */
 	@RequestMapping(value="/addStudent", produces = "plain/text", method = RequestMethod.POST)  
 	   public  ResponseEntity<String> addStudent(@RequestBody Student student)
 	   {  
@@ -37,6 +49,11 @@ public class StudentController {
 		return new ResponseEntity<String>("Student Added", HttpStatus.OK);
 	   }  
 	
+	/**
+	 * @param id
+	 * @return
+	 * This method is register for course
+	 */
 	@RequestMapping(value="/student/registerCourse/{id}",produces = "plain/text", method=RequestMethod.GET)  
 	   public  ResponseEntity<String> registerCourse(@PathVariable int id)
 	   {  
@@ -44,6 +61,12 @@ public class StudentController {
 		return new ResponseEntity<String>("courses Added", HttpStatus.OK);
 	   }  
 	
+	/**
+	 * @param Course
+	 * @param id
+	 * @return
+	 * Students select course implementation
+	 */
 	@RequestMapping(value="/student/addCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method=RequestMethod.POST)  
 	   public  ResponseEntity<Map<Integer, List<String>>> addCourse(@PathVariable String Course, @PathVariable int id)
 	   {  
@@ -53,6 +76,12 @@ public class StudentController {
 		return new ResponseEntity<Map<Integer, List<String>>>(addedCourses, HttpStatus.OK);
 	   }  
 	
+	/**
+	 * @param Course
+	 * @param id
+	 * @return
+	 * This method is used for deleting course from selected courses
+	 */
 	@RequestMapping(value="/student/dropCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method=RequestMethod.DELETE)  
 	   public  ResponseEntity<Map<Integer, List<String>>> dropCourse(@PathVariable String Course, @PathVariable int id)
 	   {  
