@@ -24,7 +24,7 @@ public class User {
 	@Column(name="userpassword")
 	private String userPassword;
 	@Column(name="roleid")
-	private EnumRole roleId;
+	private int roleId;
 	@Column(name="isapproved")
 	private boolean isApproved;
 	/**
@@ -66,13 +66,13 @@ public class User {
 	/**
 	 * @return the roleId
 	 */
-	public EnumRole getRoleId() {
+	public int getRoleId() {
 		return roleId;
 	}
 	/**
 	 * @param role the roleId to set
 	 */
-	public void setRoleId(EnumRole role) {
+	public void setRoleId(int role) {
 		this.roleId = role;
 	}
 	/**

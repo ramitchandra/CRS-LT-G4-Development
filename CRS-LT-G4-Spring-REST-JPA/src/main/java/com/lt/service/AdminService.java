@@ -29,6 +29,8 @@ public class AdminService {
 	@Autowired
 	ProfessorDao professorDao;
 	
+	
+	
 	@Transactional
 	public List<Course> getAllCourse() {
 		
@@ -66,9 +68,9 @@ public class AdminService {
 		professorDao.deleteById(id);	
 	}
 
-//	@Transactional
-//	public int approveStudent(int id) {
-//		String SQL= SqlConstants.studentApproval;
-//		return jdbcConfiguration.jdbcTemplate().update(SQL,id);
-//	}
+	@Transactional
+	public void approveStudent(int id) {
+		adminDao.approveById(id);
+		
+	}
 }

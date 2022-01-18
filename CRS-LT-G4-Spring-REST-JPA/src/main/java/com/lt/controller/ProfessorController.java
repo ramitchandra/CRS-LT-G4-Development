@@ -32,7 +32,7 @@ public class ProfessorController {
 		
 	}
 	
-	@RequestMapping(value = "/admin/addGrades", produces = "plain/text", method = RequestMethod.POST)
+	@RequestMapping(value = "/professor/addGrades", produces = "plain/text", method = RequestMethod.POST)
 	public ResponseEntity<String> addGrades(@RequestBody Grades grades) {
 		professorService.addGrades(grades);
 		return new ResponseEntity<String>(StringConstants.ADD_GRADES,HttpStatus.OK); 
