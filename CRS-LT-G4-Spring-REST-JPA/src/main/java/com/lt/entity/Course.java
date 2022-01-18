@@ -30,7 +30,7 @@ public class Course implements Serializable{
 	@Column(name = "onlineamount")
 	private int onlineFees;
 	@Column(name = "offlineamount")
-	private int offlieFees;
+	private int offlineFees;
 	@Column(name = "courseavailable")
 	private boolean courseAvailable = false;
 	@Transient
@@ -88,16 +88,16 @@ public class Course implements Serializable{
 	/**
 	 * @return the offlieFees
 	 */
-	public int getOfflieFees() {
-		return offlieFees;
+	public int getOfflineFees() {
+		return offlineFees;
 	}
 
 
 	/**
 	 * @param offlieFees the offlieFees to set
 	 */
-	public void setOfflieFees(int offlieFees) {
-		this.offlieFees = offlieFees;
+	public void setOfflineFees(int offlieFees) {
+		this.offlineFees = offlieFees;
 	}
 
 
@@ -153,7 +153,7 @@ public class Course implements Serializable{
 	@Override
 	public String toString() {
 		return "Course [courseId=" + courseId + ", courseName=" + courseName + ", onlineFees=" + onlineFees
-				+ ", offlieFees=" + offlieFees + ", courseAvailable=" + courseAvailable + "]";
+				+ ", offlieFees=" + offlineFees + ", courseAvailable=" + courseAvailable + "]";
 	}
 	
 }

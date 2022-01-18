@@ -25,7 +25,7 @@ public class SqlConstants {
 	public static final String selectStudentDetails="Select * from student where studentId in (select distinct studentId from EnrolledCourses where studentId not in(select distinct studentId from grades))";
 	public static final String insertGrades="insert into grades (studentId,grade) values (?,?)";
 	public static final String SelectStudentId="select studentId from grades";
-	public static final String SELECT_STUDENT_COURSES = "select * from enrolledcourses where studentId=";
+	public static final String SELECT_STUDENT_COURSES = "select * from enrolledcourses where studentId=?1";
 	public static final String SELECT_COURSE_AMT = "select * from course where courseId IN (%s)";
 	public static final String INSERT_INTO_PAYMENT = "insert into payment (paymentMode,courseAmout,studentUsername) values (?,?,?);";
 	public static final String select_CourseName="select * from Course where coursename =?1";

@@ -19,6 +19,9 @@ import com.lt.entity.Course;
  */
 @Repository
 public interface CourseDao extends CrudRepository<Course,Integer> {
+	
 	@Query(value = SqlConstants.select_CourseName,nativeQuery = true)
 	Course findByName(String name);
+	
+	List<Course> findByCourseNameIn(List<String> coursename);
 }
