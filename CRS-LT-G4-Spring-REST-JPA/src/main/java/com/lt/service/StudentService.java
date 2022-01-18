@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,8 @@ import com.lt.entity.EnrolledCourse;
 import com.lt.entity.Payment;
 import com.lt.entity.Student;
 import com.lt.entity.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
@@ -61,12 +65,15 @@ public class StudentService {
 	@Autowired
 	PaymentDao paymentDao;
 
+	private static final Logger log = LoggerFactory.getLogger(AdminService.class);
+	
 	EntityManager e;
 
 	/**
 	 * @param this is used for student self register
 	 */
 	public void addStudent(Student Student) {
+		log.info("Inside addStudent method");
 		studentdao.save(Student);
 		User user = new User();
 		user.setUserId(Student.getStudentId());
@@ -83,6 +90,7 @@ public class StudentService {
 	 */
 	public void registerCourse(int id, List<String> courseList) {
 		// TODO Auto-generated method stub
+		log.info("Inside registerCourse method");
 		String courseId = "";
 		String courseName = "";
 		EnrolledCourse courses = new EnrolledCourse();
@@ -113,6 +121,7 @@ public class StudentService {
 	 * Fetch All Students.
 	 */
 	public List<Student> getStudentList() {
+		log.info("Inside getStudentList method");
 		return (List<Student>) studentdao.findAll() ;
 	}
 
@@ -121,6 +130,7 @@ public class StudentService {
 	 * Fetch unApproved students.
 	 */
 	public List<Map<String, String>> getStudents() {
+		log.info("Inside getStudents method");
 		List<Map<String,String>> unApprovedStudentList= new ArrayList<>();
 		List<User> userList= (List<User>)userdao.findUnapproved();
 		for(User u: userList){
@@ -135,6 +145,7 @@ public class StudentService {
 	 */
 	@SuppressWarnings("deprecation")
 	public String makePayment(int studentId) {
+		log.info("Inside makePayment method");
 
 		// get courses enrolled for studentId
 		EnrolledCourse enrolledCourses = enrolledcoursedao.findById(studentId).orElse(null);
