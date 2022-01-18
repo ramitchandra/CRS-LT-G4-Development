@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lt.crs.constants.StringConstants;
+import com.lt.crs.validation.UserAuthorization;
 import com.lt.entity.Course;
 import com.lt.entity.Professor;
 import com.lt.entity.Student;
@@ -42,6 +43,9 @@ public class AdminController {
 	@Autowired
 	StudentService studentService;
 	
+	@Autowired
+	UserAuthorization userAuthorization;
+	
 	
 	/**
 	 * @return
@@ -49,7 +53,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/getStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Student>> getStudent() {
-		//userAuthorization.adminAuthorization();
+		userAuthorization.adminAuthorization();
 		return new ResponseEntity<List<Student>>(studentService.getStudentList(),HttpStatus.OK);
 	}
 	
@@ -59,7 +63,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/listStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Map<String,String>>> adminListStudent() {
-		//userAuthorization.adminAuthorization();
+		userAuthorization.adminAuthorization();
 		List<Map<String,String>> pendingApproval = studentService.getStudents();
 //		if(pendingApproval.isEmpty())
 //			throw new NoPendingApprovalException();
@@ -73,7 +77,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/validateStudent/{id}", produces = "plain/text", method = RequestMethod.PUT)
 	public ResponseEntity<String> validateStudent(@PathVariable int id) {
-		//userAuthorization.adminAuthorization();
+		userAuthorization.adminAuthorization();
 		adminService.approveStudent(id);
 //			throw new InvalidStudentIdException();
 		return new ResponseEntity<String>(StringConstants.STUDENT_VALIDATION + id,HttpStatus.OK);
@@ -86,7 +90,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/addCourse", produces = "plain/text", method = RequestMethod.POST)
 	public ResponseEntity<String> addCourse(@RequestBody Course course) {	
-//		userAuthorization.adminAuthorization();
+		userAuthorization.adminAuthorization();
 		adminService.addCourse(course);
 //			throw new CourseAlreadyExistException();
 		return new ResponseEntity<String>(StringConstants.ADD_COURSE,HttpStatus.OK);
