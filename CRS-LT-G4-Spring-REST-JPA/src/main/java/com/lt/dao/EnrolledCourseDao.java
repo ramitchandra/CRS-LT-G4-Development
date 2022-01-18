@@ -13,11 +13,11 @@ import com.lt.entity.EnrolledCourse;
 import com.lt.entity.Student;
 
 /**
- * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
- *
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh 
+ * 
+ * Interface for enrolledcoursedao operations
  */
 @Repository
 public interface EnrolledCourseDao extends CrudRepository<EnrolledCourse, Integer> {
-
 
 }

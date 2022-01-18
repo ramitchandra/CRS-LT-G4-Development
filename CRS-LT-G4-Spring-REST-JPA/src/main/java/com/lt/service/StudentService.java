@@ -169,7 +169,7 @@ public class StudentService {
 			// make payment
 			Payment returnPayment = paymentDao.save(payment);
 
-			// throw exception
+			// Payment returned is null, throw exception
 			if (returnPayment != null) {
 				return "Payment is successful for the studentId \"" + studentId + "\" :" + finalCost;
 			} else {
