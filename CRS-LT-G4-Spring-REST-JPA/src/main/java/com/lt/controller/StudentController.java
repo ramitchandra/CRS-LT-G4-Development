@@ -19,11 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lt.crs.constants.StringConstants;
 import com.lt.entity.Student;
 import com.lt.service.StudentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
  *
  */
+
 @RestController
 public class StudentController {
 
@@ -35,6 +38,7 @@ public class StudentController {
 
 	public Map<Integer, List<String>> addedCourses = new HashMap<>();
 	List<String> courseList = new ArrayList<String>();
+	private static final Logger log = LoggerFactory.getLogger(StudentController.class);
 
 	/**
 	 * @param student
@@ -42,6 +46,7 @@ public class StudentController {
 	 */
 	@RequestMapping(value = "/addStudent", produces = "plain/text", method = RequestMethod.POST)
 	public ResponseEntity<String> addStudent(@RequestBody Student student) {
+		log.info("Inside addStudent method");
 		studentService.addStudent(student);
 		return new ResponseEntity<String>("Student Added", HttpStatus.OK);
 	}
