@@ -31,7 +31,7 @@ public class LoginController {
 	@Autowired
 	LoginValidation loginValidation;
 	
-	private static final Logger log = LoggerFactory.getLogger(StudentController.class);
+	private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 	
 	/**
 	 * @param userName
