@@ -13,6 +13,10 @@ import org.springframework.stereotype.Service;
 import com.lt.dao.GradesDao;
 import com.lt.entity.Grades;
 
+/**
+ * @author Naman, Radha, Ramit, Purnima, Sai, Vignesh
+ *
+ */
 @Repository
 @Service
 public class GradeService {
@@ -20,6 +24,9 @@ public class GradeService {
 	@Autowired(required=true)
 	private GradesDao gradesDao;
 	
+	/**
+	 * @return This method is used to call the DAO layer to fetch all the Grades
+	 */
 	public List<Grades> viewGrades() {
 		//List<Grades> listTheGrades = new ArrayList<>();
 		return (List<Grades>) gradesDao.findAll();
@@ -27,6 +34,10 @@ public class GradeService {
 		
 	}
 	
+	/**
+	 * @param studentId
+	 * @return This method is used to call the DAO layer to fetch the grade based on Student ID
+	 */
 	@Transactional
 	public List<Grades> viewGradesBasedOnId(int studentId) {
 	//	Grades gradesObject = gradesDao.findById(studentId);

@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import com.lt.entity.Grades;
 
+/**
+ * @author Naman, Radha, Ramit, Purnima, Sai, Vignesh
+ *
+ */
 @Repository
 public interface GradesDao extends CrudRepository<Grades, String>{
 	@Query(value = "select * from grades where studentId =?", nativeQuery = true)

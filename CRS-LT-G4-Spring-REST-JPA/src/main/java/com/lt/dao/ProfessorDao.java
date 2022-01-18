@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.lt.entity.Professor;
 
 /**
- * @author user115
+ * @author Naman, Radha, Ramit, Purnima, Sai, Vignesh
  *
  */
 @Repository

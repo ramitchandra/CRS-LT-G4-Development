@@ -26,12 +26,19 @@ public class ProfessorService {
 	GradesDao gradesDao;
 	
 	
+	/**
+	 * @return This method is to call the DAO Layer to fetch the List of students from DB
+	 */
 	@Transactional
 	public List<Student> listStudent() {
 		List<Student> studentList = (List<Student>) studentDao.findAll();
 		return studentList;		
 	}
 	
+	/**
+	 * @param grades
+	 * This method is to call the DAO Layer to add the Grades in the DB
+	 */
 	@Transactional
 	public void addGrades(Grades grades) {
 		gradesDao.save(grades);
