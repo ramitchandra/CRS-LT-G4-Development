@@ -18,6 +18,7 @@ import com.lt.entity.Student;
  * 
  * @author Naman,Purnima,Radha,Ramit,Sai,Vignesh
  *
+ * Interface for paymentdao operations
  */
 @Repository
 public interface PaymentDao extends CrudRepository<Payment, Serializable> {

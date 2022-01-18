@@ -16,6 +16,7 @@ import com.lt.entity.Course;
 /**
  * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
  *
+ * Interface for coursedao operations
  */
 @Repository
 public interface CourseDao extends CrudRepository<Course,Integer> {
