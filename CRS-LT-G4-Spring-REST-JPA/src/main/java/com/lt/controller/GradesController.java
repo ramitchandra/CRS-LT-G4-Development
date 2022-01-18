@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.lt.service.GradeService;
 import com.lt.entity.Grades;
@@ -27,11 +29,13 @@ public class GradesController {
 	@Autowired
 	private GradeService gradeService;
 	
+	private static final Logger log = LoggerFactory.getLogger(GradesController.class);
 	/**
 	 * @return This controller method is used to view all the Grades
 	 */
 	@RequestMapping(value="/viewGrade", method = RequestMethod.GET)
 	public List<Grades> viewGrades() {
+		log.info("Inside viewGrades method");
 		return gradeService.viewGrades();
 	}
 	
@@ -41,6 +45,7 @@ public class GradesController {
 	 */
 	@RequestMapping(value="/viewGradeBasedOnId/{studentId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public List<Grades> viewGradeBasedOnId(@PathVariable int studentId) {
+		log.info("Inside viewGradeBasedOnId method");
 		List<Grades> listTheGrades = gradeService.viewGradesBasedOnId(studentId);
 		return listTheGrades;
 	} 

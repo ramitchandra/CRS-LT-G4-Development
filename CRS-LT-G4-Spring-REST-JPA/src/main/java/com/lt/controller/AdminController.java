@@ -22,6 +22,8 @@ import com.lt.entity.Professor;
 import com.lt.entity.Student;
 import com.lt.service.AdminService;
 import com.lt.service.StudentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
@@ -46,6 +48,7 @@ public class AdminController {
 	@Autowired
 	UserAuthorization userAuthorization;
 	
+	private static final Logger log = LoggerFactory.getLogger(AdminController.class);
 	
 	/**
 	 * @return
@@ -53,6 +56,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/getStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Student>> getStudent() {
+		log.info("Inside getStudent method");
 		userAuthorization.adminAuthorization();
 		return new ResponseEntity<List<Student>>(studentService.getStudentList(),HttpStatus.OK);
 	}
@@ -63,6 +67,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/listStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Map<String,String>>> adminListStudent() {
+		log.info("Inside adminListStudent method");
 		userAuthorization.adminAuthorization();
 		List<Map<String,String>> pendingApproval = studentService.getStudents();
 //		if(pendingApproval.isEmpty())
@@ -77,6 +82,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/validateStudent/{id}", produces = "plain/text", method = RequestMethod.PUT)
 	public ResponseEntity<String> validateStudent(@PathVariable int id) {
+		log.info("Inside validateStudent method");
 		userAuthorization.adminAuthorization();
 		adminService.approveStudent(id);
 //			throw new InvalidStudentIdException();
@@ -90,6 +96,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/addCourse", produces = "plain/text", method = RequestMethod.POST)
 	public ResponseEntity<String> addCourse(@RequestBody Course course) {	
+		log.info("Inside addCourse method");
 		userAuthorization.adminAuthorization();
 		adminService.addCourse(course);
 //			throw new CourseAlreadyExistException();
@@ -103,6 +110,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/deleteCourse/{courseId}/{courseName}", produces = "plain/text", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteCourse(@PathVariable int courseId, @PathVariable String courseName) {		
+		log.info("Inside deleteCourse method");
 		userAuthorization.adminAuthorization(); 
 		adminService.deleteCourse(courseId,courseName);
 //			 throw new CourseIdNotFoundException();
@@ -115,6 +123,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/getCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Course>> getCourse() {
+		log.info("Inside getCourse method");
 		userAuthorization.adminAuthorization();
 		List<Course> courseList=adminService.getAllCourse();
 //		if(courseList.isEmpty())
@@ -129,6 +138,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/addProfesor", produces = "plain/text", method = RequestMethod.POST)
 	public ResponseEntity<String> addProfessor(@RequestBody Professor professor) {
+		log.info("Inside addProfessor method");
 		userAuthorization.adminAuthorization(); 
 		adminService.addProfessor(professor);
 		return new ResponseEntity<String>(StringConstants.ADD_PROFESSOR,HttpStatus.OK);
@@ -140,6 +150,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/getProfesor", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Professor>> getProfessor() {
+		log.info("Inside getProfessor method");
 		userAuthorization.adminAuthorization();
 		List<Professor> profList= adminService.getProfessorList();
 //		if(profList.isEmpty())
@@ -153,7 +164,8 @@ public class AdminController {
 	 * This is used to delete professor on basis of professorId.
 	 */
 	@RequestMapping(value = "/admin/deleteProfessor/{professorId}", produces = "plain/text", method = RequestMethod.DELETE)
-	public ResponseEntity<String> deleteProfessor(@PathVariable int professorId) {		
+	public ResponseEntity<String> deleteProfessor(@PathVariable int professorId) {	
+		log.info("Inside deleteProfessor method");
 		userAuthorization.adminAuthorization(); 
 		adminService.deleteProfessor(professorId);
 //			 throw new ProfessorIdNotFoundException(); 
