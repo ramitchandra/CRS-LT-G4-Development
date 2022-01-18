@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lt.crs.constants.StringConstants;
+import com.lt.crs.validation.UserAuthorization;
 import com.lt.entity.Student;
 import com.lt.service.StudentService;
 import org.slf4j.Logger;
@@ -35,6 +36,9 @@ public class StudentController {
 	 */
 	@Autowired
 	StudentService studentService;
+	
+	@Autowired
+	UserAuthorization userAuthorization;
 
 	public Map<Integer, List<String>> addedCourses = new HashMap<>();
 	List<String> courseList = new ArrayList<String>();
@@ -57,6 +61,7 @@ public class StudentController {
 	 */
 	@RequestMapping(value = "/student/registerCourse/{id}", produces = "plain/text", method = RequestMethod.GET)
 	public ResponseEntity<String> registerCourse(@PathVariable int id) {
+		userAuthorization.studentAuthorization();
 		studentService.registerCourse(id, courseList);
 		return new ResponseEntity<String>("courses Added", HttpStatus.OK);
 	}
@@ -68,6 +73,7 @@ public class StudentController {
 	 */
 	@RequestMapping(value = "/student/addCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
 	public ResponseEntity<Map<Integer, List<String>>> addCourse(@PathVariable String Course, @PathVariable int id) {
+		userAuthorization.studentAuthorization();
 		courseList.add(Course);
 		addedCourses.put(id, courseList);
 		// studentService.addCourse(student);
@@ -81,7 +87,7 @@ public class StudentController {
 	 */
 	@RequestMapping(value = "/student/dropCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
 	public ResponseEntity<Map<Integer, List<String>>> dropCourse(@PathVariable String Course, @PathVariable int id) {
-		// studentService.dropCourse(student);
+		userAuthorization.studentAuthorization();
 		courseList.remove(Course);
 		addedCourses.put(id, courseList);
 		return new ResponseEntity<Map<Integer, List<String>>>(addedCourses, HttpStatus.OK);
@@ -93,6 +99,7 @@ public class StudentController {
 	 */
 	@RequestMapping(value = "/payment/{studentId}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<String> payment(@PathVariable int studentId) {
+		userAuthorization.studentAuthorization();
 		String paymentStatus = studentService.makePayment(studentId);
 		return new ResponseEntity<String>(paymentStatus, HttpStatus.OK);
 	}

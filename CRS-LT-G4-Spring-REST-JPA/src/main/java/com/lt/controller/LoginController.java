@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lt.crs.constants.StringConstants;
+import com.lt.crs.exception.ApprovalPendingException;
+import com.lt.crs.exception.InvalidUserException;
 import com.lt.crs.validation.LoginValidation;
 import com.lt.entity.LoginDetails;
 
@@ -35,10 +37,10 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/login/{userName}/{password}", produces = "text/plain", method = RequestMethod.GET)
 	public ResponseEntity<String> login(@PathVariable String userName,@PathVariable String password) {
-//		if(loginValidation.loginDetails(userName, password)==-1)
-//			throw new InvalidUserException();
-//		if(loginValidation.loginDetails(userName, password)==-2)
-//			throw new ApprovalPendingException();
+		if(loginValidation.loginDetails(userName, password)==-1)
+			throw new InvalidUserException();
+		if(loginValidation.loginDetails(userName, password)==-2)
+			throw new ApprovalPendingException();
 		return new ResponseEntity<String>(StringConstants.USER_LOGIN_SUCCESSFUL + LoginDetails.userRole,HttpStatus.OK);
 	}
 	

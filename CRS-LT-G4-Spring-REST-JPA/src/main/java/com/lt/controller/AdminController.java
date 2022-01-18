@@ -103,7 +103,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/deleteCourse/{courseId}/{courseName}", produces = "plain/text", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteCourse(@PathVariable int courseId, @PathVariable String courseName) {		
-//		userAuthorization.adminAuthorization(); 
+		userAuthorization.adminAuthorization(); 
 		adminService.deleteCourse(courseId,courseName);
 //			 throw new CourseIdNotFoundException();
 		 return new ResponseEntity<String>(StringConstants.DELETE_COURSE + courseId,HttpStatus.OK);
@@ -115,7 +115,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/getCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Course>> getCourse() {
-//		userAuthorization.adminAuthorization();
+		userAuthorization.adminAuthorization();
 		List<Course> courseList=adminService.getAllCourse();
 //		if(courseList.isEmpty())
 //			throw new CourseNotFoundException();
@@ -129,7 +129,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/addProfesor", produces = "plain/text", method = RequestMethod.POST)
 	public ResponseEntity<String> addProfessor(@RequestBody Professor professor) {
-//		userAuthorization.adminAuthorization(); 
+		userAuthorization.adminAuthorization(); 
 		adminService.addProfessor(professor);
 		return new ResponseEntity<String>(StringConstants.ADD_PROFESSOR,HttpStatus.OK);
 	}
@@ -140,7 +140,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/getProfesor", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Professor>> getProfessor() {
-//		userAuthorization.adminAuthorization();
+		userAuthorization.adminAuthorization();
 		List<Professor> profList= adminService.getProfessorList();
 //		if(profList.isEmpty())
 //			throw new ProfessorNotFoundException();
@@ -154,7 +154,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/deleteProfessor/{professorId}", produces = "plain/text", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteProfessor(@PathVariable int professorId) {		
-//		userAuthorization.adminAuthorization(); 
+		userAuthorization.adminAuthorization(); 
 		adminService.deleteProfessor(professorId);
 //			 throw new ProfessorIdNotFoundException(); 
 		 return new ResponseEntity<String>(StringConstants.DELETE_PROFESSOR + professorId,HttpStatus.OK);
