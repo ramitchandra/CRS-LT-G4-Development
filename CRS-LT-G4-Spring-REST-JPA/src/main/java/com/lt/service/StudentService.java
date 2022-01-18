@@ -1,7 +1,16 @@
 package com.lt.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
+import javax.persistence.EntityManager;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.lt.crs.constants.EnumRole;
-import com.lt.crs.exception.CourseNameListNotFoundException;
 import com.lt.crs.exception.EnrollCoursesNotFoundException;
 import com.lt.crs.exception.PaymentDeclinedException;
 import com.lt.dao.CourseDao;
@@ -14,18 +23,6 @@ import com.lt.entity.EnrolledCourse;
 import com.lt.entity.Payment;
 import com.lt.entity.Student;
 import com.lt.entity.User;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 /**
  * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
@@ -75,7 +72,7 @@ public class StudentService {
 		user.setUserId(Student.getStudentId());
 		user.setUserName(Student.getStudentName());
 		user.setUserPassword(Student.getStudentPassword());
-		user.setRoleId(EnumRole.Role);
+		user.setRoleId(EnumRole.Student.getRoleId());
 		user.setApproved(false);
 		userdao.save(user);
 	}
@@ -110,21 +107,43 @@ public class StudentService {
 		}
 
 	}
+	
+	/**
+	 * @return
+	 * Fetch All Students.
+	 */
+	public List<Student> getStudentList() {
+		return (List<Student>) studentdao.findAll() ;
+	}
 
 	/**
-	 * @param studentId this is used for course register
+	 * @return
+	 * Fetch unApproved students.
+	 */
+	public List<Map<String, String>> getStudents() {
+		List<Map<String,String>> unApprovedStudentList= new ArrayList<>();
+		List<User> userList= (List<User>)userdao.findUnapproved();
+		for(User u: userList){
+			unApprovedStudentList.add(Collections.singletonMap(("StudentId "+ u.getUserId()),("StudentUserName "+ u.getUserName())));
+		}
+		return  unApprovedStudentList;
+	}
+
+	/**
+	 * @param studentId 
+	 * This method is for making payment
 	 */
 	@SuppressWarnings("deprecation")
 	public String makePayment(int studentId) {
 
-		// get course for studentId
+		// get courses enrolled for studentId
 		EnrolledCourse enrolledCourses = enrolledcoursedao.findById(studentId).orElse(null);
 
 		// if enrolledCourses is null throw exception
 		if (enrolledCourses == null) {
 			throw new EnrollCoursesNotFoundException();
 		}
-		//get all courseNames
+		//get the list of all courseNames
 		String courseName = enrolledCourses.getCourseName();
 		List<String> courseNameList = new ArrayList<String>();
 		String[] values = courseName.split(",");

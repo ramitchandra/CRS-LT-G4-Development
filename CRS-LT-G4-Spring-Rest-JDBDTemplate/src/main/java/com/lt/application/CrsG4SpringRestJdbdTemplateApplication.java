@@ -20,7 +20,9 @@ public class CrsG4SpringRestJdbdTemplateApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CrsG4SpringRestJdbdTemplateApplication.class, args);
+		byte var=100;
 	}
+	
 	
 	@Bean
 	public Docket apiDocket() {

@@ -1,6 +1,7 @@
 package com.lt.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.core.MediaType;
 
@@ -15,11 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lt.crs.constants.StringConstants;
-import com.lt.dao.AdminDao;
-import com.lt.dao.StudentDao;
+import com.lt.crs.validation.UserAuthorization;
 import com.lt.entity.Course;
 import com.lt.entity.Professor;
+import com.lt.entity.Student;
 import com.lt.service.AdminService;
+import com.lt.service.StudentService;
 
 /**
  * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
@@ -38,42 +40,48 @@ public class AdminController {
 	@Autowired
 	AdminService adminService;
 	
+	@Autowired
+	StudentService studentService;
+	
+	@Autowired
+	UserAuthorization userAuthorization;
+	
 	
 	/**
 	 * @return
 	 * This is used to fetch all students.
 	 */
-//	@RequestMapping(value = "/admin/getStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-//	public ResponseEntity<List<Student>> getStudent() {
-//		userAuthorization.adminAuthorization();
-//		return new ResponseEntity<List<Student>>(studentHandlerImpl.getStudentList(),HttpStatus.OK);
-//	}
+	@RequestMapping(value = "/admin/getStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+	public ResponseEntity<List<Student>> getStudent() {
+		userAuthorization.adminAuthorization();
+		return new ResponseEntity<List<Student>>(studentService.getStudentList(),HttpStatus.OK);
+	}
 	
 	/**
 	 * @return
 	 * This is used to fetch students pending for approval.
 	 */
-//	@RequestMapping(value = "/admin/listStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-//	public ResponseEntity<List<Map<String,String>>> adminListStudent() {
-//		userAuthorization.adminAuthorization();
-//		List<Map<String,String>> pendingApproval = studentDaoImpl.getStudents();
+	@RequestMapping(value = "/admin/listStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+	public ResponseEntity<List<Map<String,String>>> adminListStudent() {
+		userAuthorization.adminAuthorization();
+		List<Map<String,String>> pendingApproval = studentService.getStudents();
 //		if(pendingApproval.isEmpty())
 //			throw new NoPendingApprovalException();
-//		return new ResponseEntity<List<Map<String,String>>>(pendingApproval,HttpStatus.OK);
-//	}
+		return new ResponseEntity<List<Map<String,String>>>(pendingApproval,HttpStatus.OK);
+	}
 	
 	/**
 	 * @param id
 	 * @return
 	 * This is used to approve students on basis of id.
 	 */
-//	@RequestMapping(value = "/admin/validateStudent/{id}", produces = "plain/text", method = RequestMethod.PUT)
-//	public ResponseEntity<String> validateStudent(@PathVariable int id) {
-//		userAuthorization.adminAuthorization();
-//		if(adminDaoImpl.approveStudent(id)!=1)
+	@RequestMapping(value = "/admin/validateStudent/{id}", produces = "plain/text", method = RequestMethod.PUT)
+	public ResponseEntity<String> validateStudent(@PathVariable int id) {
+		userAuthorization.adminAuthorization();
+		adminService.approveStudent(id);
 //			throw new InvalidStudentIdException();
-//		return new ResponseEntity<String>(StringConstants.STUDENT_VALIDATION + id,HttpStatus.OK);
-//	}
+		return new ResponseEntity<String>(StringConstants.STUDENT_VALIDATION + id,HttpStatus.OK);
+	}
 	
 	/**
 	 * @param course
@@ -82,7 +90,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/addCourse", produces = "plain/text", method = RequestMethod.POST)
 	public ResponseEntity<String> addCourse(@RequestBody Course course) {	
-//		userAuthorization.adminAuthorization();
+		userAuthorization.adminAuthorization();
 		adminService.addCourse(course);
 //			throw new CourseAlreadyExistException();
 		return new ResponseEntity<String>(StringConstants.ADD_COURSE,HttpStatus.OK);

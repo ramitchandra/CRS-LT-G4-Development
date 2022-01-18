@@ -23,5 +23,8 @@ public interface CourseDao extends CrudRepository<Course,Integer> {
 	@Query(value = SqlConstants.select_CourseName,nativeQuery = true)
 	Course findByName(String name);
 	
+	/**
+	 * @param courseName
+	 */
 	List<Course> findByCourseNameIn(List<String> coursename);
 }

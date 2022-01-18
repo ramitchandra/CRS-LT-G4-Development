@@ -24,8 +24,7 @@ public class Student {
 	private String studentUsername;
 	@Column(name="studentpassword")
 	private String studentPassword;
-	@Transient
-	private boolean isApproved;
+	
 	/**
 	 * @return the studentId
 	 */
@@ -86,18 +85,8 @@ public class Student {
 	public void setStudentPassword(String studentPassword) {
 		this.studentPassword = studentPassword;
 	}
-	/**
-	 * @return the isApproved
-	 */
-	public boolean isApproved() {
-		return isApproved;
-	}
-	/**
-	 * @param isApproved the isApproved to set
-	 */
-	public void setApproved(boolean isApproved) {
-		this.isApproved = isApproved;
-	}
+	
+
 	
 }
 
