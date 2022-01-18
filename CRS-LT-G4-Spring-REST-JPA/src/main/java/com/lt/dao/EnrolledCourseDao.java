@@ -19,8 +19,5 @@ import com.lt.entity.Student;
 @Repository
 public interface EnrolledCourseDao extends CrudRepository<EnrolledCourse, Integer> {
 
-	@Query(value = SqlConstants.SELECT_STUDENT_COURSES, nativeQuery = true)
-	List<Course> findByName1(String coursename);
-
 
 }

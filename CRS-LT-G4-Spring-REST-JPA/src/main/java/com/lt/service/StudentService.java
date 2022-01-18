@@ -130,19 +130,20 @@ public class StudentService {
 	}
 
 	/**
-	 * @param studentId this is used for course register
+	 * @param studentId 
+	 * This method is for making payment
 	 */
 	@SuppressWarnings("deprecation")
 	public String makePayment(int studentId) {
 
-		// get course for studentId
+		// get courses enrolled for studentId
 		EnrolledCourse enrolledCourses = enrolledcoursedao.findById(studentId).orElse(null);
 
 		// if enrolledCourses is null throw exception
 		if (enrolledCourses == null) {
 			throw new EnrollCoursesNotFoundException();
 		}
-		//get all courseNames
+		//get the list of all courseNames
 		String courseName = enrolledCourses.getCourseName();
 		List<String> courseNameList = new ArrayList<String>();
 		String[] values = courseName.split(",");
