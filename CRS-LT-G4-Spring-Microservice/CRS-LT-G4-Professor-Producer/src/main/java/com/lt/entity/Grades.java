@@ -16,7 +16,7 @@ public class Grades {
 	@Id
 	@Column(name="studentid")
 	private int studentId;
-	@Column(name="grade")
+	@Column(name="studentgrade")
 	private String grade;
 	
 	public Grades() {

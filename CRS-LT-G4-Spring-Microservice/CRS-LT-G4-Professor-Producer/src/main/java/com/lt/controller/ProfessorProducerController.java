@@ -22,7 +22,7 @@ import com.lt.service.ProfessorService;
  *
  */
 @RestController
-public class ProfessorController {
+public class ProfessorProducerController {
 
 	@Autowired
 	ProfessorService professorService;
@@ -40,7 +40,7 @@ public class ProfessorController {
 	 * @param grades
 	 * @return This Controller method is used to assign the Grades
 	 */
-	@RequestMapping(value = "/admin/addGrades", produces = "plain/text", method = RequestMethod.POST)
+	@RequestMapping(value = "/professor/addGrades", produces = "plain/text", method = RequestMethod.POST)
 	public ResponseEntity<String> addGrades(@RequestBody Grades grades) {
 		professorService.addGrades(grades);
 		return new ResponseEntity<String>(HttpStatus.OK);
