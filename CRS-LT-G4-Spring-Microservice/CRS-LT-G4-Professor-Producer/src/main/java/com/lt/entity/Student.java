@@ -10,7 +10,7 @@ import javax.persistence.Table;
  *	Bean of student to store student details
  */
 @Entity 
-@Table(name="grades")
+@Table(name="student")
 public class Student {
 
 	@Id
@@ -20,8 +20,6 @@ public class Student {
 	private String studentName;
 	@Column(name="studentemail")
 	private String studentEmail;
-	@Column(name="studentusername")
-	private String studentUsername;
 	@Column(name="studentpassword")
 	private String studentPassword;
 	
@@ -60,18 +58,6 @@ public class Student {
 	 */
 	public void setStudentEmail(String studentEmail) {
 		this.studentEmail = studentEmail;
-	}
-	/**
-	 * @return the studentUsername
-	 */
-	public String getStudentUsername() {
-		return studentUsername;
-	}
-	/**
-	 * @param studentUsername the studentUsername to set
-	 */
-	public void setStudentUsername(String studentUsername) {
-		this.studentUsername = studentUsername;
 	}
 	/**
 	 * @return the studentPassword
