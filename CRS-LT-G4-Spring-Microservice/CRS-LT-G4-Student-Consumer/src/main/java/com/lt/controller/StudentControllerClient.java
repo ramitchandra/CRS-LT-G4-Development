@@ -1,7 +1,10 @@
 package com.lt.controller;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -12,65 +15,52 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+@RestController
 public class StudentControllerClient {
 
 	
 	@Autowired
-	DiscoveryClient discoveryClient;
+	DiscoveryClass discoveryClass;
 	
-	@RequestMapping(value = "/getMessageClient", produces = "plain/text", method = RequestMethod.GET)
+	@RequestMapping(value = "/getMessage", produces = "plain/text", method = RequestMethod.GET)
 	public ResponseEntity<String> getMessage() throws RestClientException, IOException {
-		return discoveryResult("student-producer","/getMessage");
+		return discoveryClass.discoveryResult("student-producer","/getMessage", HttpMethod.GET);
 	}
 	
-//	@RequestMapping(value = "/addStudentClient", produces = "plain/text", method = RequestMethod.POST)
-//	public ResponseEntity<String> getStudent() throws RestClientException, IOException {
-//		return discoveryResult("student-producer","/addStudent");
-//	}
-//	
-//	@RequestMapping(value = "/addCourseClient", produces = "plain/text", method = RequestMethod.POST)
-//	public ResponseEntity<String> addCourse() throws RestClientException, IOException {
-//		return discoveryResult("student-producer","/student/addCourse/{id}/{Course}");
-//	}
-//	
-//	@RequestMapping(value = "/dropCourseClient", produces = "plain/text", method = RequestMethod.DELETE)
-//	public ResponseEntity<String> dropCourse() throws RestClientException, IOException {
-//		return discoveryResult("student-producer","/student/dropCourse/{id}/{Course}");
-//	}
-//	
-//	@RequestMapping(value = "/registerCourseClient", produces = "plain/text", method = RequestMethod.GET)
-//	public ResponseEntity<String> registerCourse() throws RestClientException, IOException {
-//		return discoveryResult("student-producer","/student/registerCourse/{id}");
-//	}
 	
-	private ResponseEntity<String> discoveryResult(String clientName, String producerUrl){
+	
+	@RequestMapping(value = "/addStudent", produces = "plain/text", method = RequestMethod.POST)
+	public ResponseEntity<String> addStudent(@RequestBody Map<String,Object> studentMap) throws RestClientException, IOException {
+		return discoveryClass.discoveryResult("student-producer","/addStudent", HttpMethod.POST,studentMap);
+	}
+	
+	@RequestMapping(value = "/student/addCourse/{id}/{Course}", produces = "plain/text", method = RequestMethod.POST)
+	public ResponseEntity<String> addCourse(@PathVariable String Course, @PathVariable int id) throws RestClientException, IOException {
+		Map<String, Object> courseMap = new HashMap<String, Object>();
+		courseMap.put("Course",Course);
+		courseMap.put("Id",String.valueOf(id));
 		
-		List<ServiceInstance> instances=discoveryClient.getInstances(clientName);
-
-		ServiceInstance serviceInstance=instances.get(0);
-		String baseUrl=serviceInstance.getUri().toString();
-		baseUrl=baseUrl+producerUrl;
-
-		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<String> response=null;
-		try {
-			response=restTemplate.exchange(baseUrl, HttpMethod.GET, getHeaders(),String.class);
-		} catch (Exception ex) {
-			//TODO
-		}
 		
-		return response;
+		return discoveryClass.discoveryResult("student-producer","/student/addCourse/{id}/{Course}",HttpMethod.POST,courseMap);
 	}
 	
-	private static HttpEntity<?> getHeaders() throws IOException {
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-		return new HttpEntity<>(headers);
+	@RequestMapping(value = "/student/dropCourse/{id}/{Course}", produces = "plain/text", method = RequestMethod.DELETE)
+	public ResponseEntity<String> dropCourse(@PathVariable String Course, @PathVariable int id) throws RestClientException, IOException {
+		return discoveryClass.discoveryResult("student-producer","/student/dropCourse/{id}/{Course}",HttpMethod.DELETE,Collections.singletonMap(String.valueOf(id), Course));
 	}
-
+	
+	@RequestMapping(value = "/student/registerCourse/{id}", produces = "plain/text", method = RequestMethod.GET)
+	public ResponseEntity<String> registerCourse(@PathVariable int id) throws RestClientException, IOException {
+		return discoveryClass.discoveryResult("student-producer","/student/registerCourse/{id}", HttpMethod.GET,Collections.singletonMap("Id", (Integer) id));
+	}
+	
+	
 }
