@@ -3,25 +3,17 @@ package com.lt.controller;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class StudentControllerClient {
@@ -60,6 +52,17 @@ public class StudentControllerClient {
 	@RequestMapping(value = "/student/registerCourse/{id}", produces = "plain/text", method = RequestMethod.GET)
 	public ResponseEntity<String> registerCourse(@PathVariable int id) throws RestClientException, IOException {
 		return discoveryClass.discoveryResult("student-producer","/student/registerCourse/{id}", HttpMethod.GET,Collections.singletonMap("Id", (Integer) id));
+	}
+	
+	/**
+	 * @param studentId
+	 * @return This method is used for making payment for the enrolled courses
+	 */
+	@RequestMapping(value = "/payment/{studentId}", produces = "plain/text", method = RequestMethod.GET)
+	public ResponseEntity<String> payment(@PathVariable int studentId) throws RestClientException, IOException{
+//		log.info("Inside payment method");
+//		userAuthorization.studentAuthorization();
+		return discoveryClass.discoveryResult("student-producer","/payment/{studentId}", HttpMethod.GET, Collections.singletonMap("Id", (Integer) studentId));
 	}
 	
 	
