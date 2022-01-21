@@ -43,6 +43,11 @@ public class StudentController {
 	public Map<Integer, List<String>> addedCourses = new HashMap<>();
 	List<String> courseList = new ArrayList<String>();
 	private static final Logger log = LoggerFactory.getLogger(StudentController.class);
+	
+	@RequestMapping(value = "/getMessage", produces = "plain/text", method = RequestMethod.GET)
+	public ResponseEntity<String> getmessage() {
+		return new ResponseEntity<String>("Student Added message", HttpStatus.OK);
+	}
 
 	/**
 	 * @param student
