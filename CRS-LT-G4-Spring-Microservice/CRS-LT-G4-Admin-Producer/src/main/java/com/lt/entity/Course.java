@@ -115,6 +115,9 @@ public class Course implements Serializable{
 		this.courseAvailable = courseAvailable;
 	}
 
+
+
+
 	@Override
     public boolean equals(Object o) {
  
