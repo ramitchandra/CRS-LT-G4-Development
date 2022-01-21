@@ -25,6 +25,6 @@ public interface UserDao extends CrudRepository<User, Integer> {
 	public void approveById(int id);	
 	
 	@Query(value="select * from user where userName = ?1 and userPassword = ?2", nativeQuery = true)
-	public List<Map<String,String>> loginValidation(String userName, String password);
+	public List<User> loginValidation(String userName, String password);
 	
 }

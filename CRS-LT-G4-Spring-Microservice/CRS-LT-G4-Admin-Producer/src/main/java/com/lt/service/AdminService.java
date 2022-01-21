@@ -9,13 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lt.dao.AdminDao;
 import com.lt.dao.CourseDao;
+import com.lt.dao.LoginDao;
 import com.lt.dao.ProfessorDao;
 import com.lt.dao.StudentDao;
 import com.lt.dao.UserDao;
 import com.lt.entity.Course;
 import com.lt.entity.CourseId;
+import com.lt.entity.Login;
 import com.lt.entity.Professor;
 import com.lt.entity.Student;
 import com.lt.entity.User;
@@ -29,14 +30,14 @@ public class AdminService {
 	@Autowired
 	UserDao userDao;
 	
-//	@Autowired
-//	AdminDao adminDao;
-	
 	@Autowired
 	CourseDao courseDao;
 	
 	@Autowired
 	ProfessorDao professorDao;
+	
+	@Autowired
+	LoginDao loginDao;
 
 	@Transactional
 	public List<Student> getAllStudentList() {
@@ -80,6 +81,11 @@ public class AdminService {
 	@Transactional
 	public void deleteProfessor(int id) {
 		professorDao.deleteById(id);	
+	}
+	
+	@Transactional
+	public List<Login> getLoggedInUser() {
+		return (List<Login>) loginDao.findAll();	
 	}
 
 }

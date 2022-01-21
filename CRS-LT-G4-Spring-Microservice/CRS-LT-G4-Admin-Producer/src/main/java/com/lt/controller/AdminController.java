@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lt.crs.constants.StringConstants;
+import com.lt.crs.exception.NoUserLoggedInException;
+import com.lt.crs.exception.UnauthorizedAccessException;
 import com.lt.entity.Course;
 import com.lt.entity.Professor;
 import com.lt.entity.Student;
@@ -39,18 +41,30 @@ public class AdminController {
 	@RequestMapping(value = "/admin/getAllStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Student>> getAllStudent() {
 		log.info("Inside getStudent method");
+		if(adminService.getLoggedInUser().isEmpty())
+			throw new NoUserLoggedInException();
+		else if(adminService.getLoggedInUser().get(0).getRoleId() != 101)
+			throw new UnauthorizedAccessException();
 		return new ResponseEntity<List<Student>>(adminService.getAllStudentList(),HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/getStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Map<String,String>>> getStudent() {
 		log.info("Inside getStudent method");
+		if(adminService.getLoggedInUser().isEmpty())
+			throw new NoUserLoggedInException();
+		else if(adminService.getLoggedInUser().get(0).getRoleId() != 101)
+			throw new UnauthorizedAccessException();
 		return new ResponseEntity<List<Map<String,String>>>(adminService.getStudentList(),HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/validateStudent", produces = "plain/text", method = RequestMethod.PUT)
 	public ResponseEntity<String> validateStudent(@RequestBody Map<String,Object> inputMap) {
 		log.info("Inside validateStudent method");
+		if(adminService.getLoggedInUser().isEmpty())
+			throw new NoUserLoggedInException();
+		else if(adminService.getLoggedInUser().get(0).getRoleId() != 101)
+			throw new UnauthorizedAccessException();
 		int id= (int) inputMap.get("Id");
 		adminService.approveStudent(id);
 		return new ResponseEntity<String>(StringConstants.STUDENT_VALIDATION + id,HttpStatus.OK);
@@ -60,6 +74,10 @@ public class AdminController {
 	
 	public ResponseEntity<String> addCourse(@RequestBody Course course) {	
 		log.info("Inside addCourse method");
+		if(adminService.getLoggedInUser().isEmpty())
+			throw new NoUserLoggedInException();
+		else if(adminService.getLoggedInUser().get(0).getRoleId() != 101)
+			throw new UnauthorizedAccessException();
 		
 //		Course course = new Course();
 //		try {
@@ -76,6 +94,10 @@ public class AdminController {
 	@RequestMapping(value = "/admin/deleteCourse", produces = "plain/text", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteCourse(@RequestBody Map<String,Object> inputMap) {		
 		log.info("Inside deleteCourse method");
+		if(adminService.getLoggedInUser().isEmpty())
+			throw new NoUserLoggedInException();
+		else if(adminService.getLoggedInUser().get(0).getRoleId() != 101)
+			throw new UnauthorizedAccessException();
 		for(Map.Entry<String, Object> pair : inputMap.entrySet())
 			adminService.deleteCourse(Integer.valueOf(pair.getKey()),String.valueOf(pair.getValue()));
 		return new ResponseEntity<String>(StringConstants.DELETE_COURSE,HttpStatus.OK);
@@ -84,6 +106,10 @@ public class AdminController {
 	@RequestMapping(value = "/admin/addProfesor", produces = "plain/text", method = RequestMethod.POST)
 	public ResponseEntity<String> addProfessor(@RequestBody Professor professor) {
 		log.info("Inside addProfessor method");
+		if(adminService.getLoggedInUser().isEmpty())
+			throw new NoUserLoggedInException();
+		else if(adminService.getLoggedInUser().get(0).getRoleId() != 101)
+			throw new UnauthorizedAccessException();
 		adminService.addProfessor(professor);
 		return new ResponseEntity<String>(StringConstants.ADD_PROFESSOR,HttpStatus.OK);
 	}
@@ -91,6 +117,10 @@ public class AdminController {
 	@RequestMapping(value = "/admin/deleteProfessor", produces = "plain/text", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteProfessor(@RequestBody Map<String, Object> inputMap) {	
 		log.info("Inside deleteProfessor method");
+		if(adminService.getLoggedInUser().isEmpty())
+			throw new NoUserLoggedInException();
+		else if(adminService.getLoggedInUser().get(0).getRoleId() != 101)
+			throw new UnauthorizedAccessException();
 		int professorId = (int) inputMap.get("Id");
 		adminService.deleteProfessor(professorId);
 		return new ResponseEntity<String>(StringConstants.DELETE_PROFESSOR + professorId,HttpStatus.OK);
