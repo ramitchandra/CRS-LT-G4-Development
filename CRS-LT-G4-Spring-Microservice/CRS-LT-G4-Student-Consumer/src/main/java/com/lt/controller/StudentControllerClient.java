@@ -62,8 +62,7 @@ public class StudentControllerClient {
 	public ResponseEntity<String> payment(@PathVariable int studentId) throws RestClientException, IOException{
 //		log.info("Inside payment method");
 //		userAuthorization.studentAuthorization();
-		return discoveryClass.discoveryResult("student-producer","/payment/{studentId}", HttpMethod.GET, Collections.singletonMap("Id", (Integer) studentId));
+		return discoveryClass.discoveryResult("student-producer","/payment/{studentId}", HttpMethod.GET);
 	}
-	
 	
 }
