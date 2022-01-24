@@ -19,12 +19,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @author user113
+ * @author Naman, Radha, Ramit, Purnima, Sai, Vignesh
  *
  */
 @Component
 public class DiscoveryClass {
 
+	/**
+	 * This is used to autowire discoveryClient
+	 */
 	@Autowired
 	DiscoveryClient discoveryClient;
 

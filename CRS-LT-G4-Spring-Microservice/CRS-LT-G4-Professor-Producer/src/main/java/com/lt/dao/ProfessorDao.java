@@ -13,6 +13,6 @@ import com.lt.entity.Professor;
  *
  */
 @Repository
-public interface ProfessorDao extends CrudRepository<Professor, Integer>  {
+public interface ProfessorDao extends CrudRepository<Professor, Integer> {
 
 }

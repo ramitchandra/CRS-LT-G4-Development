@@ -1,4 +1,4 @@
-package com.lt.controller; 
+package com.lt.controller;
 
 import java.util.List;
 
@@ -16,7 +16,6 @@ import com.lt.entity.Grades;
 import com.lt.entity.Student;
 import com.lt.service.ProfessorService;
 
-
 /**
  * @author Naman, Radha, Ramit, Purnima, Sai, Vignesh
  *
@@ -24,21 +23,24 @@ import com.lt.service.ProfessorService;
 @RestController
 public class ProfessorProducerController {
 
+	/**
+	 * This is used to autowire ProfessorService bean
+	 */
 	@Autowired
 	ProfessorService professorService;
 
 	/**
-	 * @return This controller method is used to list the Students.
+	 * @return This method return list of students who are not assigned grades
 	 */
 	@RequestMapping(value = "/professor/getStudentList", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<List<Student>> listStudent() {
 		List<Student> studentList = professorService.listStudent();
-		return new ResponseEntity<List<Student>>(studentList,HttpStatus.OK);
+		return new ResponseEntity<List<Student>>(studentList, HttpStatus.OK);
 	}
 
 	/**
-	 * @param grades
-	 * @return This Controller method is used to assign the Grades
+	 * @param grade
+	 * @return In this method professor assigns grades
 	 */
 	@RequestMapping(value = "/professor/addGrades", produces = "plain/text", method = RequestMethod.POST)
 	public ResponseEntity<String> addGrades(@RequestBody Grades grades) {

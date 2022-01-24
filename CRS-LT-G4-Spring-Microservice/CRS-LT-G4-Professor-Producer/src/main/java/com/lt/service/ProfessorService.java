@@ -13,23 +13,30 @@ import com.lt.entity.Student;
 @Service
 public class ProfessorService {
 
+	/**
+	 * This is used to autowire studentDao bean
+	 */
 	@Autowired
 	StudentDao studentDao;
-	
+
+	/**
+	 * This is used to autowire gradesDao bean
+	 */
 	@Autowired
 	GradesDao gradesDao;
 
 	/**
-	 * @return This method is to call the DAO Layer to fetch the List of students from DB
+	 * @return This method is to call the DAO Layer to fetch the List of students
+	 *         from DB
 	 */
 	public List<Student> listStudent() {
 		List<Student> studentList = (List<Student>) studentDao.findAll();
-		return studentList;		
+		return studentList;
 	}
-	
+
 	/**
-	 * @param grades
-	 * This method is to call the DAO Layer to add the Grades in the DB
+	 * @param grades This method is to call the DAO Layer to add the Grades in the
+	 *               DB
 	 */
 	public void addGrades(Grades grades) {
 		Grades assignGrades = gradesDao.save(grades);
