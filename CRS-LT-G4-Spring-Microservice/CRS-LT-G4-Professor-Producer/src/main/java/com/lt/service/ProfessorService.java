@@ -1,6 +1,7 @@
 package com.lt.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,9 +38,25 @@ public class ProfessorService {
 	/**
 	 * @param grades This method is to call the DAO Layer to add the Grades in the
 	 *               DB
+	 * @return 
 	 */
-	public void addGrades(Grades grades) {
+	public String addGrades(Grades grades) {
+		//get StudentName
+		Optional<Student> optional = studentDao.findById(grades.getStudentId());
+		if (optional != null && optional.isEmpty()) {
+			// throw error msg or exception
+			return "Student Id " + grades.getStudentId() + " Not Found";
+		}
+		Student student = optional.get();
+		String studentName = "";
+		//get StudentName
+		if (student != null) {
+			studentName = student.getStudentName();
+		}
+		//save grade
 		Grades assignGrades = gradesDao.save(grades);
+		//return resp
+		return assignGrades != null ? "Grade is assinged to this student "+ studentName +" :"+ assignGrades.getGrade() : "Grade is not assinged ...";
 	}
 
 }

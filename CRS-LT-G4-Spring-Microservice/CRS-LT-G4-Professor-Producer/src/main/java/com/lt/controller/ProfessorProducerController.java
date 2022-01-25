@@ -44,7 +44,7 @@ public class ProfessorProducerController {
 	 */
 	@RequestMapping(value = "/professor/addGrades", produces = "plain/text", method = RequestMethod.POST)
 	public ResponseEntity<String> addGrades(@RequestBody Grades grades) {
-		professorService.addGrades(grades);
-		return new ResponseEntity<String>(HttpStatus.OK);
+		String grade = professorService.addGrades(grades);
+		return new ResponseEntity<String>(grade, HttpStatus.OK);
 	}
 }
