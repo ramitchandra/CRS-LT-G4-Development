@@ -1,9 +1,13 @@
 package com.lt.crs.advice;
 
+import java.time.LocalDateTime;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.lt.crs.constants.StringConstants;
 import com.lt.crs.exception.AlreadyGradeAssignedException;
@@ -27,6 +31,7 @@ import com.lt.crs.exception.ProfessorIdNotFoundException;
 import com.lt.crs.exception.ProfessorNotFoundException;
 import com.lt.crs.exception.UnauthorizedAccessException;
 import com.lt.crs.exception.WrongCourseSelectionException;
+import com.lt.entity.ExceptionObject;
 
 
 /**
@@ -34,7 +39,7 @@ import com.lt.crs.exception.WrongCourseSelectionException;
  *
  */
 @ControllerAdvice
-public class ExceptionAdvice {
+public class ExceptionAdvice extends ResponseEntityExceptionHandler {
 	
 	/**
 	 * @param e
@@ -187,7 +192,7 @@ public class ExceptionAdvice {
 	 */
 	@ResponseStatus(code = HttpStatus.UNAUTHORIZED, reason = StringConstants.USER_NOTLOGGED)
 	@ExceptionHandler(value = NoUserLoggedInException.class)
-	public void NoUserLoggedInException(NoUserLoggedInException e) {	
+	public void NoUserLoggedInException(NoUserLoggedInException e) {
 	}
 	
 	/**
