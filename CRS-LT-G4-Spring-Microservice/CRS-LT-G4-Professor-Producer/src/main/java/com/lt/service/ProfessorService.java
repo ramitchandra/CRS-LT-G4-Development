@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lt.crs.constants.StringConstants;
 import com.lt.dao.GradesDao;
 import com.lt.dao.StudentDao;
 import com.lt.entity.Grades;
@@ -45,7 +46,7 @@ public class ProfessorService {
 		Optional<Student> optional = studentDao.findById(grades.getStudentId());
 		if (optional != null && optional.isEmpty()) {
 			// throw error msg or exception
-			return "Student Id " + grades.getStudentId() + " Not Found";
+			return StringConstants.STU_NOTFOUND + grades.getStudentId();
 		}
 		Student student = optional.get();
 		String studentName = "";
@@ -55,8 +56,8 @@ public class ProfessorService {
 		}
 		//save grade
 		Grades assignGrades = gradesDao.save(grades);
-		//return resp
-		return assignGrades != null ? "Grade is assinged to this student "+ studentName +" :"+ assignGrades.getGrade() : "Grade is not assinged ...";
+		//return grades assigned
+		return assignGrades != null ? StringConstants.ASSIGN_GRADES + studentName + " :" + assignGrades.getGrade() : StringConstants.GRADE_NOTASSIGNED;
 	}
 
 }

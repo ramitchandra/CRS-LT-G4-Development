@@ -143,7 +143,6 @@ public class StudentService {
 	 * @param studentId 
 	 * This method is for making payment
 	 */
-	@SuppressWarnings("deprecation")
 	public String makePayment(int studentId) {
 		log.info("Inside makePayment method");
 
@@ -151,7 +150,7 @@ public class StudentService {
 		EnrolledCourse enrolledCourses = enrolledcoursedao.findById(studentId).orElse(null);
 
 		// if enrolledCourses is null throw exception
-		if (enrolledCourses == null) {
+		if (enrolledCourses==null) {
 			throw new EnrollCoursesNotFoundException();
 		}
 		//get the list of all courseNames
@@ -181,7 +180,7 @@ public class StudentService {
 			Payment returnPayment = paymentDao.save(payment);
 
 			// Payment returned is null, throw exception
-			if (returnPayment != null) {
+			if (returnPayment==null) {
 				return "Payment is successful for the studentId \"" + studentId + "\" :" + finalCost;
 			} else {
 				throw new PaymentDeclinedException();
