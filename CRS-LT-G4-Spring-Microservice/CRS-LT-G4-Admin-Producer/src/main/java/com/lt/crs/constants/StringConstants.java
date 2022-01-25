@@ -32,7 +32,7 @@ public class StringConstants {
 	public static final String GRADE_ALREADYASSIGNED_TOSTUDENT = "Student is already assigned with a Grades";
 	public static final String ENROLLEDCOURSE_NOTAVAILABLE = "Enrolled course is Not Avialable for the student";
 	public static final String PAYMENT_DECLINED = "Payment Declined for the student";
-	public static final String USER_LOGIN_SUCCESSFUL = "User successfully logged in as:";
+	public static final String USER_LOGIN_SUCCESSFUL = "User successfully logged in!!";
 	public static final String USER_LOGOUT_SUCCESSFUL = "User logged out successfully!!";
 	public static final String assignGrades = "Grades Assigned";
 	public static final String registerCourse = "Course Registered Successfully";
