@@ -144,6 +144,7 @@ public class StudentController {
 	public ResponseEntity<Map<Integer, List<String>>> dropCourse(@PathVariable String Course, @PathVariable int id) {
 		userAuthorization.studentAuthorization();
 		List<String> courseList = studentHandlerImpl.getAddedCourses().get(id);
+
 		if (courseList.contains(Course))
 			courseList.remove(Course);
 		else

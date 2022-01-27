@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lt.crs.exception.CourseAlreadySelectedException;
+import com.lt.crs.exception.CourseNotAddedException;
+import com.lt.crs.exception.NoCoursesAddedException;
 //import com.lt.crs.validation.UserAuthorization;
 import com.lt.entity.Student;
 import com.lt.service.StudentService;
@@ -66,11 +69,13 @@ public class StudentController {
 	@RequestMapping(value = "/student/registerCourse", produces = "plain/text", method = RequestMethod.POST)
 	public ResponseEntity<String> registerCourse(@RequestBody Map<String,Object> coursesMap) {
 		log.info("Inside registerCourse method");
-		System.out.println(courseList);
+		
 		int id = Integer.parseInt((String) coursesMap.get("Id"));
-		System.out.println(id);
 		//userAuthorization.studentAuthorization();
-		studentService.registerCourse(id, courseList);
+		if(courseList==null)
+			throw new NoCoursesAddedException();
+		else
+			studentService.registerCourse(id, courseList);
 		return new ResponseEntity<String>("courses Added", HttpStatus.OK);
 	}
 
@@ -85,10 +90,11 @@ public class StudentController {
 		
 		int id = Integer.parseInt((String) coursesMap.get("Id"));
 		//userAuthorization.studentAuthorization();
-		courseList.add((String) coursesMap.get("Course"));
+		if(courseList.contains((String) coursesMap.get("Course")))
+			throw new CourseAlreadySelectedException(); 
+		else
+			courseList.add((String) coursesMap.get("Course"));
 		addedCourses.put(id, courseList);
-		//studentService.registerCourse(id, courseList);
-		//studentService.addCourse(student);
 		return new ResponseEntity<Map<Integer, List<String>>>(addedCourses, HttpStatus.OK);
 	}
 
@@ -101,7 +107,11 @@ public class StudentController {
 	public ResponseEntity<Map<Integer, List<String>>> dropCourse(@RequestBody Map<String,Object> coursesMap) {
 		log.info("Inside dropCourse method");
 		int id = Integer.parseInt((String) coursesMap.get("Id"));
-		courseList.remove((String) coursesMap.get("Course"));
+		String course = (String) coursesMap.get("Course");
+		if(courseList.contains(course))
+			courseList.remove((String) coursesMap.get("Course"));
+		else
+			throw new CourseNotAddedException();
 		//studentService.dropCourse(id, (String) coursesMap.get("Course"));
 		//userAuthorization.studentAuthorization();
 		addedCourses.put(id, courseList);
