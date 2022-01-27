@@ -180,7 +180,7 @@ public class StudentService {
 			Payment returnPayment = paymentDao.save(payment);
 
 			// Payment returned is null, throw exception
-			if (returnPayment==null) {
+			if (returnPayment!=null) {
 				return "Payment is successful for the studentId \"" + studentId + "\" :" + finalCost;
 			} else {
 				throw new PaymentDeclinedException();
