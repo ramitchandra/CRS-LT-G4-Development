@@ -55,7 +55,7 @@ public class StudentControllerClient {
 		courseMap.put("Course", Course);
 		courseMap.put("Id", String.valueOf(id));
 
-		return discoveryClass.discoveryResult("student-producer", "/student/addCourse/{id}/{Course}", HttpMethod.POST,
+		return discoveryClass.discoveryResult("student-producer", "/student/addCourse", HttpMethod.POST,
 				courseMap);
 	}
 
@@ -67,18 +67,23 @@ public class StudentControllerClient {
 	@RequestMapping(value = "/student/dropCourse/{id}/{Course}", produces = "plain/text", method = RequestMethod.DELETE)
 	public ResponseEntity<String> dropCourse(@PathVariable String Course, @PathVariable int id)
 			throws RestClientException, IOException {
-		return discoveryClass.discoveryResult("student-producer", "/student/dropCourse/{id}/{Course}",
-				HttpMethod.DELETE, Collections.singletonMap(String.valueOf(id), Course));
+		Map<String, Object> delCourseMap = new HashMap<String, Object>();
+		delCourseMap.put("Course", Course);
+		delCourseMap.put("Id", String.valueOf(id));
+		return discoveryClass.discoveryResult("student-producer", "/student/dropCourse",
+				HttpMethod.DELETE, delCourseMap);
 	}
 
 	/**
 	 * @param id
 	 * @return This method is register for course
 	 */
-	@RequestMapping(value = "/student/registerCourse/{id}", produces = "plain/text", method = RequestMethod.GET)
+	@RequestMapping(value = "/student/registerCourse/{id}", produces = "plain/text", method = RequestMethod.POST)
 	public ResponseEntity<String> registerCourse(@PathVariable int id) throws RestClientException, IOException {
-		return discoveryClass.discoveryResult("student-producer", "/student/registerCourse/{id}", HttpMethod.GET,
-				Collections.singletonMap("Id", (Integer) id));
+		Map<String, Object> regCourseMap = new HashMap<String, Object>();
+		regCourseMap.put("Id", String.valueOf(id));
+		return discoveryClass.discoveryResult("student-producer", "/student/registerCourse", HttpMethod.POST,
+				regCourseMap);
 	}
 
 	/**

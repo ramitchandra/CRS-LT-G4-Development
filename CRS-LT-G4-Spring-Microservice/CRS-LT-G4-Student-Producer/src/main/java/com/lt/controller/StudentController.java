@@ -63,9 +63,12 @@ public class StudentController {
 	 * @param id
 	 * @return This method is register for course
 	 */
-	@RequestMapping(value = "/student/registerCourse/{id}", produces = "plain/text", method = RequestMethod.GET)
-	public ResponseEntity<String> registerCourse(@PathVariable int id) {
+	@RequestMapping(value = "/student/registerCourse", produces = "plain/text", method = RequestMethod.POST)
+	public ResponseEntity<String> registerCourse(@RequestBody Map<String,Object> coursesMap) {
 		log.info("Inside registerCourse method");
+		System.out.println(courseList);
+		int id = Integer.parseInt((String) coursesMap.get("Id"));
+		System.out.println(id);
 		//userAuthorization.studentAuthorization();
 		studentService.registerCourse(id, courseList);
 		return new ResponseEntity<String>("courses Added", HttpStatus.OK);
@@ -76,13 +79,16 @@ public class StudentController {
 	 * @param id
 	 * @return Students select course implementation
 	 */
-	@RequestMapping(value = "/student/addCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
-	public ResponseEntity<Map<Integer, List<String>>> addCourse(@PathVariable String Course, @PathVariable int id) {
+	@RequestMapping(value = "/student/addCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
+	public ResponseEntity<Map<Integer, List<String>>> addCourse(@RequestBody Map<String,Object> coursesMap) {
 		log.info("Inside addCourse method");
+		
+		int id = Integer.parseInt((String) coursesMap.get("Id"));
 		//userAuthorization.studentAuthorization();
-		courseList.add(Course);
+		courseList.add((String) coursesMap.get("Course"));
 		addedCourses.put(id, courseList);
-		// studentService.addCourse(student);
+		//studentService.registerCourse(id, courseList);
+		//studentService.addCourse(student);
 		return new ResponseEntity<Map<Integer, List<String>>>(addedCourses, HttpStatus.OK);
 	}
 
@@ -91,11 +97,13 @@ public class StudentController {
 	 * @param id
 	 * @return This method is used for deleting course from selected courses
 	 */
-	@RequestMapping(value = "/student/dropCourse/{id}/{Course}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
-	public ResponseEntity<Map<Integer, List<String>>> dropCourse(@PathVariable String Course, @PathVariable int id) {
+	@RequestMapping(value = "/student/dropCourse",  produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
+	public ResponseEntity<Map<Integer, List<String>>> dropCourse(@RequestBody Map<String,Object> coursesMap) {
 		log.info("Inside dropCourse method");
+		int id = Integer.parseInt((String) coursesMap.get("Id"));
+		courseList.remove((String) coursesMap.get("Course"));
+		//studentService.dropCourse(id, (String) coursesMap.get("Course"));
 		//userAuthorization.studentAuthorization();
-		courseList.remove(Course);
 		addedCourses.put(id, courseList);
 		return new ResponseEntity<Map<Integer, List<String>>>(addedCourses, HttpStatus.OK);
 	}
