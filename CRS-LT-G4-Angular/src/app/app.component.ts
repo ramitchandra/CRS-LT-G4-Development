@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'CRS-LT-G4-Angular';
+  title:string = 'CRS-LT-G4-Angular';
+  today:number = Date.now();
 }
