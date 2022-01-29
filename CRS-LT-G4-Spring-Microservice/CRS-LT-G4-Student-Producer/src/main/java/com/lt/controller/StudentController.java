@@ -72,7 +72,7 @@ public class StudentController {
 		
 		int id = Integer.parseInt((String) coursesMap.get("Id"));
 		//userAuthorization.studentAuthorization();
-		if(courseList==null)
+		if(courseList.isEmpty())
 			throw new NoCoursesAddedException();
 		else
 			studentService.registerCourse(id, courseList);
