@@ -32,7 +32,7 @@ public class LoginController {
 		return discoveryClass.discoveryResult("admin-producer","/login", HttpMethod.POST, detailsMap);
 	}
 	
-	@RequestMapping(value = "/logout", produces = "plain/text", method = RequestMethod.GET)
+	@RequestMapping(value = "/logout", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<String> logout() throws RestClientException, IOException {
 		return discoveryClass.discoveryResult("admin-producer","/logout", HttpMethod.GET);
 	}

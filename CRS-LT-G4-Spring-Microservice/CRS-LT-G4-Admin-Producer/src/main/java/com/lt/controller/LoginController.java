@@ -63,10 +63,10 @@ public class LoginController {
 	 * @return
 	 * This is used for logout functionality.
 	 */
-	@RequestMapping(value = "/logout", produces = "text/plain", method = RequestMethod.GET)
-	public ResponseEntity<String> logout() {
+	@RequestMapping(value = "/logout", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+	public ResponseEntity<?> logout() {
 		log.info("Inside logout method");
 		loginService.logout();
-		return new ResponseEntity<String>(StringConstants.USER_LOGOUT_SUCCESSFUL,HttpStatus.OK);
+		return new ResponseEntity<Map<String,Object>>(Collections.singletonMap("msg", "User Logged Out Successfully"),HttpStatus.OK);
 	}
 }

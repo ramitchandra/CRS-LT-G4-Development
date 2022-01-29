@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../login/login.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-admin',
@@ -6,10 +9,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+  comp:boolean=false;
+  notificationCount:number=0;
+  constructor(private loginService: LoginService,private router: Router) { }
 
-  constructor() { }
-
+ 
   ngOnInit(): void {
   }
+  
+    logout(){
+        this.loginService.userLoggedOut().subscribe(
+          response => {
+            console.log(response);
+            this.router.navigate(['/login']);
+          });
+    }
 
+    validate(){
+      this.comp=!this.comp;
+    }
 }

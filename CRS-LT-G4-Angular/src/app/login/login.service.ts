@@ -16,4 +16,10 @@ export class LoginService {
     let loginUrl:string = "http://localhost:7081/login";
     return this.httpClient.post(loginUrl,login, {headers: this.headers});
   }
+
+  userLoggedOut(): Observable<any>{
+    let logoutUrl:string = "http://localhost:7081/logout";
+    return this.httpClient.get(logoutUrl,{headers: this.headers});
+  }
+
 }
