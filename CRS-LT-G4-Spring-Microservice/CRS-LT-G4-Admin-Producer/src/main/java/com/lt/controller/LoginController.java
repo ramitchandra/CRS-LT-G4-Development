@@ -1,6 +1,9 @@
 package com.lt.controller;
 
+import java.util.Collections;
 import java.util.Map;
+
+import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +20,6 @@ import com.lt.crs.constants.StringConstants;
 import com.lt.crs.exception.ApprovalPendingException;
 import com.lt.crs.exception.InvalidUserException;
 import com.lt.crs.validation.LoginValidation;
-import com.lt.entity.Login;
 import com.lt.service.LoginService;
 
 /**
@@ -46,15 +48,15 @@ public class LoginController {
 	 * @return
 	 * This is used for login functionality.
 	 */
-	@RequestMapping(value = "/login", produces = "text/plain", method = RequestMethod.POST)
-	public ResponseEntity<String> login(@RequestBody Map<String, Object> inputMap) {
+	@RequestMapping(value = "/login", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
+	public ResponseEntity<?> login(@RequestBody Map<String, Object> inputMap) {
 		log.info("Inside login method");
 		int loginReturn = loginValidation.loginDetails(String.valueOf(inputMap.get("user")), String.valueOf(inputMap.get("pass")));
 		if(loginReturn == -1)
 			throw new InvalidUserException();
 		if(loginReturn == -2)
 			throw new ApprovalPendingException();
-		return new ResponseEntity<String>(StringConstants.USER_LOGIN_SUCCESSFUL,HttpStatus.OK);
+		return new ResponseEntity<Map<String,Object>>(Collections.singletonMap("msg", "User Logged In"),HttpStatus.OK);
 	}
 	
 	/**
