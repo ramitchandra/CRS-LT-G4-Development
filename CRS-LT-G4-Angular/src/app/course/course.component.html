@@ -1,0 +1,48 @@
+<h1 appHighlightDirective value = "red">Course Form</h1>
+    <form ngForm>
+      
+         
+        <div class="form-group">
+            <label for="courseId">courseId</label>
+            <input type="text"  class="form-control" id="courseId"
+                   [(ngModel)]="model.courseId" name="courseId">
+          </div>
+        
+        <div class="form-group">
+          <label for="courseName">courseName</label>
+          <input type="text"  class="form-control" id="courseName"
+                 [(ngModel)]="model.courseName" name="courseName">
+        </div>
+
+        <div class="form-group">
+            <label for="courseAvailable">courseAvailable:</label>
+            <!-- <input type="radio"  class="form-control" id="courseAvailable" -->
+            <input type="radio" value="true" id="courseAvailable"  [(ngModel)]="model.courseAvailable" name="courseAvailable"> true
+             <input type="radio" value="false" id="courseAvailable" [(ngModel)]="model.courseAvailable" name="courseAvailable"> false
+                  
+          </div> 
+
+          <div class="form-group">
+            <label for="offlineAmount">offlineAmount</label>
+            <input type="number"  class="form-control" id="offlineAmount"
+                   [(ngModel)]="model.offlineAmount" name="offlineAmount">
+          </div>
+
+          <div class="form-group">
+            <label for="onlineAmount">onlineAmount</label>
+            <input type="number"  class="form-control" id="onlineAmount"
+                   [(ngModel)]="model.onlineAmount" name="onlineAmount">
+          </div>
+        
+          <button type="button" class="btn btn-primary" (click)="createCourse()">Add Course</button>
+        </form>
+        
+    <div>
+        <ol>
+            <li appHighlightDirective value="yellow" *ngFor='let course of courseArray index as i'>
+                {{course.courseName}} <b>||</b> {{course.courseAvailable}}| 
+            <button (click) = "deleteCustomer(cust, i)">delete</button>
+             </li>
+         </ol>
+  
+      </div>
