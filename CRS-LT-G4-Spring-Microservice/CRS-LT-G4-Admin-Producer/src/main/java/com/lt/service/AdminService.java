@@ -98,7 +98,7 @@ public class AdminService {
 	
 	@Transactional
 	public List<Grades> gererateReportCard() {
-		return (List<Grades>) gradesDao.findAll();	
+		return (List<Grades>) gradesDao.findUnapprooved();	
 	}
 	
 	@Transactional

@@ -21,4 +21,7 @@ public interface GradesDao extends CrudRepository<Grades, String>{
 	@Modifying
 	@Query(value="update grades set isApproved=true where studentId= ?1", nativeQuery = true)
 	public void approveById(int id);
+
+	@Query(value = "select * from grades where isApproved='false'", nativeQuery = true)
+	public List<Grades> findUnapprooved();
 }
