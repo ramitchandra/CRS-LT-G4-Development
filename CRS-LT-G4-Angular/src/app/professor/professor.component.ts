@@ -30,4 +30,8 @@ export class ProfessorComponent implements OnInit {
 
   }
 
+  deleteCustomer(data, index) {
+    this.professorArray.splice(index, 1);
+  }
+
 }

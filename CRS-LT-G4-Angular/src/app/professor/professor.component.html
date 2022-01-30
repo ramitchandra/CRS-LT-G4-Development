@@ -4,7 +4,7 @@
          
         <div class="form-group">
             <label for="professorId">professorId</label>
-            <input type="text"  class="form-control" id="professorId"
+            <input type="number"  class="form-control" id="professorId"
                    [(ngModel)]="model.professorId" name="professorId">
           </div>
         
@@ -22,3 +22,13 @@
         
           <button type="button" class="btn btn-primary" (click)="addProfessor()">Add Professor</button>
         </form>
+
+        <div>
+          <ol>
+              <li appHighlightDirective value="yellow" *ngFor='let professor of professorArray index as i'>
+                  {{professor.professorId}} <b>||</b> {{professor.professorName}}| 
+              <button (click) = "deleteCustomer(cust, i)">delete</button>
+               </li>
+           </ol>
+    
+        </div>
