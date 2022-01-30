@@ -2,6 +2,7 @@ package com.lt.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,11 +46,14 @@ public class AdminService {
 	}
 	
 	@Transactional
-	public List<Map<String,String>> getStudentList() {
-		List<Map<String,String>> unApprovedStudentList= new ArrayList<>();
+	public List<Map<String,Object>> getStudentList() {
+		List<Map<String,Object>> unApprovedStudentList= new ArrayList<>();
 		List<User> userList= (List<User>) userDao.findUnapproved();
 		for(User u: userList){
-			unApprovedStudentList.add(Collections.singletonMap(("StudentId "+ u.getUserId()),("StudentUserName "+ u.getUserName())));
+			Map<String,Object> studentMap= new HashMap<>();
+			studentMap.put("studentId",u.getUserId());
+			studentMap.put("studentName",u.getUserName());
+			unApprovedStudentList.add(studentMap);
 		}
 		return  unApprovedStudentList;
 		

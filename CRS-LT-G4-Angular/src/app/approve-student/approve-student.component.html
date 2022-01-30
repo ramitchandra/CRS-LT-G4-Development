@@ -1,17 +1,20 @@
-<div class="card">
-    <div class="card-body">
-      <h4 class="card-title">Approved Student</h4>
-      <span class="card-text">Student ID: </span>
-      <div class="dropdown">
-        <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        Dropdown button
-        </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <a class="dropdown-item" href="#">Link 1</a>
-            <a class="dropdown-item" href="#">Link 2</a>
-            <a class="dropdown-item-text" href="#">Text Link</a>
-            <span class="dropdown-item-text">Just Text</span>
-            </div>
-        </div>
-    </div>
-  </div>
+<table class="table table-striped my-2 text-center">
+    <thead>
+      <tr>
+        <th>Student ID</th>
+        <th>Student Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr  *ngFor='let stud of studentData'>
+        <td>{{stud.studentId}}</td>
+        <td>{{stud.studentName}}</td>
+        <td><button type="button" class="btn btn-primary mx-2" (click)="approveStudent(stud.studentId)">Approve</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+<div *ngIf= display>
+    <span class ='text-muted d-flex  justify-content-center align-items-center mt-50'>No more approval pending!!</span>
+</div>

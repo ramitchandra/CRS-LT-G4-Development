@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 
+import javax.ws.rs.core.MediaType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -28,14 +30,15 @@ public class AdminConsumerController {
 		return discoveryClass.discoveryResult("admin-producer","/admin/getAllStudent", HttpMethod.GET);
 	}
 	
-	@RequestMapping(value = "/getStudent", produces = "plain/text", method = RequestMethod.GET)
+	@RequestMapping(value = "/getStudent", produces =MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<String> getListStudent() throws RestClientException, IOException {
 		return discoveryClass.discoveryResult("admin-producer","/admin/getStudent", HttpMethod.GET);
 	}
 	
-	@RequestMapping(value = "/validateStudent/{id}", produces = "plain/text", method = RequestMethod.PUT)
+	@RequestMapping(value = "/validateStudent/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
 	public ResponseEntity<String> validateStudent(@PathVariable int id) throws RestClientException, IOException {
-		return discoveryClass.discoveryResult("admin-producer","/admin/validateStudent", HttpMethod.PUT,Collections.singletonMap("Id", (Integer) id));
+		System.out.println("Inside Consumer Validate Student:---->"+id);
+		return discoveryClass.discoveryResult("admin-producer","/admin/validateStudent", HttpMethod.PUT,Collections.singletonMap("Id", id));
 	}
 
 	@RequestMapping(value = "/addCourse", produces = "plain/text", method = RequestMethod.POST)

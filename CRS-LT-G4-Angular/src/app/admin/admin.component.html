@@ -7,7 +7,7 @@
       <div class="list-group list-group-flush" style='font-size: 1.5em;' >
         <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3 font-weight-bold" >Admin Menu</a>
           <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" on-click="validate()">
-            Validate Student<span class="badge badge-success ml-2"> {{notificationCount}}</span>
+            Validate Student
              </a>
           <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" href="#!">Add Course</a>
           <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" href="#!">Delete Course</a>
@@ -21,7 +21,7 @@
   <div id="page-content-wrapper" >    
       <!-- Page content-->
       <div class="container-fluid" *ngIf='comp'>
-          <app-approve-student></app-approve-student>
+         <app-approve-student></app-approve-student> 
       </div>
   </div>
 </div>

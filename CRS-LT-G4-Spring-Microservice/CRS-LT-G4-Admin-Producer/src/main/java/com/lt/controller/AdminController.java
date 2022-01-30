@@ -56,7 +56,7 @@ public class AdminController {
 		ExceptionObject eo =  authorizationApi();
 		if(eo.getMessage() != null && !eo.getMessage().isEmpty())
 			return new ResponseEntity<ExceptionObject>(eo,HttpStatus.OK);
-		return new ResponseEntity<List<Map<String,String>>>(adminService.getStudentList(),HttpStatus.OK);
+		return new ResponseEntity<List<Map<String,Object>>>(adminService.getStudentList(),HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/admin/validateStudent", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
