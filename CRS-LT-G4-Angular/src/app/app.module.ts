@@ -9,6 +9,7 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { CourseComponent } from './course/course.component';
 import { ProfessorComponent } from './professor/professor.component';
+import { ApproveStudentComponent } from './approve-student/approve-student.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ProfessorComponent } from './professor/professor.component';
     AdminComponent,
     LoginComponent,
     CourseComponent,
-    ProfessorComponent
+    ProfessorComponent,
+    ApproveStudentComponent
   ],
   imports: [
     BrowserModule,
