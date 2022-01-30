@@ -1,1 +1,24 @@
-<p>professor works!</p>
+<h1 appHighlightDirective value = "Green">Professor Form</h1>
+    <form ngForm>
+      
+         
+        <div class="form-group">
+            <label for="professorId">professorId</label>
+            <input type="text"  class="form-control" id="professorId"
+                   [(ngModel)]="model.professorId" name="professorId">
+          </div>
+        
+        <div class="form-group">
+          <label for="professorName">professorName</label>
+          <input type="text"  class="form-control" id="professorName"
+                 [(ngModel)]="model.professorName" name="professorName">
+        </div>
+
+        <div class="form-group">
+            <label for="professorPassword">professorPassword</label>
+            <input type="text"  class="form-control" id="professorPassword"
+                 [(ngModel)]="model.professorPassword" name="professorPassword">            
+          </div> 
+        
+          <button type="button" class="btn btn-primary" (click)="addProfessor()">Add Professor</button>
+        </form>
