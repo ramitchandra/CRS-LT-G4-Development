@@ -123,6 +123,18 @@ public class AdminController {
 			return new ResponseEntity<ExceptionObject>(eo, HttpStatus.OK);
 		return new ResponseEntity<List<Grades>>(adminService.gererateReportCard(),HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/admin/validateReportCard", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
+	public ResponseEntity<?> validateReportCard(@RequestBody Map<String,Object> inputMap) {
+		log.info("Inside validateReportCard method");
+		ExceptionObject eo =  authorizationApi();
+		if(eo.getMessage() != null && !eo.getMessage().isEmpty()) {
+			return new ResponseEntity<>(eo, HttpStatus.OK);
+		}
+		int id= (int) inputMap.get("Id");
+		adminService.validateReportCard(id);
+		return new ResponseEntity<Map<String, Object>>(Collections.singletonMap("message","Report card generated for student: "+id),HttpStatus.OK);
+	}
 
 	private ExceptionObject authorizationApi() {
 		if(adminService.getLoggedInUser().isEmpty()) {

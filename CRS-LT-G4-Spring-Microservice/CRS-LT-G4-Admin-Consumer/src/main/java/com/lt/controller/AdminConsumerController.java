@@ -19,7 +19,7 @@ import org.springframework.web.client.RestClientException;
 
 @RestController
 @RequestMapping("/admin")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class AdminConsumerController {
 	
 	@Autowired
@@ -65,6 +65,12 @@ public class AdminConsumerController {
 	@RequestMapping(value = "/generateReportCard", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<String> generateReportCard() throws RestClientException, IOException {
 		return discoveryClass.discoveryResult("admin-producer","/admin/gererateReportCard", HttpMethod.GET);
+	}
+	
+	@RequestMapping(value = "/validateReportCard/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
+	public ResponseEntity<String> approveReportCard(@PathVariable int id) throws RestClientException, IOException {
+		System.out.println("inside approveReportCard" + id);
+		return discoveryClass.discoveryResult("admin-producer","/admin/validateReportCard", HttpMethod.PUT, Collections.singletonMap("Id", id));
 	}
 	
 }

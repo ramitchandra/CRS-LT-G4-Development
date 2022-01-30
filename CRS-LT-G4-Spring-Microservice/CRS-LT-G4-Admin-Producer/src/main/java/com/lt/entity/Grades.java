@@ -17,6 +17,8 @@ public class Grades {
 	@Column(name="studentid")
 	private int studentId;
 	private String grade;
+	@Column(name="isapproved")
+	private boolean isApproved;
 	
 	public Grades() {
 		
@@ -48,6 +50,20 @@ public class Grades {
 	 */
 	public void setGrade(String grade) {
 		this.grade = grade;
+	}
+
+	/**
+	 * @return the isApproved
+	 */
+	public boolean isApproved() {
+		return isApproved;
+	}
+
+	/**
+	 * @param isApproved the isApproved to set
+	 */
+	public void setApproved(boolean isApproved) {
+		this.isApproved = isApproved;
 	}
 	
 }

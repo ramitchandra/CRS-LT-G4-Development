@@ -100,5 +100,10 @@ public class AdminService {
 	public List<Grades> gererateReportCard() {
 		return (List<Grades>) gradesDao.findAll();	
 	}
+	
+	@Transactional
+	public void validateReportCard(int id) {
+		gradesDao.approveById(id);	
+	}
 
 }
