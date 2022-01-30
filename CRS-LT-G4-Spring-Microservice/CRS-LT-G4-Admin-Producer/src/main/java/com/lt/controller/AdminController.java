@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lt.crs.constants.StringConstants;
 import com.lt.entity.Course;
 import com.lt.entity.ExceptionObject;
+import com.lt.entity.Grades;
 import com.lt.entity.Professor;
 import com.lt.entity.Student;
 import com.lt.service.AdminService;
@@ -112,6 +113,15 @@ public class AdminController {
 		int professorId = (int) inputMap.get("Id");
 		adminService.deleteProfessor(professorId);
 		return new ResponseEntity<Map<String, Object>>(Collections.singletonMap("message",StringConstants.DELETE_PROFESSOR + professorId),HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/admin/gererateReportCard", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+	public ResponseEntity<?> gererateReportCard() {	
+		log.info("Inside gererateReportCard method");
+		ExceptionObject eo =  authorizationApi();
+		if(eo.getMessage() != null && !eo.getMessage().isEmpty())
+			return new ResponseEntity<ExceptionObject>(eo, HttpStatus.OK);
+		return new ResponseEntity<List<Grades>>(adminService.gererateReportCard(),HttpStatus.OK);
 	}
 
 	private ExceptionObject authorizationApi() {

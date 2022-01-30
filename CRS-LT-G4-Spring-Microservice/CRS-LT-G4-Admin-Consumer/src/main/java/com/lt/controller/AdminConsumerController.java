@@ -62,4 +62,9 @@ public class AdminConsumerController {
 		return discoveryClass.discoveryResult("admin-producer","/admin/deleteProfessor", HttpMethod.DELETE, Collections.singletonMap("Id", (Integer) professorId));
 	}
 	
+	@RequestMapping(value = "/generateReportCard", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+	public ResponseEntity<String> generateReportCard() throws RestClientException, IOException {
+		return discoveryClass.discoveryResult("admin-producer","/admin/gererateReportCard", HttpMethod.GET);
+	}
+	
 }

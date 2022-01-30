@@ -1,7 +1,6 @@
 package com.lt.service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,12 +10,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lt.dao.CourseDao;
+import com.lt.dao.GradesDao;
 import com.lt.dao.LoginDao;
 import com.lt.dao.ProfessorDao;
 import com.lt.dao.StudentDao;
 import com.lt.dao.UserDao;
 import com.lt.entity.Course;
 import com.lt.entity.CourseId;
+import com.lt.entity.Grades;
 import com.lt.entity.Login;
 import com.lt.entity.Professor;
 import com.lt.entity.Student;
@@ -39,6 +40,9 @@ public class AdminService {
 	
 	@Autowired
 	LoginDao loginDao;
+	
+	@Autowired
+	GradesDao gradesDao;
 
 	@Transactional
 	public List<Student> getAllStudentList() {
@@ -90,6 +94,11 @@ public class AdminService {
 	@Transactional
 	public List<Login> getLoggedInUser() {
 		return (List<Login>) loginDao.findAll();	
+	}
+	
+	@Transactional
+	public List<Grades> gererateReportCard() {
+		return (List<Grades>) gradesDao.findAll();	
 	}
 
 }
