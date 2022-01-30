@@ -7,13 +7,13 @@
       <div class="list-group list-group-flush" style='font-size: 1.5em;' >
         <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3 font-weight-bold" >Admin Menu</a>
           <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" on-click="validate()">
-            Validate Student
+            Approve Student
              </a>
           <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" href="#!">Add Course</a>
           <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" href="#!">Delete Course</a>
           <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" href="#!">Add Professor</a>
           <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" href="#!">Delete Professor</a>
-          <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" href="#!">Generate ReportCard</a>
+          <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" on-click="generateReportCard()">Generate ReportCard</a>
           <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" on-click="logout()">Logout</a>
       </div>
   </div>
@@ -22,6 +22,9 @@
       <!-- Page content-->
       <div class="container-fluid" *ngIf='comp'>
          <app-approve-student></app-approve-student> 
+      </div>
+      <div class="container-fluid" *ngIf='generate' >
+        <app-generate-report-card></app-generate-report-card>
       </div>
   </div>
 </div>

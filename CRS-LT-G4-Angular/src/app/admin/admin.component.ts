@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
   comp:boolean=false;
+  generate:boolean=false;
   notificationCount:number=0;
   constructor(private loginService: LoginService,private router: Router) { }
 
@@ -27,5 +28,12 @@ export class AdminComponent implements OnInit {
 
     validate(){
       this.comp=!this.comp;
+      this.generate=false;
+    }
+
+    generateReportCard(){
+      this.comp=false;
+      this.generate=!this.generate;
+
     }
 }

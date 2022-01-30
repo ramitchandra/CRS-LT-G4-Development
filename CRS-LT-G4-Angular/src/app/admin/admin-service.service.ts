@@ -16,11 +16,18 @@ export class AdminServiceService {
   }
 
   approvedStudent(id:number): Observable<any>{
-    console.log(id);
-    // let body:any={'Id':id};
     let validateStudentUrl:string = "http://localhost:7081/admin/validateStudent/"+id;
-    console.log(validateStudentUrl);
     return this.httpClient.put(validateStudentUrl,{headers: this.headers});
+  }
+
+  generateReportCard(): Observable<any>{
+    let generateReportCardUrl:string = "http://localhost:7081/admin/generateReportCard";
+    return this.httpClient.get(generateReportCardUrl,{headers: this.headers});
+  }
+
+  approvedReportCard(id:number): Observable<any>{
+    let approvedReportCardUrl:string = "http://localhost:7081/admin/validateReportCard/"+id;
+    return this.httpClient.put(approvedReportCardUrl,{headers: this.headers});
   }
 
 }

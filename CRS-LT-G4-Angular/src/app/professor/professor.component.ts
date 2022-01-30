@@ -9,7 +9,7 @@ import { ProfessorServiceService } from './professor-service.service';
   styleUrls: ['./professor.component.css']
 })
 export class ProfessorComponent implements OnInit {
-
+  professorArray:any;
   model = new Professor(1,'', '');
 
   constructor(private professorService: ProfessorServiceService, private router: Router) { }
