@@ -9,8 +9,9 @@ import { ProfessorComponent } from './professor/professor.component';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'admin', component: AdminComponent },
   { path: 'course', component: CourseComponent },
-  { path: 'professor', component: ProfessorComponent },
+  { path: 'professor', component: ProfessorComponent }
 ];
 
 @NgModule({
