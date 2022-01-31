@@ -49,13 +49,5 @@ form{
     gap: 1rem;
     justify-content: center;
 }
-input[type="radio"] {
-    display: inline-block;
-    position: absolute;
-    bottom: 0;
-    left: 30px;
-  }
+
   
-  input[type="radio"]:last-child {
-    left: 70px;
-  }
