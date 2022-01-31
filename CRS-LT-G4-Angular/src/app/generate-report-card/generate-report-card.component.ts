@@ -12,6 +12,8 @@ import { GenerateReportCard } from './generatereportcard';
 export class GenerateReportCardComponent implements OnInit {
   display:boolean= false;
   studentGrade: GenerateReportCard[];
+  msg:boolean=false;
+  approvedStudent:number;
   constructor(private adminService:AdminServiceService,private router: Router) { 
     this.adminService.generateReportCard().subscribe(
       (response: GenerateReportCard[]) => {
@@ -37,6 +39,11 @@ export class GenerateReportCardComponent implements OnInit {
      if (this.studentGrade.length==0){
       this.display=true;
     }
+    this.approvedStudent=id;
+    this.msg = true;
+  }
+  closeAlert(){
+    this.msg = false;
   }
 
 }

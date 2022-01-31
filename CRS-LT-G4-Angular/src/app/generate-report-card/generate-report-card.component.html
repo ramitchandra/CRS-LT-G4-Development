@@ -1,27 +1,29 @@
-<section class="vh-100" style='background-color: #b9e4ca'>
-    <div class="container-fluid py-3  ">
-    <div class="card" style="border-radius: 1rem;"> 
-<table class="table table-striped my-2 text-center">
-    <thead>
-      <tr>
-        <th>Student ID</th>
-        <th>Student Grade</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody >
-      <tr  *ngFor='let stud of studentGrade'>
-        <td>{{stud.studentId}}</td>
-        <td>{{stud.grade}}</td>
-        <td><button type="button" class="btn btn-success mx-2" (click)="generateReportCard(stud.studentId)">Generate</button></td>
-      </tr>
-    </tbody>
-  </table>
-  <div *ngIf= display>
-    <span class ='text-muted d-flex  justify-content-center align-items-center mt-50'>No more report card generation pending!!</span>
-</div>
-</div>
-</div>
-</section>
-
-
+  <section class="vh-100" style='background-color: #b9e4ca'>
+      <div class="container-fluid py-3  ">
+        <div class="alert alert-success alert-dismissible" role="alert"  *ngIf='msg'>
+          <span type="button" class="close" data-bs-dismiss="alert" aria-label="Close" on-click="closeAlert()"><span aria-hidden="true">&times;</span></span>
+          <strong>Success! </strong>Report Card Generated for Student with Id: <strong> {{approvedStudent}}</strong>.
+        </div>
+      <div class="card" style="border-radius: 1rem;"> 
+  <table class="table table-striped my-2 text-center">
+      <thead>
+        <tr>
+          <th>Student ID</th>
+          <th>Student Grade</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr  *ngFor='let stud of studentGrade'>
+          <td>{{stud.studentId}}</td>
+          <td>{{stud.grade}}</td>
+          <td><button type="button" class="btn btn-success mx-2" (click)="generateReportCard(stud.studentId)">Generate</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf= display>
+      <span class ='text-muted d-flex  justify-content-center align-items-center mt-50'>No more report card generation pending!!</span>
+  </div>
+  </div>
+  </div>
+  </section>
