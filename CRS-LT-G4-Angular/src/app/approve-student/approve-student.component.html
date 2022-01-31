@@ -1,23 +1,23 @@
-  <section class=" vh-100" style=" opacity: .9;" >
+  <section class=" vh-100" style="font-family: Georgia, serif;" >
   <div class="container-fluid py-3  ">
     <div class="alert alert-success alert-dismissible" role="alert"  *ngIf='msg'>
       <span type="button" class="close" data-bs-dismiss="alert" aria-label="Close" on-click="closeAlert()"><span aria-hidden="true">&times;</span></span>
       <strong>Success! </strong>Student with Id: <strong> {{approvedStudent}}</strong> approved.
     </div>
-  <div class="card" style="border-radius: 1rem;"> 
-  <table class="table table-striped my-2 text-center">
+  <div class="card" style="border-radius: 1rem; opacity: .8;"> 
+  <table class="table table-striped my-2 text-center text-dark" >
       <thead>
         <tr>
-          <th>Student ID</th>
-          <th>Student Name</th>
-          <th>Action</th>
+          <th><b>Student ID</b></th>
+          <th><b>Student Name</b></th>
+          <th><b>Action</b></th>
         </tr>
       </thead>
       <tbody >
         <tr  *ngFor='let stud of studentData'>
-          <td>{{stud.studentId}}</td>
-          <td>{{stud.studentName}}</td>
-          <td><button type="button" class="btn btn-success mx-2" (click)="approveStudent(stud.studentId)">Approve</button></td>
+          <td><b>{{stud.studentId}}</b></td>
+          <td><b>{{stud.studentName}}</b></td>
+          <td><button type="button" class="btn btn-success mx-2" (click)="approveStudent(stud.studentId)"><b>Approve</b></button></td>
         </tr>
       </tbody>
     </table>

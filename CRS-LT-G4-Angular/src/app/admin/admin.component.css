@@ -23,10 +23,12 @@
     }
 
     #sidebar-wrapper .navbar .navbar-nav > li > a {
-        line-height: 100px;
-         }
+    line-height: 100px;
+    }
     
-    
+    #sidebar-wrapper .navbar{
+        cursor: pointer;
+    }
     
     #page-content-wrapper {
     min-width: 100vw;
