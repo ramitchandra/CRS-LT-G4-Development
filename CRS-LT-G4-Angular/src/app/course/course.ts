@@ -15,6 +15,13 @@ export class Course {
             this.offlineAmount = offlineAmount;
             this.onlineAmount = onlineAmount;
         }
+        // constructor( courseId: number,
+        //     courseName : string,
+        //     courseAvailable : boolean,
+        //     offlineAmount : number,
+        //     onlineAmount : number
+        // ){}
+}
     
     
-    }
+  

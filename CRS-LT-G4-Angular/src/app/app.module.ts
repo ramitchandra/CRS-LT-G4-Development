@@ -11,6 +11,7 @@ import { CourseComponent } from './course/course.component';
 import { ProfessorComponent } from './professor/professor.component';
 import { ApproveStudentComponent } from './approve-student/approve-student.component';
 import { GenerateReportCardComponent } from './generate-report-card/generate-report-card.component';
+import { CourseService } from './course/course-service.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { GenerateReportCardComponent } from './generate-report-card/generate-rep
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CourseService],
   bootstrap: [AppComponent,CourseComponent]
   
 })
