@@ -1,7 +1,8 @@
 .form-group{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    color: rgb(2, 3, 5);
+    color: black;
+    font-weight: bold;
 
 }
 .form-container{
@@ -26,15 +27,18 @@ label{
     align-items: center;
     gap: 2rem;
     color: rgb(2, 3, 5);
+    font-weight: bold;
 }
 form{
     border: 2px solid;
     padding: 2rem;
-    background: #179a6e;
+    background: #9957837a;
     border-radius: 2rem;
-    color: aliceblue;
+    /* color: aliceblue; */
+
 }
 .form-button{
     display: flex;
     gap: 1rem;
+    justify-content: center;
 }
