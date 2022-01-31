@@ -9,35 +9,14 @@
     <div class="form-group">
       <label for="courseName">Course Name</label>
       <input type="text" class="form-control" id="courseName" [(ngModel)]="model.courseName" name="courseName">
-    </div>
-
-    <div class="form-radio">
-      <label for="courseAvailable">Course Available:</label>
-      <!-- <input type="radio"  class="form-control" id="courseAvailable" -->
-      <input type="radio" value="true" id="courseAvailable" [(ngModel)]="model.courseAvailable" name="courseAvailable">
-      true
-      <input type="radio" value="false" id="courseAvailable" [(ngModel)]="model.courseAvailable" name="courseAvailable">
-      false
-
-    </div>
-
-    <div class="form-group">
-      <label for="offlineAmount">Offline Amount</label>
-      <input type="number" class="form-control" id="offlineAmount" [(ngModel)]="model.offlineAmount"
-        name="offlineAmount">
-    </div>
-
-    <div class="form-group">
-      <label for="onlineAmount">Online Amount</label>
-      <input type="number" class="form-control" id="onlineAmount" [(ngModel)]="model.onlineAmount" name="onlineAmount">
-    </div>
+    </div> 
 
     <div class = "form-button">
-      <!-- <button type="button" class="btn btn-primary" (click)="createCourse()">Add Course</button> -->
-      <button type="button" class="btn btn-primary" (click)="createCourse()">Delete Course</button>
+      
+      <button type="button" class="btn btn-primary" (click)="deleteCourse()">Delete Course</button>
     </div>
     <div *ngIf= message>
-      <span class ='text d-flex  justify-content-center align-items-center mt-50'>Course Added!!</span>
+      <span class ='text d-flex  justify-content-center align-items-center mt-50'>Course Deleted!!</span>
     </div>
   </form>
 </div>

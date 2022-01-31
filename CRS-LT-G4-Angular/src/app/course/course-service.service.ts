@@ -14,8 +14,8 @@ export class CourseService{
     return this.http.post<Course>('http://localhost:7081/admin/addCourse',createCourse, {headers: this.headers});
       
   }
-  public deleteCourse(createCourse: Course,id:number,name:String){
-    return this.http.post<Course>('http://localhost:7081/admin/deleteCourse',createCourse, {headers: this.headers});
+  public deleteCourse(createCourse: Course){
+    return this.http.delete<Course>('http://localhost:7081/admin/deleteCourse/'+createCourse.courseId+'/'+createCourse.courseName, {headers: this.headers});
   }  
  
 }

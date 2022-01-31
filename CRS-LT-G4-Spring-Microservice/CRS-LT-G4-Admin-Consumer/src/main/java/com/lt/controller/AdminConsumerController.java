@@ -47,7 +47,7 @@ public class AdminConsumerController {
 		return discoveryClass.discoveryResult("admin-producer","/admin/addCourse", HttpMethod.POST,courseMap);
 	}
 	
-	@RequestMapping(value = "/deleteCourse/{courseId}/{courseName}", produces = "plain/text", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/deleteCourse/{courseId}/{courseName}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteCourse(@PathVariable int courseId, @PathVariable String courseName) throws RestClientException, IOException {
 		return discoveryClass.discoveryResult("admin-producer","/admin/deleteCourse", HttpMethod.DELETE, Collections.singletonMap(String.valueOf(courseId), courseName));
 	}
