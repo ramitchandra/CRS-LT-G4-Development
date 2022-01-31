@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
       response => {
         console.log(response);
         if(response && response.msg === 'User Logged In'){
+          this.loginService.setUsername(userLogin.userName);
           this.router.navigate(['/admin']);
         } else {
           this.msg = true;

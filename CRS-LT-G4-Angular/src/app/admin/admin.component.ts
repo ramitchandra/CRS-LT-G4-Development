@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login/login.service';
 import { Router } from '@angular/router';
-
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-admin',
@@ -12,8 +12,11 @@ export class AdminComponent implements OnInit {
   comp:boolean=false;
   generate:boolean=false;
   notificationCount:number=0;
+  todayDate:Date = new Date();
+  
   constructor(private loginService: LoginService,private router: Router) { }
 
+  username = this.loginService.getUsername();
  
   ngOnInit(): void {
   }

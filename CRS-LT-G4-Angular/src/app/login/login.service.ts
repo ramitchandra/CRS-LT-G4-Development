@@ -10,6 +10,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class LoginService {
   headers = new HttpHeaders().set('Content-Type', 'application/json').set('Access-Control-Allow-Origin','*');
+  username:string;
   constructor(private httpClient:HttpClient) { }
 
   userLogin(login:Login): Observable<any>{
@@ -20,6 +21,14 @@ export class LoginService {
   userLoggedOut(): Observable<any>{
     let logoutUrl:string = "http://localhost:7081/logout";
     return this.httpClient.get(logoutUrl,{headers: this.headers});
+  }
+
+  getUsername(){
+    return this.username;
+  }
+
+  setUsername(name:string){
+    this.username = name;
   }
 
 }
