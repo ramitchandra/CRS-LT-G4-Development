@@ -1,11 +1,11 @@
-  <section class="vh-100" style="font-family: Georgia, serif;" >
+  <section class="h-100" style="font-family: Georgia, serif; background-color: #ffffff66;border-radius: 1rem" >
       <div class="container-fluid py-3  ">
         <div class="alert alert-success alert-dismissible" role="alert"  *ngIf='msg'>
           <span type="button" class="close" data-bs-dismiss="alert" aria-label="Close" on-click="closeAlert()"><span aria-hidden="true">&times;</span></span>
           <strong>Success! </strong>Report Card Generated for Student with Id: <strong> {{approvedStudent}}</strong>.
         </div>
-      <div class="card" style="border-radius: 1rem; opacity: .8;"> 
-  <table class="table table-striped my-2 text-center text-dark">
+      <!-- <div class="card" style="border-radius: 1rem; opacity: .8;">  -->
+  <table class="table table-striped my-2 text-center text-dark table-hover">
       <thead>
         <tr>
           <th><b>Student ID</b></th>
@@ -25,5 +25,5 @@
       <span class ='text-muted d-flex  justify-content-center align-items-center mt-50'>No more report card generation pending!!</span>
   </div>
   </div>
-  </div>
+  <!-- </div> -->
   </section>
