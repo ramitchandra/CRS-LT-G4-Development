@@ -8,20 +8,15 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 })
 export class CourseService{
   
-  // headers = new HttpHeaders().set('Content-Type', 'application/json').set('Access-Control-Allow-Origin','*');
-  // constructor(private http:HttpClient) { }
-  // public save(createCourse: Course){
-  //   return this.http.post<Course>('http://localhost:7081/addCourse',createCourse, {headers: this.headers});
+  headers = new HttpHeaders().set('Content-Type', 'application/json').set('Access-Control-Allow-Origin','*');
+  constructor(private http:HttpClient) { }
+  public AddCourse(createCourse: Course){
+    return this.http.post<Course>('http://localhost:7081/admin/addCourse',createCourse, {headers: this.headers});
       
-  constructor(private http:HttpClient)
-  {
-
   }
-  public AddCourse(course)
-  {
-    return this.http.post("http://localhost:7081/addCourse",course,{responseType:'text' as 'json'});
-
-  }
+  public deleteCourse(createCourse: Course,id:number,name:String){
+    return this.http.post<Course>('http://localhost:7081/admin/deleteCourse',createCourse, {headers: this.headers});
+  }  
  
 }
 

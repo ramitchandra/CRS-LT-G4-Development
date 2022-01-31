@@ -12,6 +12,7 @@ import { ProfessorComponent } from './professor/professor.component';
 import { ApproveStudentComponent } from './approve-student/approve-student.component';
 import { GenerateReportCardComponent } from './generate-report-card/generate-report-card.component';
 import { CourseService } from './course/course-service.service';
+import { DeleteCourseComponent } from './delete-course/delete-course.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CourseService } from './course/course-service.service';
     CourseComponent,
     ProfessorComponent,
     ApproveStudentComponent,
-    GenerateReportCardComponent
+    GenerateReportCardComponent,
+    DeleteCourseComponent
   ],
   imports: [
     BrowserModule,

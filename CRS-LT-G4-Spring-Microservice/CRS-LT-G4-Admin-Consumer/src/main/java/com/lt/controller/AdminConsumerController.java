@@ -41,7 +41,7 @@ public class AdminConsumerController {
 		return discoveryClass.discoveryResult("admin-producer","/admin/validateStudent", HttpMethod.PUT,Collections.singletonMap("Id", id));
 	}
 
-	@RequestMapping(value = "/addCourse", produces = "plain/text", method = RequestMethod.POST)
+	@RequestMapping(value = "/addCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
 	public ResponseEntity<String> addCourse(@RequestBody Map<String,Object> courseMap) throws RestClientException, IOException {
 		//String jsonString= new ObjectMapper().writeValueAsString(courseMap);
 		return discoveryClass.discoveryResult("admin-producer","/admin/addCourse", HttpMethod.POST,courseMap);

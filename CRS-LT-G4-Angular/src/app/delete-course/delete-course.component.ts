@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from './course';
-import { CourseService } from './course-service.service';
-import { Router } from '@angular/router';
+import { Course } from '../course/course';
+import { CourseService } from '../course/course-service.service';
+
 
 @Component({
-  selector: 'app-course',
-  templateUrl: './course.component.html',
-  styleUrls: ['./course.component.css']
+  selector: 'app-delete-course',
+  templateUrl: './delete-course.component.html',
+  styleUrls: ['./delete-course.component.css']
 })
-export class CourseComponent implements OnInit {
- 
+export class DeleteCourseComponent implements OnInit {
+
   model = new Course(0, "", true, 0, 0);
   message: any;
   constructor(
-    private service: CourseService,private router: Router
+    private service: CourseService
   ) {
+ }
 
+  ngOnInit(): void {
   }
-  ngOnInit() {
 
-  }
-  public createCourse() {
+  public deleteCourse() {
     let addCourse = new Course(this.model.courseId, this.model.courseName, this.model.courseAvailable, this.model.onlineAmount, this.model.offlineAmount);
 
     let responce = this.service.AddCourse(addCourse);
@@ -30,4 +30,5 @@ export class CourseComponent implements OnInit {
   })
 
   }
+
 }
