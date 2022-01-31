@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  msg:boolean = false;
   userName:string;
   password:string;
   constructor(private loginService:LoginService,private router: Router) { }
@@ -25,9 +25,20 @@ export class LoginComponent implements OnInit {
     this.loginService.userLogin(userLogin).subscribe(
       response => {
         console.log(response);
-        this.router.navigate(['/admin']);
+        if(response && response.msg === 'User Logged In'){
+          this.router.navigate(['/admin']);
+        } else {
+          this.msg = true;
+          this.userName = "";
+          this.password = "";
+          this.router.navigate(['/login']);
+        }
       }
      );
+  }
+
+  closeAlert(){
+    this.msg = false;
   }
 
 }
