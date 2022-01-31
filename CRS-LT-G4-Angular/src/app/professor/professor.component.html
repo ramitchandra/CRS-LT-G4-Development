@@ -1,34 +1,21 @@
-<h1 appHighlightDirective value = "Green">Professor Form</h1>
-    <form ngForm>
-      
-         
-        <div class="form-group">
-            <label for="professorId">professorId</label>
-            <input type="number"  class="form-control" id="professorId"
-                   [(ngModel)]="model.professorId" name="professorId">
-          </div>
-        
-        <div class="form-group">
-          <label for="professorName">professorName</label>
-          <input type="text"  class="form-control" id="professorName"
-                 [(ngModel)]="model.professorName" name="professorName">
-        </div>
+<table class="table table-striped my-2 text-center">
+  <thead>
+    <tr>
+      <th>Professor ID</th>
+      <th>Professor Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr  *ngFor='let prof of model'>
+      <td>{{prof.professorId}}</td>
+      <td>{{prof.professorName}}</td>
+      <td><button type="button" class="btn btn-success mx-2" (click)="addProfessor()">Add Professor</button></td>
+    </tr>
+  </tbody>
+</table>
 
-        <div class="form-group">
-            <label for="professorPassword">professorPassword</label>
-            <input type="text"  class="form-control" id="professorPassword"
-                 [(ngModel)]="model.professorPassword" name="professorPassword">            
-          </div> 
-        
-          <button type="button" class="btn btn-primary" (click)="addProfessor()">Add Professor</button>
-        </form>
+<div *ngIf= message>
+  <span class ='text d-flex  justify-content-center align-items-center mt-50'>Professor Added</span>
+</div>
 
-        <div>
-          <ol>
-              <li appHighlightDirective value="yellow" *ngFor='let professor of professorArray index as i'>
-                  {{professor.professorId}} <b>||</b> {{professor.professorName}}| 
-              <button (click) = "deleteCustomer(cust, i)">delete</button>
-               </li>
-           </ol>
-    
-        </div>

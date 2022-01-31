@@ -11,6 +11,8 @@ import { LoginComponent } from '../login/login.component';
 export class AdminComponent implements OnInit {
   comp:boolean=false;
   generate:boolean=false;
+  x: boolean = false;
+  y: boolean = false;
   notificationCount:number=0;
   todayDate:Date = new Date();
   
@@ -32,11 +34,22 @@ export class AdminComponent implements OnInit {
     validate(){
       this.comp=!this.comp;
       this.generate=false;
+      this.x=false;
+      this.y=false;
     }
 
     generateReportCard(){
       this.comp=false;
       this.generate=!this.generate;
+      this.x=false;
+      this.y=false;
 
     }
+    addProfessor(){
+      this.comp=false;
+      this.generate=false;
+      this.x=!this.x;
+      this.y=false;
+    }
+    
 }
