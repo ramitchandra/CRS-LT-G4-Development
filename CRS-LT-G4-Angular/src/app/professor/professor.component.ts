@@ -30,12 +30,12 @@ export class ProfessorComponent implements OnInit {
     }
 
     public deleteProfessor() {
-      let delProf = new Professor(this.model.professorId,this.model.professorName,this.model.professorPassword);
+      let addProf = new Professor(this.model.professorId,this.model.professorName,this.model.professorPassword);
   
-      // let response = this.service.deleteProfessor;
-      // response.subscribe((data) => {this.message = data;
-      // console.log(this.message);
-      // })
+      let response = this.service.deleteProfessor(addProf);
+      response.subscribe((data) => {this.message = data;
+      console.log(this.message);
+      })
   }
 
 }

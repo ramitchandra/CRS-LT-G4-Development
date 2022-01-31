@@ -23,9 +23,9 @@ export class ProfessorServiceService {
       
   }
   
-  // public deleteProfessor(delProf: Professor,id:number,name:string){
-  //   return this.http.delete<Professor>('http://localhost:7081/admin/deleteProfessor',delProf, {headers: this.headers});
-  // }  
+  public deleteProfessor(addProf:Professor){
+    return this.http.delete<Professor>('http://localhost:7081/admin/deleteProfessor'+addProf.professorId+'/'+addProf.professorName, {headers: this.headers});
+  }  
 
 
 }

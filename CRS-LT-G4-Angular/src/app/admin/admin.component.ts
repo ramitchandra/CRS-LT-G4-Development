@@ -51,5 +51,12 @@ export class AdminComponent implements OnInit {
       this.x=!this.x;
       this.y=false;
     }
+
+    deleteProfessor(){
+      this.comp=false;
+      this.generate=false;
+      this.x=false;
+      this.y=!this.y;
+    }
     
 }

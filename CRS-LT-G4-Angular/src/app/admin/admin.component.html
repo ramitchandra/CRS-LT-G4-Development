@@ -21,7 +21,7 @@
 				<a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" href="#!">Add Course</a>
 				<a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" href="#!">Delete Course</a>
 				<a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" on-click="addProfessor()">Add Professor</a>
-				<a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" href="#!">Delete Professor</a>
+				<a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" on-click="deleteProfessor()">Delete Professor</a>
               <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" on-click="generateReportCard()">Generate ReportCard</a>
               <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" on-click="logout()">Logout</a>
           </div>
@@ -38,6 +38,9 @@
 		  <div class="w-100" *ngIf='x'>
 			<app-add-professor></app-add-professor>
 		  </div>
+      <div class="w-100" *ngIf='y'>
+        <app-add-professor></app-add-professor>
+        </div>
       </div>
     </div>
   </section>

@@ -11,11 +11,16 @@
       <td>{{prof.professorId}}</td>
       <td>{{prof.professorName}}</td>
       <td><button type="button" class="btn btn-success mx-2" (click)="addProfessor()">Add Professor</button></td>
+      <td><button type="button" class="btn btn-success mx-2" (click)="deleteProfessor()">Delete Professor</button></td>
     </tr>
   </tbody>
 </table>
 
 <div *ngIf= message>
-  <span class ='text d-flex  justify-content-center align-items-center mt-50'>Professor Added</span>
+  <span class ='text d-flex  justify-content-center align-items-center mt-50'>Professor is added!</span>
+</div>
+
+<div *ngIf= message>
+  <span class ='text d-flex  justify-content-center align-items-center mt-50'>Professor is deleted!</span>
 </div>
 
