@@ -7,7 +7,7 @@
     min-height: 100vh;
     margin-left: -15rem;
     transition: margin 0.25s ease-out;
-    background-color: rgb(199, 228, 202);
+    /* background-color: rgb(199, 228, 202); */
     }
     
     
@@ -18,9 +18,13 @@
     
     
     
-    #sidebar-wrapper .list-group {
-    width: 18rem;
+    #sidebar-wrapper .navbar {
+    width: 20rem;
     }
+
+    #sidebar-wrapper .navbar .navbar-nav > li > a {
+        line-height: 100px;
+         }
     
     
     
@@ -54,11 +58,11 @@
     }
 
 
-    .border-end {
+    /* .border-end {
     border: 1px solid #10860c !important;
-    }
+    } */
 
-    .anchor-border{
+    /* .anchor-border{
         border-bottom: 1px solid #10860c !important;
-    }
+    } */
 

@@ -12,19 +12,20 @@
     </div>
     <div class="d-flex" id="wrapper">
       <!-- Sidebar-->
-      <div class="border-end" id="sidebar-wrapper" >
-          <div class="list-group list-group-flush" style='font-size: 1.5em;' >
-            <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3 font-weight-bold" >Admin Menu</a>
-              <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" on-click="validate()">
-                Approve Student
-                </a>
-				<a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" href="#!">Add Course</a>
-				<a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" href="#!">Delete Course</a>
-				<a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" on-click="addProfessor()">Add Professor</a>
-				<a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" on-click="deleteProfessor()">Delete Professor</a>
-              <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" on-click="generateReportCard()">Generate ReportCard</a>
-              <a class="list-group-item list-group-item-action list-group-item-success anchor-border p-3" on-click="logout()">Logout</a>
-          </div>
+      <div class="border-end" id="sidebar-wrapper" style=" opacity: .9;" >
+          <nav class="navbar navbar-expand-sm bg-dark navbar-dark text-light" style='font-size: 1.5em;font-family: Georgia, serif;' >
+            
+            <ul class='navbar-nav flex-column nav-fill '>
+             <li class='nav-item '> <a  on-click="validate()">Approve Student</a></li>
+              <li class='nav-item'>	<a >Add Course</a></li>
+                <li class='nav-item'><a  >Delete Course</a></li>
+                  <li class='nav-item'><a on-click="addProfessor()">Add Professor</a></li>
+                    <li class='nav-item'><a on-click="deleteProfessor()" >Delete Professor</a></li>
+                      <li class='nav-item'><a  on-click="generateReportCard()">Generate ReportCard</a></li>
+                        <li class='nav-item'><a  on-click="logout()">Logout</a></li>
+                      </ul>
+               
+                    </nav>
       </div>
       <!-- Page content wrapper-->
       <div id="page-content-wrapper" >    
@@ -35,12 +36,13 @@
           <div class="w-100" *ngIf='generate' >
             <app-generate-report-card></app-generate-report-card>
           </div>
-		  <div class="w-100" *ngIf='x'>
-			<app-add-professor></app-add-professor>
-		  </div>
-      <div class="w-100" *ngIf='y'>
-        <app-add-professor></app-add-professor>
-        </div>
+          <div class="w-100" *ngIf='x'>
+          <app-add-professor></app-add-professor>
+          </div>
+
+          <div class="w-100" *ngIf='y'>
+          <app-add-professor></app-add-professor>
+          </div>
       </div>
     </div>
   </section>
