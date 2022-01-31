@@ -14,22 +14,20 @@
     <div class="form-radio">
       <label for="courseAvailable">Course Available:</label>
       <!-- <input type="radio"  class="form-control" id="courseAvailable" -->
-      <input type="radio"  value="true" id="courseAvailable" [(ngModel)]="model.courseAvailable" name="courseAvailable">
-      True
-      <input type="radio" value="false" id="courseAvailable" [(ngModel)]="model.courseAvailable" name="courseAvailable">
-      False
+      <input type="radio"  value="true" id="courseAvailable" [(ngModel)]="model.courseAvailable" name="courseAvailable">True
+      <input type="radio" value="false" id="courseAvailable" [(ngModel)]="model.courseAvailable" name="courseAvailable">False
 
     </div>
 
     <div class="form-group">
       <label for="offlineAmount">Offline Amount</label>
-      <input type="number" class="form-control" id="offlineAmount" [(ngModel)]="model.offlineAmount"
+      <input type="number" class="form-control" id="offlineAmount" [(ngModel)]="model.offlineFees"
         name="offlineAmount">
     </div>
 
     <div class="form-group">
       <label for="onlineAmount">Online Amount</label>
-      <input type="number" class="form-control" id="onlineAmount" [(ngModel)]="model.onlineAmount" name="onlineAmount">
+      <input type="number" class="form-control" id="onlineAmount" [(ngModel)]="model.onlineFees" name="onlineAmount">
     </div>
 
     <div class = "form-button">

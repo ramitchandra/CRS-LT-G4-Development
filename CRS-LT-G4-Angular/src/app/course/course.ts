@@ -5,15 +5,15 @@ export class Course {
         public courseId:number;
         public courseName : string;
         public courseAvailable : boolean;
-        public offlineAmount : number;
-        public onlineAmount : number;
+        public offlineFees : number;
+        public onlineFees : number;
     
-        constructor(courseId:number,courseName:string, courseAvailable: boolean,offlineAmount:number,onlineAmount:number){
+        constructor(courseId:number,courseName:string, courseAvailable: boolean,offlineFees:number,onlineFees:number){
             this.courseId = courseId,
             this.courseName = courseName;
             this.courseAvailable = courseAvailable;
-            this.offlineAmount = offlineAmount;
-            this.onlineAmount = onlineAmount;
+            this.offlineFees = offlineFees;
+            this.onlineFees = onlineFees;
         }
         // constructor( courseId: number,
         //     courseName : string,

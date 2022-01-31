@@ -21,8 +21,8 @@ export class CourseComponent implements OnInit {
 
   }
   public createCourse() {
-    let addCourse = new Course(this.model.courseId, this.model.courseName, this.model.courseAvailable, this.model.onlineAmount, this.model.offlineAmount);
-
+    let addCourse = new Course(this.model.courseId, this.model.courseName, this.model.courseAvailable, this.model.onlineFees, this.model.offlineFees);
+    console.log(addCourse);
     let responce = this.service.AddCourse(addCourse);
     responce.subscribe((data) => {this.message = data;
       console.log(this.message);

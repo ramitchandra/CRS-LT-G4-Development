@@ -21,7 +21,7 @@ export class DeleteCourseComponent implements OnInit {
   }
 
   public deleteCourse() {
-    let addCourse = new Course(this.model.courseId, this.model.courseName, this.model.courseAvailable, this.model.onlineAmount, this.model.offlineAmount);
+    let addCourse = new Course(this.model.courseId, this.model.courseName, this.model.courseAvailable, this.model.onlineFees, this.model.offlineFees);
 
     let responce = this.service.deleteCourse(addCourse);
     responce.subscribe((data) => {this.message = data;
