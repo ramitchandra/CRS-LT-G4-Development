@@ -17,8 +17,8 @@
             
             <ul class='navbar-nav flex-column nav-fill '>
              <li class='nav-item '> <a  on-click="validate()">Approve Student</a></li>
-              <li class='nav-item'>	<a >Add Course</a></li>
-                <li class='nav-item'><a  >Delete Course</a></li>
+              <li class='nav-item'>	<a on-click="createCourse()">Add Course</a></li>
+                <li class='nav-item'><a  on-click="deleteCourse()">Delete Course</a></li>
                   <li class='nav-item'><a on-click="addProfessor()">Add Professor</a></li>
                     <li class='nav-item'><a on-click="deleteProfessor()" >Delete Professor</a></li>
                       <li class='nav-item'><a  on-click="generateReportCard()">Generate ReportCard</a></li>
@@ -43,6 +43,14 @@
           <div class="w-100" *ngIf='y'>
           <app-add-professor></app-add-professor>
           </div>
+
+          <div class="w-100" *ngIf='a'>
+            <app-course></app-course> 
+          </div>
+          <div class="w-100" *ngIf='b'>
+            <app-delete-course></app-delete-course> 
+          </div>
+
       </div>
     </div>
   </section>

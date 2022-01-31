@@ -13,6 +13,8 @@ export class AdminComponent implements OnInit {
   generate:boolean=false;
   x: boolean = false;
   y: boolean = false;
+  a: boolean = false;
+  b: boolean = false;
   notificationCount:number=0;
   todayDate:Date = new Date();
   
@@ -36,6 +38,8 @@ export class AdminComponent implements OnInit {
       this.generate=false;
       this.x=false;
       this.y=false;
+      this.a=false;
+      this.b=false;
     }
 
     generateReportCard(){
@@ -43,13 +47,16 @@ export class AdminComponent implements OnInit {
       this.generate=!this.generate;
       this.x=false;
       this.y=false;
-
+      this.a=false;
+      this.b=false;
     }
     addProfessor(){
       this.comp=false;
       this.generate=false;
       this.x=!this.x;
       this.y=false;
+      this.a=false;
+      this.b=false;
     }
 
     deleteProfessor(){
@@ -57,6 +64,26 @@ export class AdminComponent implements OnInit {
       this.generate=false;
       this.x=false;
       this.y=!this.y;
+      this.a=false;
+      this.b=false;
+    }
+
+    createCourse () {
+      this.comp=false;
+      this.generate=false;
+      this.x=false;
+      this.y=false;
+      this.a=!this.a;
+      this.b=false;
+    }
+
+    deleteCourse() {
+      this.comp=false;
+      this.generate=false;
+      this.x=false;
+      this.y=false;
+      this.a=false;
+      this.b=!this.b;
     }
     
 }

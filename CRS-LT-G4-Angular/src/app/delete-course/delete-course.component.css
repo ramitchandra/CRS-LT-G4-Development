@@ -1,4 +1,4 @@
-.form-group{
+/* .form-group{
     display: grid;
     grid-template-columns: 1fr 1fr;
     color: aliceblue;
@@ -22,7 +22,7 @@ h1 {
 /* label{
     margin-right: 6rem;
 } */
-.form-radio{
+/* .form-radio{
     display: flex;
     align-items: center;
     gap: 2rem;
@@ -44,4 +44,4 @@ form{
     width: 100%;
     gap: 1rem;
     justify-content: flex-start; 
-}
+} */

@@ -1,14 +1,14 @@
 .form-group{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    color: aliceblue;
+    color: rgb(2, 3, 5);
 
 }
 .form-container{
     display: flex;
     justify-content: center;
     padding: 2rem;
-    background: cadetblue;
+    /* background: cadetblue; */
 }
 .form-control{
     width: 15rem;
@@ -25,7 +25,7 @@ label{
     display: flex;
     align-items: center;
     gap: 2rem;
-    color: aliceblue;
+    color: rgb(2, 3, 5);
 }
 form{
     border: 2px solid;
