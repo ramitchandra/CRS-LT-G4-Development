@@ -1,47 +1,40 @@
- <section class="vh-200" style='background-color: #024042'>
-    <div class="container py-5  ">
-      <div class="row d-flex justify-content-center align-items-center ">
-        <div class="col col-xl-10">
-          <div class="card" style="border-radius: 1rem;">
-            <div class="row g-0">
-              <div class="col-md-6 col-lg-6 d-none d-md-block">
-                <img
-                  src="/assets/images/CrsLogo.png"
-                  alt="login form"
-                  class="img-fluid  h-100" style="border-radius: 1rem 0 0 1rem;"
-                />
-              </div>
-              <div class="col-md-6 col-lg-6 d-flex align-items-center">
-                <div class="card-body p-4 p-lg-5 text-black" >
+ <section class="vh-200" style='background-image: url("/assets/images/CrsLogo.png"); background-repeat: no-repeat; background-size: 100% 100%;'>
+    <div class="container py-5 ">
+      <div class="row justify-content-center align-items-center ">
+        <div class="col col-lg-5">
+          <div class="card text-center" style="border-radius: 1rem; opacity: .9;">
+            <div>
+              <div class="align-items-center">
+                <div class="card-body p-4 text-black" >
   
-                  <form  >
+                  <form>
   
-                    <div class="d-flex align-items-center mb-3 pb-1">
+                    <div class="align-items-center mb-3 pb-1">
                       <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                      <span class="h1 fw-bold mb-0">CRS Login</span>
+                      <span class="h1 fw-bold mb-0" style="font-family: Georgia, serif;">CRS Login</span>
                     </div>
   
-                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Login into your account</h5>
+                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; font-family: Georgia, serif;">Login into your account</h5>
                     <div class="alert alert-danger alert-dismissible" role="alert"  *ngIf='msg'>
                       <span type="button" class="close" data-bs-dismiss="alert" aria-label="Close" on-click="closeAlert()"><span aria-hidden="true">&times;</span></span>
                       <strong>Alert! </strong>Incorrect Username/Password.
                     </div>
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="form2Example17">Username</label>
+                        <label class="form-label" for="form2Example17" style="font-family: Georgia, serif;">Username</label>
                         <input type="username" id="form2Example17" class="form-control form-control-lg" [(ngModel)]="userName" name="userName"  />        
                     </div>
   
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="form2Example27">Password</label>
+                        <label class="form-label" for="form2Example27" style="font-family: Georgia, serif;"> Password</label>
                         <input type="password" id="form2Example27" class="form-control form-control-lg" [(ngModel)]="password" name="password" />                 
                     </div>
   
                     <div class="p1-1 d-grid">
-                      <button class="btn btn-dark btn-lg btn-block" type="submit" (click)='submit()' >Login</button>
+                      <button class="btn btn-dark btn-lg btn-block" type="submit" (click)='submit()' style="font-family: Georgia, serif;">Login</button>
                     </div>
   
                     <br>
-                    <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#!" style="color: #393f81;">New Student Register here</a></p>
+                    <p class="mb-5 pb-lg-2" style="color: #0a0a0f; font-family: Georgia, serif;">Don't have an account? <a href="#!" style="color: #393f81;">New Student Register here</a></p>
                   </form>
                 </div>
               </div>
