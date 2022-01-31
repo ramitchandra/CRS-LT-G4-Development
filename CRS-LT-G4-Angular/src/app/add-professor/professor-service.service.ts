@@ -24,7 +24,7 @@ export class ProfessorServiceService {
   }
   
   public deleteProfessor(addProf:Professor){
-    return this.http.delete<Professor>('http://localhost:7081/admin/deleteProfessor'+addProf.professorId+'/'+addProf.professorName, {headers: this.headers});
+    return this.http.delete<Professor>('http://localhost:7081/admin/deleteProfessor'+'/'+addProf.professorId, {headers: this.headers});
   }  
 
 
