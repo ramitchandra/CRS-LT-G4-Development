@@ -1,4 +1,10 @@
-<table class="table table-striped my-2 text-center">
+<section class=" vh-100" style=" opacity: .9;" >
+  <div class="container-fluid py-3  ">
+    <div class="alert alert-success alert-dismissible" role="alert"  *ngIf='msg'>
+      <span type="button" class="close" data-bs-dismiss="alert" aria-label="Close" on-click="closeAlert()"><span aria-hidden="true">&times;</span></span>
+    </div>
+  <div class="card" style="border-radius: 1rem;"> 
+    <table class="table table-striped my-2 text-center">
   <thead>
     <tr>
       <th>Professor ID</th>
@@ -11,6 +17,12 @@
       <td>{{prof.professorId}}</td>
       <td>{{prof.professorName}}</td>
       <td><button type="button" class="btn btn-success mx-2" (click)="addProfessor()">Add Professor</button></td>
+    </tr>
+  </tbody>
+  <tbody >
+    <tr  *ngFor='let prof of model'>
+      <td>{{prof.professorId}}</td>
+      <td>{{prof.professorName}}</td>
       <td><button type="button" class="btn btn-success mx-2" (click)="deleteProfessor()">Delete Professor</button></td>
     </tr>
   </tbody>

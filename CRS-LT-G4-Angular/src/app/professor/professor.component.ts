@@ -12,6 +12,7 @@ export class ProfessorComponent implements OnInit {
 
   model = new Professor(0, "", "");
   message: any;
+  msg:boolean = false;
   constructor(private service: ProfessorServiceService) {
   }
 
