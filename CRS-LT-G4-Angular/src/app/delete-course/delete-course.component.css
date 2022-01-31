@@ -1,6 +1,6 @@
 .form-group{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     color: aliceblue;
 
 }
@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     padding: 2rem;
+    height: 24rem;
     background: cadetblue;
 }
 .form-control{
@@ -29,12 +30,18 @@ h1 {
 }
 form{
     border: 2px solid;
+    display: flex;
     padding: 2rem;
+    justify-content: center;
+    align-items: center;
     background: #179a6e;
     border-radius: 2rem;
     color: aliceblue;
+    flex-direction: column;
 }
 .form-button{
     display: flex;
+    width: 100%;
     gap: 1rem;
+    justify-content: flex-start; 
 }

@@ -1,6 +1,6 @@
 .form-group{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     color: aliceblue;
 
 }
@@ -18,9 +18,9 @@ h1 {
     align-items: center;
     justify-content: center;
 }
-/* label{
+label{
     margin-right: 6rem;
-} */
+}
 .form-radio{
     display: flex;
     align-items: center;
