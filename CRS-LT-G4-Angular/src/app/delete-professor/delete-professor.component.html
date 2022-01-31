@@ -1,0 +1,21 @@
+<div class="form-container">
+    <form ngForm>
+      <div class="form-group" >
+        <label for="professorId" >Professor Id</label>
+        <input type="text" class="form-control" id="professorId" [(ngModel)]="model.professorId" name="professorId">
+      </div>
+  
+      <div class="form-group">
+        <label for="professorName">Professor Name</label>
+        <input type="text" class="form-control" id="ProfessorName" [(ngModel)]="model.professorName" name="ProfessorName">
+      </div>
+  
+      <div class = "form-button">
+        <button type="button" class="btn btn-success" (click)="deleteProfessor()">Delete Professor</button>
+      </div>
+      
+      <div *ngIf= message>
+        <span class ='text d-flex  justify-content-center align-items-center mt-50'>Professor is deleted!</span>
+      </div>
+    </form>
+  </div>

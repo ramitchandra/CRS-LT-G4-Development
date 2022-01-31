@@ -13,6 +13,7 @@ export class AdminComponent implements OnInit {
   generate:boolean=false;
   x: boolean = false;
   y: boolean = false;
+  z: boolean = false;
   a: boolean = false;
   b: boolean = false;
   notificationCount:number=0;

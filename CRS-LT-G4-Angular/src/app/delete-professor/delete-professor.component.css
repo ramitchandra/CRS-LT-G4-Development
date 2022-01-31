@@ -1,0 +1,48 @@
+.form-group{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    color: black;
+    font-weight: bold;
+
+}
+.form-container{
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    height: 24rem;
+    /* background: cadetblue; */
+}
+.form-control{
+    width: 15rem;
+}
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+label{
+    margin-right: 6rem;
+} 
+.form-radio{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    color: aliceblue;
+}
+form{
+    border: 2px solid;
+    display: flex;
+    padding: 2rem;
+    justify-content: center;
+    align-items: center;
+    background: #9957837a;
+    border-radius: 2rem;
+    color: black;
+    flex-direction: column;
+}
+.form-button{
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    justify-content: center; 
+}
