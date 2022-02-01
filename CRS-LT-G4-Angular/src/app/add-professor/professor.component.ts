@@ -23,7 +23,7 @@ export class ProfessorComponent implements OnInit {
   }
   public addProfessor() {
     let addProf = new Professor(this.model.professorId, this.model.professorName, this.model.professorPassword);
-
+    console.log(addProf);
     let response = this.service.addProfessor(addProf);
     response.subscribe((data) => {this.message = data;
       this.msg=true;

@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
@@ -19,6 +20,7 @@ public class Professor {
 	@Column(name="professorname")
 	private String professorName;
 	@Column(name="professorpassword")
+	@Transient
 	private String professorPass;
 	/**
 	 * @return the professorId
