@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * @author user113
+ * @author Naman,Purnima,Radha,Ramit,Sai,Vignesh
  *
  */
 @Entity

@@ -8,6 +8,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+/**
+ * @author Naman,Purnima,Radha,Ramit,Sai,Vignesh
+ * @return
+ * This is the landing page of the application.
+ */
 @EntityScan("com.lt.entity")
 @ComponentScan({"com.lt.*"})
 @EnableJpaRepositories("com.lt.dao")
@@ -16,6 +21,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableDiscoveryClient
 public class CrsLtG4AdminProducerApplication {
 
+	/**
+	 * @param args
+	 * @return
+	 * This is used to start the application
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(CrsLtG4AdminProducerApplication.class, args);
 	}
