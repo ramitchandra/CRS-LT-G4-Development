@@ -13,22 +13,33 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @author user113
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
+ * Discovery class to communicate with the required producer registered on server
  *
  */
 @Component
 public class DiscoveryClass {
 
+	/**
+	 * Used to establish connection with discovery client
+	 */
 	@Autowired
 	DiscoveryClient discoveryClient;
 
+	/**
+	 * @param clientName
+	 * @param producerUrl
+	 * @param http
+	 * @param requestBody
+	 * @return
+	 * Send request to server and fetch the response along with request body
+	 */
 	public ResponseEntity<String> discoveryResult(String clientName, String producerUrl, HttpMethod http, Map<String,Object> requestBody){
 
 		List<ServiceInstance> instances=discoveryClient.getInstances(clientName);
@@ -47,12 +58,25 @@ public class DiscoveryClass {
 		return response;
 	}
 
+	/**
+	 * @param requestBody
+	 * @return
+	 * @throws IOException
+	 * To set headers of the request
+	 */
 	private static HttpEntity<?> getHeaders(Map<String,Object> requestBody) throws IOException {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		return new HttpEntity<>(requestBody,headers);
 	}
 
+	/**
+	 * @param clientName
+	 * @param producerUrl
+	 * @param http
+	 * @return
+	 * Overloaded method to send request without body
+	 */
 	public ResponseEntity<String> discoveryResult(String clientName, String producerUrl, HttpMethod http){
 
 		List<ServiceInstance> instances=discoveryClient.getInstances(clientName);
@@ -71,6 +95,11 @@ public class DiscoveryClass {
 		return response;
 	}
 
+	/**
+	 * @return
+	 * @throws IOException
+	 * Overloaded method to set empty header
+	 */
 	private static HttpEntity<?> getHeaders() throws IOException {
 		HttpHeaders headers = new HttpHeaders();
 		return new HttpEntity<>(headers);

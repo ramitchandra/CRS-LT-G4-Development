@@ -13,6 +13,11 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * @author Naman, Purnima, Radha, Ramit, Sai, Vignesh
+ * Main page of application
+ *
+ */
 @ComponentScan({"com.lt.*"})
 @EnableWebMvc
 @SpringBootApplication
@@ -20,10 +25,18 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableDiscoveryClient
 public class CrsLtG4AdminConsumerApplication {
 
+	/**
+	 * @param args
+	 * Used to start the application
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(CrsLtG4AdminConsumerApplication.class, args);
 	}
 	
+	/**
+	 * @return
+	 * Enables us to use swagger for application
+	 */
 	@Bean
 	public Docket apiDocket() {
 	return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
