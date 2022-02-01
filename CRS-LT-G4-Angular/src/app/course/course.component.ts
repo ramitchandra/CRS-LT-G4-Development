@@ -12,6 +12,7 @@ export class CourseComponent implements OnInit {
  
   model = new Course(0, "", true, 0, 0);
   message: any;
+  msg:boolean;
   constructor(
     private service: CourseService,private router: Router
   ) {
@@ -25,9 +26,14 @@ export class CourseComponent implements OnInit {
     console.log(addCourse);
     let responce = this.service.AddCourse(addCourse);
     responce.subscribe((data) => {this.message = data;
+      this.msg=true;
       console.log(this.message);
     // this.router.navigate(['/admin']);
   })
 
+  }
+
+  closeAlert(){
+    this.msg = false;
   }
 }
