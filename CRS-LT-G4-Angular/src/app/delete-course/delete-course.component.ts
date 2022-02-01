@@ -12,6 +12,7 @@ export class DeleteCourseComponent implements OnInit {
 
   model = new Course(0, "", true, 0, 0);
   message: any;
+  msg:boolean;
   constructor(
     private service: CourseService
   ) {
@@ -26,9 +27,13 @@ export class DeleteCourseComponent implements OnInit {
     let responce = this.service.deleteCourse(addCourse);
     responce.subscribe((data) => {this.message = data;
       console.log(this.message);
+      this.msg=true;
     // this.router.navigate(['/admin']);
   })
 
+  }
+  closeAlert(){
+    this.msg = false;
   }
 
 }
