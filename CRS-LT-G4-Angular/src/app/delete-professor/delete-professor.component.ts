@@ -10,6 +10,7 @@ import { Professor } from './professor';
 export class DeleteProfessorComponent implements OnInit {
   model = new Professor(0, "", "");
   message: any;
+  msg: boolean;
 
   constructor(private service: ProfessorServiceService) { }
 
@@ -21,8 +22,14 @@ export class DeleteProfessorComponent implements OnInit {
 
     let response = this.service.deleteProfessor(addProf);
     response.subscribe((data) => {this.message = data;
+      this.msg=true;
     console.log(this.message);
     })
+}
+
+
+closeAlert(){
+  this.msg = false;
 }
 
 }

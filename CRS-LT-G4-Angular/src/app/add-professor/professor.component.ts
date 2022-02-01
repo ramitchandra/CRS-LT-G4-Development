@@ -13,7 +13,7 @@ export class ProfessorComponent implements OnInit {
 
   model = new Professor(0, "", "");
   message: any;
-  msg:boolean = false;
+  msg:boolean;
   display: boolean;
   constructor(private service: ProfessorServiceService,private router: Router) {
     
@@ -26,10 +26,13 @@ export class ProfessorComponent implements OnInit {
 
     let response = this.service.addProfessor(addProf);
     response.subscribe((data) => {this.message = data;
+      this.msg=true;
       console.log(this.message);
     });
   
     }
-
+    closeAlert(){
+      this.msg = false;
+    }
 
 }
