@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.ws.rs.core.MediaType;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +27,10 @@ import org.springframework.web.client.RestClientException;
 @CrossOrigin
 public class LoginController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	
 	/**
-	 * Discovery class to handle the communication with server and produceer client
+	 * Discovery class to handle the communication with server and producer client
 	 */
 	@Autowired
 	DiscoveryClass discoveryClass;
@@ -40,6 +44,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/login", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
 	public ResponseEntity<String> loginUser(@RequestBody Map<String,Object> loginMap) throws RestClientException, IOException {
+		logger.info("Inside loginUser method.");
 		Map<String, Object> detailsMap = new HashMap<>();
 		detailsMap.put("user", loginMap.get("userName").toString());
 		detailsMap.put("pass", loginMap.get("password").toString());
@@ -54,6 +59,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/logout", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<String> logout() throws RestClientException, IOException {
+		logger.info("Inside logout method.");
 		return discoveryClass.discoveryResult("admin-producer","/logout", HttpMethod.GET);
 	}
 

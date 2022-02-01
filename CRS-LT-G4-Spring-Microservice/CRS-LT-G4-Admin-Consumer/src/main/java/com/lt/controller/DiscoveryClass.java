@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -25,6 +27,8 @@ import org.springframework.web.client.RestTemplate;
  */
 @Component
 public class DiscoveryClass {
+	
+	private static final Logger logger = LoggerFactory.getLogger(DiscoveryClass.class);
 
 	/**
 	 * Used to establish connection with discovery client
@@ -41,7 +45,8 @@ public class DiscoveryClass {
 	 * Send request to server and fetch the response along with request body
 	 */
 	public ResponseEntity<String> discoveryResult(String clientName, String producerUrl, HttpMethod http, Map<String,Object> requestBody){
-
+		
+		logger.info("Inside discoveryResult method.");
 		List<ServiceInstance> instances=discoveryClient.getInstances(clientName);
 
 		ServiceInstance serviceInstance=instances.get(0);
@@ -78,7 +83,7 @@ public class DiscoveryClass {
 	 * Overloaded method to send request without body
 	 */
 	public ResponseEntity<String> discoveryResult(String clientName, String producerUrl, HttpMethod http){
-
+		logger.info("Inside discoveryResult method overloaded.");
 		List<ServiceInstance> instances=discoveryClient.getInstances(clientName);
 
 		ServiceInstance serviceInstance=instances.get(0);

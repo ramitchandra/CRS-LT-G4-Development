@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.ws.rs.core.MediaType;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,8 @@ import org.springframework.web.client.RestClientException;
 @CrossOrigin
 public class AdminConsumerController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(AdminConsumerController.class);
+	
 	/**
 	 * Discovery class to handle the communication with server and produceer client
 	 */
@@ -41,6 +45,7 @@ public class AdminConsumerController {
 	 */
 	@RequestMapping(value = "/getAllStudent", produces = "plain/text", method = RequestMethod.GET)
 	public ResponseEntity<String> getAllStudent() throws RestClientException, IOException {
+		logger.info("Inside getAllStudent method.");
 		return discoveryClass.discoveryResult("admin-producer","/admin/getAllStudent", HttpMethod.GET);
 	}
 	
@@ -52,6 +57,7 @@ public class AdminConsumerController {
 	 */
 	@RequestMapping(value = "/getStudent", produces =MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<String> getListStudent() throws RestClientException, IOException {
+		logger.info("Inside getListStudent method.");
 		return discoveryClass.discoveryResult("admin-producer","/admin/getStudent", HttpMethod.GET);
 	}
 	
@@ -64,6 +70,7 @@ public class AdminConsumerController {
 	 */
 	@RequestMapping(value = "/validateStudent/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
 	public ResponseEntity<String> validateStudent(@PathVariable int id) throws RestClientException, IOException {
+		logger.info("Inside validateStudent method.");
 		System.out.println("Inside Consumer Validate Student:---->"+id);
 		return discoveryClass.discoveryResult("admin-producer","/admin/validateStudent", HttpMethod.PUT,Collections.singletonMap("Id", id));
 	}
@@ -77,7 +84,7 @@ public class AdminConsumerController {
 	 */
 	@RequestMapping(value = "/addCourse", produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
 	public ResponseEntity<String> addCourse(@RequestBody Map<String,Object> courseMap) throws RestClientException, IOException {
-		//String jsonString= new ObjectMapper().writeValueAsString(courseMap);
+		logger.info("Inside addCourse method.");
 		return discoveryClass.discoveryResult("admin-producer","/admin/addCourse", HttpMethod.POST,courseMap);
 	}
 	
@@ -91,6 +98,7 @@ public class AdminConsumerController {
 	 */
 	@RequestMapping(value = "/deleteCourse/{courseId}/{courseName}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteCourse(@PathVariable int courseId, @PathVariable String courseName) throws RestClientException, IOException {
+		logger.info("Inside deleteCourse method.");
 		return discoveryClass.discoveryResult("admin-producer","/admin/deleteCourse", HttpMethod.DELETE, Collections.singletonMap(String.valueOf(courseId), courseName));
 	}
 	
@@ -104,6 +112,7 @@ public class AdminConsumerController {
 	 */
 	@RequestMapping(value = "/addProfessor", produces = "plain/text", method = RequestMethod.POST)
 	public ResponseEntity<String> addProfessor(@RequestBody Map<String,Object> professorMap) throws RestClientException, IOException {
+		logger.info("Inside addProfessor method.");
 		return discoveryClass.discoveryResult("admin-producer","/admin/addProfesor", HttpMethod.POST, professorMap);
 	}
 	
@@ -116,6 +125,7 @@ public class AdminConsumerController {
 	 */
 	@RequestMapping(value = "/deleteProfessor/{professorId}", produces = "plain/text", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteProfessor(@PathVariable int professorId) throws RestClientException, IOException {
+		logger.info("Inside deleteProfessor method.");
 		return discoveryClass.discoveryResult("admin-producer","/admin/deleteProfessor", HttpMethod.DELETE, Collections.singletonMap("Id", (Integer) professorId));
 	}
 	
@@ -127,6 +137,7 @@ public class AdminConsumerController {
 	 */
 	@RequestMapping(value = "/generateReportCard", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
 	public ResponseEntity<String> generateReportCard() throws RestClientException, IOException {
+		logger.info("Inside generateReportCard method.");
 		return discoveryClass.discoveryResult("admin-producer","/admin/gererateReportCard", HttpMethod.GET);
 	}
 	
@@ -139,7 +150,7 @@ public class AdminConsumerController {
 	 */
 	@RequestMapping(value = "/validateReportCard/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
 	public ResponseEntity<String> approveReportCard(@PathVariable int id) throws RestClientException, IOException {
-		System.out.println("inside approveReportCard" + id);
+		logger.info("Inside approveReportCard method.");
 		return discoveryClass.discoveryResult("admin-producer","/admin/validateReportCard", HttpMethod.PUT, Collections.singletonMap("Id", id));
 	}
 	

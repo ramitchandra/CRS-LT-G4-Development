@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lt.crs.constants.StringConstants;
 import com.lt.crs.exception.ApprovalPendingException;
 import com.lt.crs.exception.InvalidUserException;
 import com.lt.crs.validation.LoginValidation;
