@@ -4,6 +4,7 @@
     color: black;
     font-weight: bold;
     font-family: Georgia, serif ;
+    font-size: 1.2rem;
 
 }
 .form-container{
@@ -29,11 +30,12 @@ label{
 }
 .form-radio{
     display: flex;
-    align-items: right;
-    gap: 2rem;
     color: black;
     font-weight: bold;
-    font-family: Georgia, serif ;
+    font-size: 1.2rem;
+    font-family: Georgia, serif;
+    align-items: center;
+    gap: 2rem;
 }
 form{
     border: 2px solid;
